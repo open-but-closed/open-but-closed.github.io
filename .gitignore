@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+
+hexo-deployer-gcs/
+temp/
+
+#key 
+open-but-closed-d57c85c6f504.json
