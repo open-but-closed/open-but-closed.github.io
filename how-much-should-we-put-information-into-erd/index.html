@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="과연 데이터모델에 얼마나 정보를 담는 것이 바람직하게 생각하시는지요.">
+<meta name="keywords" content="DBian게시글,Data Modeling">
+<meta property="og:type" content="article">
+<meta property="og:title" content="데이터모델(ERD)에 얼마나 많은 정보를 관리하는게 좋을지">
+<meta property="og:url" content="http://open-but-closed.com/how-much-should-we-put-information-into-erd/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="과연 데이터모델에 얼마나 정보를 담는 것이 바람직하게 생각하시는지요.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-04T16:28:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="데이터모델(ERD)에 얼마나 많은 정보를 관리하는게 좋을지">
+<meta name="twitter:description" content="과연 데이터모델에 얼마나 정보를 담는 것이 바람직하게 생각하시는지요.">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/how-much-should-we-put-information-into-erd/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>데이터모델(ERD)에 얼마나 많은 정보를 관리하는게 좋을지 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/how-much-should-we-put-information-into-erd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">데이터모델(ERD)에 얼마나 많은 정보를 관리하는게 좋을지
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-02T00:00:00+09:00">2018-07-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-05 01:28:00" itemprop="dateModified" datetime="2019-10-05T01:28:00+09:00">2019-10-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DB/일반/" itemprop="url" rel="index"><span itemprop="name">일반</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/how-much-should-we-put-information-into-erd/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-much-should-we-put-information-into-erd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">과연 데이터모델에 얼마나 정보를 담는 것이 바람직하게 생각하시는지요.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>먼저, 역으로 하나 생각해보고 싶은 것이, 데이터 모델만 보고 비즈니스 로직을 얼마나 이해할 수 있을까 하는 질문입니다. 여기서 데이터 모델이란 말그대로 ERD만을 이야기합니다. 쉽게 생각해서 ERwin파일이나 DA# 파일만 있다고 가정하는 것입니다. DBMS에 접속해서 데이터를 못 본다고 할 때요.</p>
+<p>저는 아무리 잘 관리된 데이터모델이라 할지라도 비즈니스 로직의 반도 이해하기 어렵다고 생각합니다.</p>
+<p>일부 숙련된 데이터 모델러 분들은 일반 모델러보다 훨씬 빠르게 모델을 이해하기도 합니다만, 저는 이런 부분이 잘 관리된 데이터 모델에서 기인한다고 생각하지 않습니다. 제 생각에 그런 분들은 이미 비즈니스 로직에 대한 기본 지식을 통해 모델을 이해하시는 분이거나, 기존 비즈니스 로직에 대한 이해가 없어도, 비즈니스를 모델로 표현하는 방법에 익숙하기 때문에 적응이 빠른 것이라 봅니다. 또 모델링 숙련자는 익숙하지 않은 비즈니스도 빠르게 습득하는 능력이 있습니다. 하지만 어떤 이유도 좋은 모델에서 이해도를 높여주지 않는다고 생각합니다. (좋은 모델이 있으면 이 작업이 더 수월하긴 할 것입니다.)</p>
+<p>DBA 입장에서 볼 때도 마찬가지라고 봅니다. ERwin같은 경우 DBMS를 선택할 수 있고, DBMS의 특성에 맞는 많은 속성들을 버전에 따라 최대한 지원할 수 있는 기능들은 만들어져있습니다. 하지만 이 기능들을 최대한 이용해서, 물리적인 속성까지 ERD에서 관리하는 곳은 아직 들어보지 못했습니다. 그건… 별도 스크립트나 DBMS에서 짂접 관리하는 것이 편하기 때문일 것입니다. ERD가 DBMS와 실시간으로 싱크되지 않는 이상 그런 부분은 어려울 것 같습니다.</p>
+<p>위 두 가지 측면에서 ERD에 비즈니스로직이나 물리속성을 “꽤 높은 수준으로” 관리하기는 어렵다고 생각합니다. (여기서 말씀드리는 물리속성이란 테이블스페이스, 스토리지, 인덱스등의 좀 더 물리스러운 정보입니다.) 그럼 모델링에서 주로 집중해야 하는 관계적인 측면은 어떨까요.</p>
+<p>이 부분도… 모델링에는 태생적인 한계가 있다고 생각합니다. 컬럼간의 관계, row간의 관계, 테이블간의 관계, 데이터 발생/변경/삭제 규칙 등을 표현하기에 ERD는 너무 제한적으로 보입니다. 아니, 그렇다기 보다는, 모델링은 만능 도구가 아니며 데이터 모델을 이해시키기 위한 생긴 프로토콜이라고 생각합니다.</p>
+<p>개인적인 결론을 말씀드리면 그냥 적정하게 협의된 수준에서 정보만 표기하는게 가장 좋지 않을까 합니다. 비즈니스와 시스템의 난이도와 중요도에 따라 적당히의 수준은 달라질 것 같습니다. 가장 기초적인 식별관계만 보아도 그렇습니다. 고객은 너무 자주 쓰이니 관계선을 생략한다. 코드는 테이블로 퉁친다. 이런게 명시적/암묵적으로 존재하는 협의 수준이라고 생각합니다.</p>
+<p>그래서 필수적인 사항에 대해서만 꼭 표기하자 정도의 생각이 있습니다. 뭐든지 관리가 되면 좋습니다. ERD에 비즈니스 로직부터 물리 레이어까지의 정보가 있으면 ERD만 보고 이해할 수 있는게 많으니 보는 입장에서는 편할 것 같습니다. 다만, 그렇게 관리하기 위해서 드는 에너지는 관리 항목 수에 비례합니다. 인덱스를 만드는 것 vs 쓰는 것과 비슷해 보입니다.</p>
+<p>특히 요즘은 더욱 관리요건이 적어야 한다고 봅니다. 지금 주 52시간(MAX) 근무제가 이제 막 시행이 되었는데, 관리 항목이 많은 ERD라면… 주 80시간으로도 어려울 것 같습니다.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DBian게시글/" rel="tag"># DBian게시글</a>
+          
+            <a href="/tags/Data-Modeling/" rel="tag"># Data Modeling</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/which-platform-is-the-best-for-my-blogging/" rel="next" title="블로그 플랫폼 고민">
+                <i class="fa fa-chevron-left"></i> 블로그 플랫폼 고민
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/writing-things-in-markdown-format/" rel="prev" title="마크다운(MarkDown)으로 글쓰기">
+                마크다운(MarkDown)으로 글쓰기 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/how-much-should-we-put-information-into-erd/";
+    this.page.identifier = "how-much-should-we-put-information-into-erd/";
+    this.page.title = '데이터모델(ERD)에 얼마나 많은 정보를 관리하는게 좋을지';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

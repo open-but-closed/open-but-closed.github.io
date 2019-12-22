@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Re:dash를 공짜로 받은 Digital Ocean에 설치해보자.">
+<meta name="keywords" content="cloud-computing,Redash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redash(v4) Ubuntu(host)에 설치하기">
+<meta property="og:url" content="http://open-but-closed.com/install-redash-v4-on-ubuntu-host/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="Re:dash를 공짜로 받은 Digital Ocean에 설치해보자.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture2018-08-22at00-cd555037-6e5a-4fcc-aab2-65ff45d0c200.29.29.jpg">
+<meta property="og:updated_time" content="2019-10-04T15:56:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redash(v4) Ubuntu(host)에 설치하기">
+<meta name="twitter:description" content="Re:dash를 공짜로 받은 Digital Ocean에 설치해보자.">
+<meta name="twitter:image" content="http://open-but-closed.com/images/Capture2018-08-22at00-cd555037-6e5a-4fcc-aab2-65ff45d0c200.29.29.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/install-redash-v4-on-ubuntu-host/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Redash(v4) Ubuntu(host)에 설치하기 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/install-redash-v4-on-ubuntu-host/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redash(v4) Ubuntu(host)에 설치하기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-10 19:03:00" itemprop="dateCreated datePublished" datetime="2018-08-10T19:03:00+09:00">2018-08-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-05 00:56:00" itemprop="dateModified" datetime="2019-10-05T00:56:00+09:00">2019-10-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/install-redash-v4-on-ubuntu-host/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="install-redash-v4-on-ubuntu-host/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">Re:dash를 공짜로 받은 Digital Ocean에 설치해보자.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>참고: 이 버전(v4)까지는 host에 직접 설치할 수 있는 provisioning script를 제공했다. 이때 docker버전도 존재했는데, 아예 v5버전 이후에는 docker방식으로만 설치가 가능하다. 아주 바람직하다고 봄</em></p>
+<p><em>참고2: 기본적으로 VM (Droplet)이 생성되었다는 전제로 시작</em></p>
+<h1 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h1><p>설치 파일 다운로드</p>
+<pre><code>root@redash-001:~#
+root@redash-001:~# curl -O https://raw.githubusercontent.com/getredash/redash/master/setup/ubuntu/bootstrap.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3739  100  3739    0     0   8879      0 --:--:-- --:--:-- --:--:--  8902
+root@redash-001:~# ls
+bootstrap.sh
+</code></pre><p>권한을 <code>chmod</code>로 바꾸고 <code>bootstrap.sh</code>를 실행</p>
+<pre><code>root@redash-001:~# chmod 755 *.sh
+root@redash-001:~# ./bootstrap.sh
+Hit:1 https://repos.sonar.digitalocean.com/apt main InRelease
+Hit:2 http://mirrors.digitalocean.com/ubuntu xenial InRelease
+Get:3 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]
+Get:4 http://mirrors.digitalocean.com/ubuntu xenial-updates InRelease [109 kB]
+Get:5 http://mirrors.digitalocean.com/ubuntu xenial-backports InRelease [107 kB]
+Fetched 323 kB in 2s (118 kB/s)
+...
+...
+...
+tests/test_utils.py
+tests/__pycache__/
+webpack.config.js
+Traceback (most recent call last):
+  File &quot;/usr/bin/pip&quot;, line 11, in &lt;module&gt;
+    sys.exit(main())
+  File &quot;/usr/lib/python2.7/dist-packages/pip/__init__.py&quot;, line 215, in main
+    locale.setlocale(locale.LC_ALL, &apos;&apos;)
+  File &quot;/usr/lib/python2.7/locale.py&quot;, line 581, in setlocale
+    return _setlocale(category, locale)
+locale.Error: unsupported locale setting
+root@redash-001:~#
+</code></pre><p>뭔가 실패 ㅠㅠ 계속 에러난 부분이</p>
+<pre><code>perl: warning: Falling back to a fallback locale (&quot;en_US.UTF-8&quot;).
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+</code></pre><p><code>LC_ALL</code>등을 셋업해서 다시 시도</p>
+<pre><code>root@redash-002:~# locale
+locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE=UTF-8
+LC_NUMERIC=&quot;en_US.UTF-8&quot;
+LC_TIME=&quot;en_US.UTF-8&quot;
+LC_COLLATE=&quot;en_US.UTF-8&quot;
+LC_MONETARY=&quot;en_US.UTF-8&quot;
+LC_MESSAGES=&quot;en_US.UTF-8&quot;
+LC_PAPER=&quot;en_US.UTF-8&quot;
+LC_NAME=&quot;en_US.UTF-8&quot;
+LC_ADDRESS=&quot;en_US.UTF-8&quot;
+LC_TELEPHONE=&quot;en_US.UTF-8&quot;
+LC_MEASUREMENT=&quot;en_US.UTF-8&quot;
+LC_IDENTIFICATION=&quot;en_US.UTF-8&quot;
+LC_ALL=
+root@redash-002:~# export LC_ALL=en_US.UTF-8
+root@redash-002:~# export LANGUAGE=en_US.UTF-8
+root@redash-002:~# chmod 755 bootstrap.sh
+root@redash-002:~# ./bootstrap.sh
+...
+...
+...
+Length: 453 [text/plain]
+Saving to: ‘/etc/nginx/sites-available/redash’
+
+/etc/nginx/sites-available/redash     100%[=========================================================================&gt;]     453  --.-KB/s    in 0s
+
+2018-08-21 15:19:48 (48.2 MB/s) - ‘/etc/nginx/sites-available/redash’ saved [453/453]
+</code></pre><p>뭔가 에러 없이 잘 설치된 듯 하다.</p>
+<h1 id="접속-테스트"><a href="#접속-테스트" class="headerlink" title="접속 테스트"></a>접속 테스트</h1><ul>
+<li><a href="http://178.128.57.213/" target="_blank" rel="noopener">http://178.128.57.213/</a></li>
+</ul>
+<p><img src="/images/Capture2018-08-22at00-cd555037-6e5a-4fcc-aab2-65ff45d0c200.29.29.jpg" alt=""></p>
+<p>끝.</p>
+<h2 id="https도-활성화하자"><a href="#https도-활성화하자" class="headerlink" title="https도 활성화하자"></a>https도 활성화하자</h2><ul>
+<li><a href="https://redash.io/help/open-source/admin-guide/https-ssl-setup" target="_blank" rel="noopener">https://redash.io/help/open-source/admin-guide/https-ssl-setup</a></li>
+</ul>
+<p>cerificate가 있어야 해서… 그냥 패스</p>
+<h1 id="설치-이후-확인"><a href="#설치-이후-확인" class="headerlink" title="설치 이후 확인"></a>설치 이후 확인</h1><p>서버에 어떤 식으로 설치되었는지 확인해보면,</p>
+<h2 id="설치된-프로그램"><a href="#설치된-프로그램" class="headerlink" title="설치된 프로그램"></a>설치된 프로그램</h2><ul>
+<li>python 및 패키지</li>
+<li>redis</li>
+<li>nginx</li>
+<li>postgreSQL</li>
+</ul>
+<h2 id="방화벽"><a href="#방화벽" class="headerlink" title="방화벽"></a>방화벽</h2><pre><code>root@redash-002:~# netstat -nlpt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:9001          0.0.0.0:*               LISTEN      17137/python
+tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN      13882/redis-server
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      17162/nginx -g daem
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1583/sshd
+tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      13652/postgres
+tcp        0      0 127.0.0.1:5000          0.0.0.0:*               LISTEN      17166/gunicorn: mas
+tcp6       0      0 :::22                   :::*                    LISTEN      1583/sshd
+</code></pre><h2 id="계정"><a href="#계정" class="headerlink" title="계정"></a>계정</h2><p>postgres, redis, redash가 생성되는 듯</p>
+<pre><code>root@redash-002:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+lxd:x:106:65534::/var/lib/lxd/:/bin/false
+messagebus:x:107:111::/var/run/dbus:/bin/false
+uuidd:x:108:112::/run/uuidd:/bin/false
+dnsmasq:x:109:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+sshd:x:110:65534::/var/run/sshd:/usr/sbin/nologin
+pollinate:x:111:1::/var/cache/pollinate:/bin/false
+postgres:x:112:117:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+redis:x:113:118::/var/lib/redis:/bin/false
+redash:x:114:65534:,,,:/home/redash:/bin/false
+</code></pre><h2 id="PostgreSQL-접속-및-PW-변경"><a href="#PostgreSQL-접속-및-PW-변경" class="headerlink" title="PostgreSQL 접속 및 PW 변경"></a>PostgreSQL 접속 및 PW 변경</h2><p>다음 링크에 따르면, 설치된 postgres의 경우 system authentication을 따르므로, 접속해서 바꾸라는</p>
+<ul>
+<li>링크 : <a href="https://discuss.redash.io/t/connnect-to-postgres-database/714" target="_blank" rel="noopener">https://discuss.redash.io/t/connnect-to-postgres-database/714</a></li>
+</ul>
+<p>가능하면 다음과 같은 방식으로 접속 이후 변경하는 것을 추천함.</p>
+<ul>
+<li><p>링크 : <a href="https://serverfault.com/questions/110154/whats-the-default-superuser-username-password-for-postgres-after-a-new-install" target="_blank" rel="noopener">https://serverfault.com/questions/110154/whats-the-default-superuser-username-password-for-postgres-after-a-new-install</a></p>
+<pre><code>sudo -u postgres psql postgres
+
+# \password postgres
+
+Enter new password:
+</code></pre></li>
+</ul>
+<p>psql로 확인해보면, <code>redash</code> 스키마와 <code>redash</code>라는 유저가 생성되어 있음.</p>
+<pre><code>redash=&gt; \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ redash    | redash   | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+(4 rows)
+
+redash=&gt; \dn
+  List of schemas
+  Name  |  Owner
+--------+----------
+ public | postgres
+(1 row)
+
+redash=&gt; \dg
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ redash    |                                                            | {}
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cloud-computing/" rel="tag"># cloud-computing</a>
+          
+            <a href="/tags/Redash/" rel="tag"># Redash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/try-digital-ocean-for-2-month/" rel="next" title="Digital Ocean 2개월 $100 무료 프로모션">
+                <i class="fa fa-chevron-left"></i> Digital Ocean 2개월 $100 무료 프로모션
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/remake-redash-docker-images/" rel="prev" title="Redash Docker로 이미지 생성">
+                Redash Docker로 이미지 생성 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#설치"><span class="nav-number">1.</span> <span class="nav-text">설치</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#접속-테스트"><span class="nav-number">2.</span> <span class="nav-text">접속 테스트</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#https도-활성화하자"><span class="nav-number">2.1.</span> <span class="nav-text">https도 활성화하자</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#설치-이후-확인"><span class="nav-number">3.</span> <span class="nav-text">설치 이후 확인</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#설치된-프로그램"><span class="nav-number">3.1.</span> <span class="nav-text">설치된 프로그램</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#방화벽"><span class="nav-number">3.2.</span> <span class="nav-text">방화벽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#계정"><span class="nav-number">3.3.</span> <span class="nav-text">계정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PostgreSQL-접속-및-PW-변경"><span class="nav-number">3.4.</span> <span class="nav-text">PostgreSQL 접속 및 PW 변경</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/install-redash-v4-on-ubuntu-host/";
+    this.page.identifier = "install-redash-v4-on-ubuntu-host/";
+    this.page.title = 'Redash(v4) Ubuntu(host)에 설치하기';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

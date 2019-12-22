@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="VS Code의 Remote Development 기능 관련 학습 노트">
+<meta name="keywords" content="Remote,SSH,VSCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VS Code 원격 개발 환경">
+<meta property="og:url" content="http://open-but-closed.com/VS-Code-Remote-development-study/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="VS Code의 Remote Development 기능 관련 학습 노트">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://open-but-closed.com/images/Untitled-865ddc44-115d-47d1-a678-a482426cc9c1.png">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-a5da7a7f-0cc1-4fdc-9196-874c39f76e82.12.33.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-5fb9d330-1666-4fc6-b475-8dc907a65e1e.12.40.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-15_at_00-48f571dd-1235-4507-80de-18837fc2a0d1.18.25.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-1d1df891-55d4-4f46-a0fb-5c5c7ba80edd.12.58.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-ace1bda6-4443-4f89-b43d-9317ecd091b1.13.07.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-1c8fea5d-a252-4fdd-8f07-8bc959d6e32e.13.36.jpg">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-11_at_23-afd6bc70-d8e6-4159-a16f-cd95aef075fd.14.41.png">
+<meta property="og:image" content="http://open-but-closed.com/images/Capture_2019-09-15_at_00-2c8ddd56-43bf-4ab6-b95a-42d33761b8e4.32.48.jpg">
+<meta property="og:updated_time" content="2019-09-14T16:08:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VS Code 원격 개발 환경">
+<meta name="twitter:description" content="VS Code의 Remote Development 기능 관련 학습 노트">
+<meta name="twitter:image" content="http://open-but-closed.com/images/Untitled-865ddc44-115d-47d1-a678-a482426cc9c1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/VS-Code-Remote-development-study/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>VS Code 원격 개발 환경 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/VS-Code-Remote-development-study/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VS Code 원격 개발 환경
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-15 00:00:00 / Modified: 01:08:00" itemprop="dateCreated datePublished" datetime="2019-09-15T00:00:00+09:00">2019-09-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/개발환경/" itemprop="url" rel="index"><span itemprop="name">개발환경</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/VS-Code-Remote-development-study/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="VS-Code-Remote-development-study/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">VS Code의 Remote Development 기능 관련 학습 노트</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="원격-개발의-꿈"><a href="#원격-개발의-꿈" class="headerlink" title="원격 개발의 꿈"></a>원격 개발의 꿈</h1><p>개인적으로 원격 개발 환경을 구축하고 싶은 원대한 꿈이 있다. 어디서나 컴퓨터나 스마트폰으로 접속해서 모든 것을 한다는 그런… </p>
+<p>그런 환경을 위해 이런 저런 곳을 찔러보다가 VS Code 에서도 원격 개발 환경을 지원하는 기능이 생겼다는 이야기를 들었다. 관련한 내용은 다음 링크에 있다.</p>
+<p><a href="https://code.visualstudio.com/docs/remote/remote-overview" target="_blank" rel="noopener">Visual Studio Code: VS Code Remote Development</a></p>
+<p>나의 경우 흔히 말하는 개발자가 아니라 개발, 소스관리, 배포 등에 대한 프로세스에 익숙하지 않다. 그래서 <code>git</code>같은 소스관리나 릴리즈, 배포 툴 보다는 아직 <code>FTP</code>같은 것이 익숙한 편.</p>
+<p>그나마 “원격개발”이라고 부르는 정도는 맥의 <strong>forklift</strong> 어플리케이션등에서 제공하는 <code>mount</code>기능등을 사용해서 개발환경(맥)의 파일 시스템에 해당 서버의 폴더를 원격으로 연결하는 정도. 이렇게 하면 소스는 원격, 개발환경(env)과 수행 시 리소스는 로컬 시스템을 사용하게 된다.</p>
+<h1 id="VS-Code-Remote-Development"><a href="#VS-Code-Remote-Development" class="headerlink" title="VS Code Remote Development"></a>VS Code Remote Development</h1><p>찾아보니 이 기능이 나온지는 얼마 되지 않았다. 대략 2019년 5월 정도에 발표된 것 같다.</p>
+<h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><p>VS Code의 Remote Development 기능은 대상 서버에 접속해서 수정/수행을 할 수 있다. 기존 파일 시스템만 mount하는 개념과 다르게, 개발환경도 서버이고, 실행도 서버에서 수행된다. 말그대로 터미널로 서버에 접속해서 서버에서 수행하는 것과 다르지 않다.</p>
+<p><img src="/images/Untitled-865ddc44-115d-47d1-a678-a482426cc9c1.png" alt=""></p>
+<h2 id="세-가지-원격-접속-대상"><a href="#세-가지-원격-접속-대상" class="headerlink" title="세 가지 원격 접속 대상"></a>세 가지 원격 접속 대상</h2><ul>
+<li>Remote - SSH : SSH 접속방식을 통해 Linux 서버에 접속하는 것.</li>
+<li>Remote - Containers : Docker의 컨테이너 내부의 Linux 서버에 접속하는 것. 원격 도커는 아니고 로컬에 도커가 있을 경우 도커를 통해? 접속하는 것 같다.</li>
+<li>Remote - WSL : WSL(Windows Subsystem for Linux)에 접속하는 것. 윈도우의 WSL의 경우 아직도 혼란스럽지만 이 기능을 사용하면 마치 분리된 리눅스 서버에서 빠른 response로 작업하는 느낌을 낼 수 있지 않을까.</li>
+</ul>
+<p>개인적으로는 SSH 방식의 접속이 가장 유용하지 않을까 하는 생각이다.</p>
+<h2 id="준비사항"><a href="#준비사항" class="headerlink" title="준비사항"></a>준비사항</h2><ul>
+<li><code>SSH</code>환경 : (나의 경우 Mac이므로 <code>SSH</code>프로그램은 기본적으로 셋업 되어 있고, 추가적으로 접속 설정(private/public key등록 등)을 해 놓은 상태이다.</li>
+<li>VS Code : 초기에는 VS Code의 beta버전 격인 VS Code Insider에서만 되는 듯 했는데, 현재는 VS Code (Stable release)에서도 작동이 됨을 확인했다.</li>
+</ul>
+<h2 id="Extension-설치"><a href="#Extension-설치" class="headerlink" title="Extension 설치"></a>Extension 설치</h2><ul>
+<li><p>VS Code의 extension에서 <code>Remote Development</code>팩을 설치한다. 여기엔 <code>Remote-WSL</code>, <code>Remote-SSH</code>, <code>Remote-Containers</code>팩이 모두 포함되어 있다.</p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-a5da7a7f-0cc1-4fdc-9196-874c39f76e82.12.33.jpg" alt=""></p>
+<p>  누르는 순간 설치완료</p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-5fb9d330-1666-4fc6-b475-8dc907a65e1e.12.40.jpg" alt=""></p>
+</li>
+<li><p>접속은 왼쪽 아래 <code>&gt;&lt;</code> 모양을 클릭하면 대상 서버가 뜬다.</p>
+<p>  <img src="/images/Capture_2019-09-15_at_00-48f571dd-1235-4507-80de-18837fc2a0d1.18.25.jpg" alt=""></p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-1d1df891-55d4-4f46-a0fb-5c5c7ba80edd.12.58.jpg" alt=""></p>
+</li>
+<li><p>여기서 <code>Remote-SSH: Connect to Host...</code>를 선택하면, 다음과 같이 접속 가능한 서버가… 나온다?</p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-ace1bda6-4443-4f89-b43d-9317ecd091b1.13.07.jpg" alt=""></p>
+</li>
+<li><p>하… 이렇게 나오는 이유는 <strong>이미 로컬에 <code>SSH</code> 관련 환경이 셋업 되어 있었기 때문</strong>이다. 사실 대부분 SSH 관련 셋업 (private/public key-pair)에서 비슷한 내용을 다루게 되는데, 반대로 말하면 <code>SSH</code>관련 셋업은 한번만 익히면 다른 모든 곳에서 사용할 수 있게 된다. 나의 경우도 접속 가능한 SSH 대상을 이미 <code>~/.ssh/config</code>에 셋업해 놓았기 때문에, 로컬에서 접속 대상이 되는 모든 <code>SSH host</code>이름들이 목록으로 뜨는 것이다.</p>
+</li>
+</ul>
+<h2 id="접속"><a href="#접속" class="headerlink" title="접속"></a>접속</h2><ul>
+<li><p><code>kboin-001</code>이라는 <code>SSH</code> 호스트 명으로 접속을 했다.</p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-1c8fea5d-a252-4fdd-8f07-8bc959d6e32e.13.36.jpg" alt=""></p>
+<p>  접속이 되었고… 속도는… 인터넷 따르겠지만, 기존 <code>SSH</code>나 <code>SFTP</code>를 생각하면 크게 느려질 일은 없을 것 같다. (GUI환경이 아니기에)</p>
+</li>
+<li><p>Remote 서버의 작업 폴더를 선택하면 준비 완료. <code>New Terminal</code> 로 터미널을 새로 호출하면 해당 서버의 터미널 프롬프트가 뜬다.</p>
+<p>  <img src="/images/Capture_2019-09-11_at_23-afd6bc70-d8e6-4159-a16f-cd95aef075fd.14.41.png" alt=""></p>
+</li>
+</ul>
+<h2 id="참고사항"><a href="#참고사항" class="headerlink" title="참고사항"></a>참고사항</h2><ul>
+<li><p>접속 대상은 Linux이다. <strong>안타깝게도 Mac에는 접속되지 않는다.</strong> <del>외부의 맥북으로 집의 맥미니에 연결해서 작업은 불가능</del>. WSL의 경우 Linux이고, Remote - Containers역시 Linux 컨테이너로 한정되어 있다.</p>
+<blockquote>
+<p>Remote SSH Host: A running SSH server on:</p>
+<pre><code>- x86_64 Debian 8+, Ubuntu 16.04+, CentOS / RHEL 7+.
+- ARMv7l (AArch32) Raspbian Stretch/9+ (32-bit). 
+- Experimental (VS Code Insiders only): ARMv8l (AArch64) Ubuntu 18.04+ (64-bit).
+</code></pre></blockquote>
+<blockquote>
+<p>Containers: x86_64 Debian 8+, Ubuntu 16.04+, CentOS / RHEL 7+, Alpine Linux based containers.</p>
+</blockquote>
+</li>
+<li><p>VS Code의 extension과 Server용 extension이 있다. 예를들어 소스 코드를 잘 보여주는 <code>Styler</code>같은 extension 경우 로컬에 설치되고, lint나 debug를 위한 <code>Python</code> extension의 경우 서버에 설치된다. 이때 서버에 설치되는 경로는 <code>~/.vscode-server</code>디렉토리에 설치된다. 마찬가지로 해당 디렉토리를 삭제함으로 관련 extension을 삭제할 수 있다.</p>
+<p>  <img src="/images/Capture_2019-09-15_at_00-2c8ddd56-43bf-4ab6-b95a-42d33761b8e4.32.48.jpg" alt=""></p>
+</li>
+<li><p>서버에 <code>git</code>이 있을 경우 서버쪽에도 동일한 <code>git</code>환경을 설정할 수 있는 듯 하다.</p>
+</li>
+</ul>
+<h1 id="활용"><a href="#활용" class="headerlink" title="활용"></a>활용</h1><p>이런 식의 개발환경이라면 다음의 특징이 있을 것 같다.</p>
+<ul>
+<li>로컬 개발환경의 셋업이 필요 없을 수 있다. 개발 환경이 여럿일 경우 각각의 개발 환경을 맞추기 보다는 서버쪽 개발환경으로 일원화 할 수 있을 것 같다. 예를들어 집의 노트북, 집의 데스크톱, 집의 맥북에 대한 환경을 하나로 맞추는 식 말이다.</li>
+<li>수행은 서버에서 수행된다. 로컬의 자원이 낮고 서버의 자원이 빠방할 때 유리할 것 같다. 클라우드의 인스턴스를 순간적으로 띄워서 작업하는 식도 가능하긴 하지 않을까.</li>
+<li>결론적으로 원격 작업으로 하기에 유리할 듯 하다. 자세한건 더 써봐야 알 것 같음.</li>
+</ul>
+<h1 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h1><ul>
+<li><a href="https://www.44bits.io/ko/post/news--vs-code-now-supports-remote-development" target="_blank" rel="noopener">마이크로소프트 비주얼 스튜디오 코드, 원격 개발 기능 지원</a></li>
+<li><a href="https://noooop.tistory.com/entry/VS-Code-Remote-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-SSH-%EB%B0%A9%EC%8B%9D?category=998451" target="_blank" rel="noopener">VS Code Remote 사용하기 - SSH 방식</a></li>
+<li><a href="https://code.visualstudio.com/docs/remote/remote-overview" target="_blank" rel="noopener">VS Code Remote Development</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Remote/" rel="tag"># Remote</a>
+          
+            <a href="/tags/SSH/" rel="tag"># SSH</a>
+          
+            <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/keep-blogging-steady-and-slow/" rel="next" title="블로그를 지속적으로 유지해보기">
+                <i class="fa fa-chevron-left"></i> 블로그를 지속적으로 유지해보기
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-adds-google-analytics/" rel="prev" title="Hexo에 Google Analytics를 연동">
+                Hexo에 Google Analytics를 연동 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#원격-개발의-꿈"><span class="nav-number">1.</span> <span class="nav-text">원격 개발의 꿈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VS-Code-Remote-Development"><span class="nav-number">2.</span> <span class="nav-text">VS Code Remote Development</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#개념"><span class="nav-number">2.1.</span> <span class="nav-text">개념</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#세-가지-원격-접속-대상"><span class="nav-number">2.2.</span> <span class="nav-text">세 가지 원격 접속 대상</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#준비사항"><span class="nav-number">2.3.</span> <span class="nav-text">준비사항</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extension-설치"><span class="nav-number">2.4.</span> <span class="nav-text">Extension 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#접속"><span class="nav-number">2.5.</span> <span class="nav-text">접속</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#참고사항"><span class="nav-number">2.6.</span> <span class="nav-text">참고사항</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#활용"><span class="nav-number">3.</span> <span class="nav-text">활용</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참조"><span class="nav-number">4.</span> <span class="nav-text">참조</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/VS-Code-Remote-development-study/";
+    this.page.identifier = "VS-Code-Remote-development-study/";
+    this.page.title = 'VS Code 원격 개발 환경';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

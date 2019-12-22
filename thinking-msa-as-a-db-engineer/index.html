@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MSA라는 화두에 대해 DB Engineer로 생각해보는 점">
+<meta name="keywords" content="DBian게시글,DB엔지니어,MSA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSA를 DB엔지니어 입장에서 봤을 때">
+<meta property="og:url" content="http://open-but-closed.com/thinking-msa-as-a-db-engineer/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="MSA라는 화두에 대해 DB Engineer로 생각해보는 점">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://open-but-closed.com/images/Untitled-581efc3a-3728-4ba9-810a-04987dee30a6.png">
+<meta property="og:updated_time" content="2019-10-04T16:32:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MSA를 DB엔지니어 입장에서 봤을 때">
+<meta name="twitter:description" content="MSA라는 화두에 대해 DB Engineer로 생각해보는 점">
+<meta name="twitter:image" content="http://open-but-closed.com/images/Untitled-581efc3a-3728-4ba9-810a-04987dee30a6.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/thinking-msa-as-a-db-engineer/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MSA를 DB엔지니어 입장에서 봤을 때 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/thinking-msa-as-a-db-engineer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MSA를 DB엔지니어 입장에서 봤을 때
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-01 00:20:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:20:00+09:00">2019-01-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-05 01:32:00" itemprop="dateModified" datetime="2019-10-05T01:32:00+09:00">2019-10-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DB/일반/" itemprop="url" rel="index"><span itemprop="name">일반</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/thinking-msa-as-a-db-engineer/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="thinking-msa-as-a-db-engineer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">MSA라는 화두에 대해 DB Engineer로 생각해보는 점</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>참고 : 이하 글은 <a href="https://cafe.naver.com/dbian" target="_blank" rel="noopener">네이버 카페 - DBian 포럼</a>에 게시한 <a href="https://cafe.naver.com/dbian/1234" target="_blank" rel="noopener">MSA를 DB엔지니어 입장에서 봤을 때</a> 에도 게시된 글입니다.</em></p>
+<p>Microservice Architecture. 이 키워드가 핫해서 저도 잠깐 찾아봤던 기억이 납니다. DB엔지니어 입장에서 느끼는 점을 써보겠습니다.</p>
+<p><img src="/images/Untitled-581efc3a-3728-4ba9-810a-04987dee30a6.png" alt=""></p>
+<p>(아래 수영초보님 댓글의 링크 자료가 좋네요- <a href="https://www.slideshare.net/Byungwook/msa-52918441" target="_blank" rel="noopener">https://www.slideshare.net/Byungwook/msa-52918441</a> 위 이미지는 해당 슬라이드 중 발췌)</p>
+<p>제가 알고 있는 MSA의 특징은 이렇습니다.</p>
+<ul>
+<li>시스템을 작은 단위의 시스템들로 만든다</li>
+<li>DB는 논리적 또는 물리적으로 분리될 수 있음</li>
+<li>각 단위 시스템 간의 통신은 주로 API를 이용</li>
+</ul>
+<p>MSA가 핫하다고 해서 살펴봤는데, DB엔지니어 입장에서 볼 때 그리 좋아 보이지는 않습니다. 특히 DB가 논리적으로 또는 물리적으로 분리한다는 부분. 이해하기 힘듭니다. 기업의 메인 시스템으로 따져보면 고객, 상품, 주문, 배송, CS등을 모두 별개의 시스템으로 만든다는 건데요. 같은 DB에 존재하며 함께 조인되어야 빛을 발할 테이블들이 격리되어서 논다는 것이 이해가 안됩니다. 또 API를 통한 통신이라니… 같은 집에서 다른 방을 갈 때 안방 창문으로 나가서 작은방 창문으로 들어오는 모습이 그려집니다. 대량 데이터를 조인하는 것은 어떻게 할 것인지? 흔히 말하는 표준화 같은 경우는 포기하는게 나을 수도 있습니다. 아니 개발 언어나 프레임워크 조차 다른 경우도 있는 것 같습니다.</p>
+<p>MSA로 개발한다는 것은 확실히 지금까지의 방향에 역행하는 느낌입니다. 시대적으로 봤을 때, 90년대는 업무 전산화의 시대라 생각합니다. 수기 업무들이 수많은 시스템들로 탄생되었죠. 2000년대는 이런 시스템들을 통합하는 시대였고요. 특히 엔터프라이즈 들의 SI가 유행처럼 번졌죠. 여러 단위 시스템을 통합 관리하면 이득이 훨씬 많았기 때문에 시스템 통합은 대세였습니다. 말그대로 차세대와 SI의 시대였죠. 한 회사가 차세대를 하면 나머지 회사도 줄줄이 차세대를 하는… (DB 엔지니어도 이런 때가 가장 호황기가 아니었나 싶습니다. 특히 데이터 모델러의 몸값은 치솟았죠. 여러 시스템을 통합하는 기술은 초고급 기술에 속했고요. 통합에 수반되는 데이터 표준화부터 모델링 이행은 호황기였다고 봅니다.)</p>
+<p>이렇게 시스템이 통합하는 것은 비즈니스 트랜드가 그러하기 때문이라고 봅니다. 과거에는 비즈니스라는 것에 대한 어느정도 <strong>틀</strong>이 있었습니다. 보통 <strong>산업</strong>이라고 부르는 제조, 금융, 공공, 유통같은 분야별로 말이죠. 제조를 예로 들면 공정 프로세스같은 것은 <strong>꽤 변하지 않는</strong> 비즈니스 프로세스입니다. 대신 규모, 속도, 효율성 등이 사업의 성패를 좌우했죠. 시스템도 그런 식으로 구축이 되었고요. DB모델의 경우에도 <strong>최대한 유연하게 오래 사용할 수 있는</strong> 데이터 모델을 만들기 위해 노력했습니다. 시스템은 개발하기 힘들고 DB는 더욱 변경이 힘들기 때문이죠. 이 시기엔 분석/설계 단계에서 생각하지 못했던 기능을 구현하는 것은 그냥 죄악이었습니다. 차세대 프로젝트에서 반영하지 못한 기능들은 차기 프로젝트에 반영하기를 기다릴 수 밖에 없었죠. 어쨌건 DB는 차세대 간의 기간(5~10년)정도는 쓸 수 있게 만드는 것이 중요했습니다.</p>
+<p>하지만 지금은 이런 트랜드가 많이 바뀌었습니다. 미래의 먹거리가 없다는 말을 하는데, 향후 뭘 해야 기업이 지속될 지 알기 힘든 때가 된거죠. 10년은 커녕 3년을 내다보기 힘듭니다. 각자 자기의 산업에서 탈피하려고 합니다. 통신회사는 통신만으로 먹고 살 수 없다 판단하고, 신용카드회사는 신용카드만 해서는 안된다고 판단합니다. 다만 기업의 규모때문에 그만큼 느릴 수 밖에 없죠.</p>
+<p>지금까지의 <strong>개발방법론</strong>이라고 하는 것은 현업이 뭘 요구하는지를 잘 명세화하는 <strong>요구공학</strong>부터 시작했습니다. 현업이 비즈니스는 잘 알지만 IT적이지 못해서 요구사항을 IT적으로 풀어내는 것이죠. 지금은 그 현업이 뭘 해야 할지를 모르는 상황입니다. 지금같은 상황에서 큰 돈을 들여 10년을 쓸 시스템을 1년간 분석-설계-개발-테스트하면서 만들 여유 뿐 아니라 이유가 없어지는 것입니다. 차라리 이런저런 아이디어로 시스템을 10개정도 개발새발 만들어서 반응이 좋은 1개를 밀고 나가는 작전이 생존률이 훨씬 좋아 보입니다. 방송에서 파일럿 프로그램 하듯이 말이죠. 이런 트랜드가 MSA같은 아키텍처를 밀어주고 있다고 봅니다.</p>
+<p>MSA도 다른 개발 트랜드처럼 어느 순간 없어질 수도 있다고 봅니다. 하지만 이런 트랜드를 이해하고 어느정도 대응하는 것은 필요할 것 같습니다. 아키텍처는 DB엔지니어에게 불편해졌지만, 그래도 편하게 쓸 수 있도록 만들어야 하는 숙제가 생긴 것이죠.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DBian게시글/" rel="tag"># DBian게시글</a>
+          
+            <a href="/tags/DB엔지니어/" rel="tag"># DB엔지니어</a>
+          
+            <a href="/tags/MSA/" rel="tag"># MSA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/enable-oracle-dbms-on-redash/" rel="next" title="Redash에 Oracle 가능하도록 설정">
+                <i class="fa fa-chevron-left"></i> Redash에 Oracle 가능하도록 설정
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-as-a-platform-for-blogging/" rel="prev" title="블로그 플랫폼을 Hexo로 변경">
+                블로그 플랫폼을 Hexo로 변경 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/thinking-msa-as-a-db-engineer/";
+    this.page.identifier = "thinking-msa-as-a-db-engineer/";
+    this.page.title = 'MSA를 DB엔지니어 입장에서 봤을 때';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

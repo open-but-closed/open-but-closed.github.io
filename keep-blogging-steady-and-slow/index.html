@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="블로그 유지가 어렵다. 개점휴업이라 이름도 지었지만 조금 부끄러운 일이다. 나도 글 쓰는 것을 좋아하는 편이고, 블로그를 잘 유지하고 싶은 마음도 있으나, 사실 뜻대로 잘 되지 않는다. 과거 블로그나 SNS등 역시 지속성은 매우 떨어지는 편이었다. 특히 블로그는. 왜 그럴까 이유를 한번 생각해보자.">
+<meta name="keywords" content="블로그">
+<meta property="og:type" content="article">
+<meta property="og:title" content="블로그를 지속적으로 유지해보기">
+<meta property="og:url" content="http://open-but-closed.com/keep-blogging-steady-and-slow/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="블로그 유지가 어렵다. 개점휴업이라 이름도 지었지만 조금 부끄러운 일이다. 나도 글 쓰는 것을 좋아하는 편이고, 블로그를 잘 유지하고 싶은 마음도 있으나, 사실 뜻대로 잘 되지 않는다. 과거 블로그나 SNS등 역시 지속성은 매우 떨어지는 편이었다. 특히 블로그는. 왜 그럴까 이유를 한번 생각해보자.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-14T14:50:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="블로그를 지속적으로 유지해보기">
+<meta name="twitter:description" content="블로그 유지가 어렵다. 개점휴업이라 이름도 지었지만 조금 부끄러운 일이다. 나도 글 쓰는 것을 좋아하는 편이고, 블로그를 잘 유지하고 싶은 마음도 있으나, 사실 뜻대로 잘 되지 않는다. 과거 블로그나 SNS등 역시 지속성은 매우 떨어지는 편이었다. 특히 블로그는. 왜 그럴까 이유를 한번 생각해보자.">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/keep-blogging-steady-and-slow/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>블로그를 지속적으로 유지해보기 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/keep-blogging-steady-and-slow/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">블로그를 지속적으로 유지해보기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-14 00:00:00 / Modified: 23:50:00" itemprop="dateCreated datePublished" datetime="2019-09-14T00:00:00+09:00">2019-09-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/웹서비스/" itemprop="url" rel="index"><span itemprop="name">웹서비스</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/keep-blogging-steady-and-slow/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="keep-blogging-steady-and-slow/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">블로그 유지가 어렵다. 개점휴업이라 이름도 지었지만 조금 부끄러운 일이다. 나도 글 쓰는 것을 좋아하는 편이고, 블로그를 잘 유지하고 싶은 마음도 있으나, 사실 뜻대로 잘 되지 않는다. 과거 블로그나 SNS등 역시 지속성은 매우 떨어지는 편이었다. 특히 블로그는. 왜 그럴까 이유를 한번 생각해보자.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="생각"><a href="#생각" class="headerlink" title="생각"></a>생각</h1><p>꾸준하게 업데이트 되는 블로그들을 보면 대단하다는 생각이 든다. 특히 개발자의 블로그들은 더욱 그러하다. 단순하게 글을 올리는 빈도로 판단할 수는 없다. 개발자마다 글 스타일이나 다루는 심도가 다르기 때문에. 어쨌건 짧은 포스팅은 일주일에 두세건씩, 길고 심도 있는 포스팅은 한달에 두세건씩 올라오는 듯 하는데, 이게 정말 쉽지 않음을 느낀다.</p>
+<p>나도 글 쓰는 것을 좋아하는 편이고, 블로그를 잘 유지하고 싶은 마음도 있으나, 사실 뜻대로 잘 되지 않는다. 꼭 개발자의 블로그가 아니어도 말이다. 과거 블로그나 SNS등을 이용했을때 지속성은 매우 떨어졌다. 특히 블로그는. 왜 그럴까 이유를 한번 생각해보자.</p>
+<h1 id="원인분석과-대안"><a href="#원인분석과-대안" class="headerlink" title="원인분석과 대안"></a>원인분석과 대안</h1><h2 id="글쓰기-도구-및-프로세스의-효율성"><a href="#글쓰기-도구-및-프로세스의-효율성" class="headerlink" title="글쓰기 도구 및 프로세스의 효율성"></a>글쓰기 도구 및 프로세스의 효율성</h2><p>도구 및 프로세스라는 말은 자료수집 &gt; 작성 &gt; 퇴고 &gt; 배포 과정 전반에서 이루어지는 효율성의 의미로 사용했다.</p>
+<p>쉽게 말해 글이 될 내용을 모으고, 모은 글을 네이버 블로그나 티스토리등에 글을 쓰고, 퇴고를 하고, 발행을 하는 순간까지의 과정이 되겠다. 방금 말한 프로세스가 가장 일반적이고 간편한 방법이긴 하다. 과거에 화려한 블로그는 IT를 하는 사람 일부만이 할 수 있던 일이었다. 지금의 글쓰기 툴-특히 온라인 블로그 서비스-들은 글을 쓰고 관리하기 매우 좋게 진화되었다. 글을 쓸 때는 내용과 구성에만 집중하면 되며, 모양이나 레이아웃 등은 블로그 서비스에서 자동으로 통일감있게 보여준다.</p>
+<p>처음에 블로그 툴을 결정할 때, 이런 온라인 블로그 서비스들을 배제했는데, 그건 내가 쓰는 글임에도 글이 블로그서비스에 종속된다는 느낌 때문일 것이다. 티스토리 이후 많은 서비스들이 그나마 데이터 export 기능을 제공하여 종속되는 느낌을 조금 버리긴 했으나, 독립하고 픈 마음은 여전하긴 하다. 많은 개발자들은 이 단계에서 <strong>markdown</strong> - <strong>jekyll</strong> - <strong>github</strong>을 선택한다. 이 경우 소스/버전관리는 <strong>git</strong>으로 통합할 수 있다는 장점도 있다.</p>
+<p>다만 나의 경우 개발자와는 거리가 있으므로 이 부분은 불편함이 있었고, 몇번의 시행착오를 거쳐 현재는 어느정도 프로세스를 만들었다. 결론적으로는 대부분의 원고 및 노트를 <strong>Notion</strong>에서 구성하게 되었다. <strong>Notion</strong>의 경우 매우 친-markdown한 툴이라 티스토리나 기타 다른 곳에 배포하기가 좋다. 특히 (현재 open-but-closed의) <strong>Hexo</strong>를 이용하려면 <strong>markdown</strong>형식이 필요한 데, 호환성이 매우 좋은 편이다.</p>
+<p>최종 퇴고에서 배포까지 단계를 꽤 단축했다. 즉, <strong>Notion</strong>에서 어느정도 작성이 된 글을 실제 서버에 올리기까지는 수십초면 가능하다. (물론 온라인 블로그 툴의 경우 수초이내에 가능하긴 하다만;;). <strong>사실 이 시간을 단축하면 블로그 활동이 활발하게 될 줄 알았다.</strong> <del>시험기간 이전에 생각할 때도 똑같지. 시험기간만 되면 방이 어지러워보이고, 이걸 치우면 공부가 잘될것 같아 청소를 해서 결국 시험공부는 못하게 된다는.</del></p>
+<h2 id="실력의-바닥이-드러나-보일까에-대한-걱정"><a href="#실력의-바닥이-드러나-보일까에-대한-걱정" class="headerlink" title="실력의 바닥이 드러나 보일까에 대한 걱정"></a>실력의 바닥이 드러나 보일까에 대한 걱정</h2><p>글을 쓰면 실력이 드러난다. 물론 나의 실력을 신경쓸 사람은 없겠지만 그냥 왠지 신경쓰인다. 나의 학습 스타일은 넓고 대강이 많기 때문에 대부분 주제에 대해선 전문성이 없다. 그런 부분이 가장 신경 쓰일 수 있다. 또, 글을 쓸 시점에 얼마나 날고 길고 잘 썼던 글이라 할 지라도, 어느정도 시간만 지나면 부끄러움이 많은 글로 남는게 많다.</p>
+<p>이상적인 포스팅의 경우 <strong>모든 것을 안 상태에서 초등학생도 알 정도로 쉽게 설명하는 듯한 글, 즉 무슨 프로그래밍 언어 레퍼런스</strong>같이 쓰여졌으면 하는 것이 솔직한 마음이다. <del>하지만 대부분의 주제 앞에선 내가 초등학생</del>.</p>
+<p>그나마 이런 문제는 많이 극복한 셈이다. 가장 확실한 방법은 내 현재 상태와 실력을 인정하는 것. 잘하는 건 잘하고 못하는 것은 못하는 것이다. 이건 유독 블로깅 뿐 아니라 페이스북 같은 소셜서비스에서도 극복해야 할 문제다. <del>일찍 하면 할 수록 좋음</del></p>
+<h2 id="블로그의-주제-문체-심도"><a href="#블로그의-주제-문체-심도" class="headerlink" title="블로그의 주제, 문체, 심도"></a>블로그의 주제, 문체, 심도</h2><p>이 부분은 아직도 떨쳐내지 못한 부분이 많다. 블로그를 업무의 위키나 메모처럼 할 것인가. 특정 주제에 대한 튜토리얼 처럼 할 것인가. 튜토리얼을 하면서 나의 의견을 함께 쓸 것인가. 서론부터 결론까지 짜여져있는 글을 쓸 것인가. 짧고 자주 업데이트 하는 글을 쓸 것인가. IT주제만을 다룰 것인가. IT와 관련된 다른 주제까지 다룰 것인가. 일상적인 주제까지 다룰 것인가 등의 것 말이다.</p>
+<p>블로그를 처음 진행하면서 대강/아무렇게나/자주 쓰고자 하는 생각이 있었다. 이런 생각이 망가진?부분은 블로그 스킨에서 제공하는 ToC(Table of Content) 기능 때문이다. 특히 서론/본론/결론/참고로 아름답게 쓰여진 글을 추구하다 보니 완성도 욕심이 생기고 결국 포스팅은 우주 너머로 날아간다.</p>
+<p>이런 전반적인 고민의 기저에는 <strong>“블로그 내에서는 하나의 쓰기 스타일을 가져야 한다”</strong>라는 생각이 강하게 작용하는 것 같다. 사실 이 부분 조차 강하게 관념할 필요는 없는 부분인데도 말이다. <del>어짜피 블로그는 개판이고 나는 암캐나 쓰면 된다.</del></p>
+<h2 id="인기-방문자-피드백"><a href="#인기-방문자-피드백" class="headerlink" title="인기. 방문자 피드백"></a>인기. 방문자 피드백</h2><p>인기를 얻고 싶은 마음은 없다. 아니 정확히는 <strong>인기는 얻고 싶으나 인기에 휘둘리고 싶지 않다.</strong> <del>마음이 상처받지 않기 위한 사전 현실도피</del>. 가능하면 방문자 늘리기 위해서 노력은 안하려고 한다. 사실 인기보다는 공감을 얻고 싶다. 그리고 조금은 도움이 되었으면 좋겠다.</p>
+<p>한가지 내용을 덧붙이면, 잘 짜여진 튜토리얼 같은 내용보다는 배워가면서 부딛힌 여러 시행착오들을 공유하고 싶다. 나 역시 다른 블로그를 따라하면서 부딛힌 시행착오가 많다. 그리고 어떤 주제에 대해 학습할 때 시행착오를 많이 겪게 된다. 그래서 그 주제를 익히고 <strong>나중에 글을 쓸 때는 시행착오 부분은 싹 제거하고 성공적인 부분만 작성하게 된다.</strong> 마치 한번에 성공했던 것 처럼 써서 실력을 돋보이게 하고 싶은 욕심일까. 가능하면 학습하면서 겪게 되는 시행착오를 많이 포함해야 겠다는 생각이다. 그게 더 공감이 많이 되리라 생각된다.</p>
+<h2 id="개인의-의지"><a href="#개인의-의지" class="headerlink" title="개인의 의지"></a>개인의 의지</h2><p>역시 블로그가 지속되지 못하는 가장 큰 이유이다. 개인적으로 관심도가 자주 바뀐다. 그래서 이렇게 원인과 대안에 대한 포스팅을 한다. 마치 “나 다이어트 할거야”라고 주변에 공표해서 의지를 더욱 다지듯이 말이다.</p>
+<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><p>꾸준히 잘 해보자 :)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/블로그/" rel="tag"># 블로그</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/redash-add-oracle-driver-with-docker/" rel="next" title="Redash Oracle Driver 설치 (Docker)">
+                <i class="fa fa-chevron-left"></i> Redash Oracle Driver 설치 (Docker)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/VS-Code-Remote-development-study/" rel="prev" title="VS Code 원격 개발 환경">
+                VS Code 원격 개발 환경 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#생각"><span class="nav-number">1.</span> <span class="nav-text">생각</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#원인분석과-대안"><span class="nav-number">2.</span> <span class="nav-text">원인분석과 대안</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#글쓰기-도구-및-프로세스의-효율성"><span class="nav-number">2.1.</span> <span class="nav-text">글쓰기 도구 및 프로세스의 효율성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#실력의-바닥이-드러나-보일까에-대한-걱정"><span class="nav-number">2.2.</span> <span class="nav-text">실력의 바닥이 드러나 보일까에 대한 걱정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#블로그의-주제-문체-심도"><span class="nav-number">2.3.</span> <span class="nav-text">블로그의 주제, 문체, 심도</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#인기-방문자-피드백"><span class="nav-number">2.4.</span> <span class="nav-text">인기. 방문자 피드백</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#개인의-의지"><span class="nav-number">2.5.</span> <span class="nav-text">개인의 의지</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#결론"><span class="nav-number">3.</span> <span class="nav-text">결론</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/keep-blogging-steady-and-slow/";
+    this.page.identifier = "keep-blogging-steady-and-slow/";
+    this.page.title = '블로그를 지속적으로 유지해보기';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

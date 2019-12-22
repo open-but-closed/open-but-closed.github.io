@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
+<meta name="keywords" content="Docker,Redash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redash Docker로 이미지 생성">
+<meta property="og:url" content="http://open-but-closed.com/remake-redash-docker-images/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-04T16:55:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redash Docker로 이미지 생성">
+<meta name="twitter:description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/remake-redash-docker-images/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Redash Docker로 이미지 생성 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/remake-redash-docker-images/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redash Docker로 이미지 생성
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-31 23:21:00" itemprop="dateCreated datePublished" datetime="2018-08-31T23:21:00+09:00">2018-08-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-05 01:55:00" itemprop="dateModified" datetime="2019-10-05T01:55:00+09:00">2019-10-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/remake-redash-docker-images/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="remake-redash-docker-images/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="전체순서"><a href="#전체순서" class="headerlink" title="전체순서"></a>전체순서</h1><ul>
+<li><a href="https://redash.io/help/open-source/dev-guide/docker" target="_blank" rel="noopener">https://redash.io/help/open-source/dev-guide/docker</a><ol>
+<li>Docker, Docker compose 설치</li>
+<li>Node.js 설치</li>
+</ol>
+</li>
+</ul>
+<h2 id="Docker-CE-설치"><a href="#Docker-CE-설치" class="headerlink" title="Docker-CE 설치"></a>Docker-CE 설치</h2><ul>
+<li><p><a href="http://nobase-dev.tistory.com/34" target="_blank" rel="noopener">http://nobase-dev.tistory.com/34</a></p>
+<pre><code>## 패키지 업데이트
+$ sudo apt-get update
+...
+## HTTPS를 통해 repository를 사용할 수 있도록 패키지 설치
+$ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+software-properties-common
+...
+## Docker 공식 GPG 키 추가
+## Key fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88 확인
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo apt-key fingerprint 0EBFCD88
+pub   4096R/0EBFCD88 2017-02-22
+Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid                  Docker Release (CE deb) &lt;docker@docker.com&gt;
+sub   4096R/F273FCD8 2017-02-22
+...
+## stable repository 사용시 아래 커맨드 추가
+## arch 값을 amd64, armhf, ppc64el, s390x 등으로 맞춰서 사용
+$ sudo add-apt-repository \
+&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+...
+## 패키지 업데이트
+$ sudo apt-get update
+...
+## 옵션 1. Docker CE 최신 버전 설치
+$ sudo apt-get install docker-ce
+...
+## 옵션 2. Docker CE 특정 버전 설치
+$ apt-cache madison docker-ce
+docker-ce | 17.12.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+$ sudo apt-get install docker-ce=&lt;VERSION&gt;
+...
+## hello-world 이미지를 실행하여 Docker CE가 올바르게 설치되었는지 확인
+$ sudo docker run hello-world
+</code></pre></li>
+</ul>
+<h2 id="Docker-Composer-설치"><a href="#Docker-Composer-설치" class="headerlink" title="Docker Composer 설치"></a>Docker Composer 설치</h2><pre><code>root@redash-003:~# docker-compose -v
+The program &apos;docker-compose&apos; is currently not installed. You can install it by typing:
+apt install docker-compose
+root@redash-003:~# apt install docker-compose
+...
+...
+root@redash-003:~# docker-compose -v
+docker-compose version 1.8.0, build unknown
+</code></pre><h2 id="Node-js-npm-설치"><a href="#Node-js-npm-설치" class="headerlink" title="Node.js, npm 설치"></a>Node.js, npm 설치</h2><pre><code>root@redash-003:~# sudo apt-get install nodejs
+...
+...
+root@redash-003:~# sudo apt-get install npm
+...
+...
+root@redash-003:~# nodejs -v
+v4.2.6
+</code></pre><h2 id="redash-소스-다운로드"><a href="#redash-소스-다운로드" class="headerlink" title="redash 소스 다운로드"></a>redash 소스 다운로드</h2><pre><code>root@redash-003:~# git clone https://github.com:getredash/redash.git
+Cloning into &apos;redash&apos;...
+remote: Not Found
+fatal: repository &apos;https://github.com:getredash/redash.git/&apos; not found
+root@redash-003:~# git clone https://github.com/getredash/redash.git
+Cloning into &apos;redash&apos;...
+remote: Counting objects: 34272, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 34272 (delta 0), reused 0 (delta 0), pack-reused 34270
+Receiving objects: 100% (34272/34272), 11.01 MiB | 5.79 MiB/s, done.
+Resolving deltas: 100% (24142/24142), done.
+Checking connectivity... done.
+root@redash-003:~# cd redash
+</code></pre><h2 id="docker-compose-실행"><a href="#docker-compose-실행" class="headerlink" title="docker-compose 실행"></a>docker-compose 실행</h2><p>Dev환경 파일<code>docker-compose.yml</code>을 이용할 경우 : 왠지 잘 설치는 되고 돌아가는듯 보이지만 잘 안됨ㅠㅠ </p>
+<p>그래서 Prod환경 파일<code>docker-compose.production.yml</code>을 이용 : 잘 됨</p>
+<ul>
+<li><p>Postgres 볼륨 위치</p>
+<pre><code>postgres:
+    image: postgres:9.5.6-alpine
+    volumes:
+      - &quot;/opt/postgres-data:/var/lib/postgresql/data&quot;
+    restart: always
+</code></pre></li>
+<li><p><code>REDASH_COOKIE_SECRET</code> 변경</p>
+<pre><code>server:
+    image: redash/redash:latest
+    command: server
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - &quot;5000:5000&quot;
+    environment:
+      PYTHONUNBUFFERED: 0
+      REDASH_LOG_LEVEL: &quot;INFO&quot;
+      REDASH_REDIS_URL: &quot;redis://redis:6379/0&quot;
+      REDASH_DATABASE_URL: &quot;postgresql://postgres@postgres/postgres&quot;
+      REDASH_COOKIE_SECRET: &lt;&lt;modified&gt;&gt;
+      REDASH_WEB_WORKERS: 4
+</code></pre></li>
+</ul>
+<p>최종 수행</p>
+<pre><code>root@redash-003:~/redash# docker-compose -f docker-compose.production.yml run --rm server create_db
+Creating redash_redis_1
+Creating redash_postgres_1
+Pulling server (redash/redash:latest)...
+latest: Pulling from redash/redash
+23a6960fe4a9: Pull complete
+e9e104b0e69d: Pull complete
+cd33d2ea7970: Pull complete
+534ff7b7d120: Pull complete
+7d352ac0c7f5: Pull complete
+c3c5a6207a0b: Pull complete
+554d68c17a7f: Pull complete
+17eadc3a433b: Pull complete
+20010883713d: Pull complete
+af7c42e7bf80: Pull complete
+3b4147361b03: Pull complete
+696785a1d19b: Pull complete
+0df8c7aae127: Pull complete
+ef1a3b509125: Pull complete
+a3ed95caeb02: Pull complete
+Digest: sha256:ec3fa4b94cef267f89ef1d9fde7d37facd59de58ea7c60b073226c12aa7dab4c
+Status: Downloaded newer image for redash/redash:latest
+[2018-08-22 06:41:25,332][PID:1][INFO][root] Generating grammar tables from /usr/lib/python2.7/lib2to3/Grammar.txt
+[2018-08-22 06:41:25,364][PID:1][INFO][root] Generating grammar tables from /usr/lib/python2.7/lib2to3/PatternGrammar.txt
+[2018-08-22 06:41:28,863][PID:1][INFO][alembic.runtime.migration] Context impl PostgresqlImpl.
+[2018-08-22 06:41:28,865][PID:1][INFO][alembic.runtime.migration] Will assume transactional DDL.
+[2018-08-22 06:41:28,900][PID:1][INFO][alembic.runtime.migration] Running stamp_revision  -&gt; 969126bd800f
+</code></pre><h2 id="작업확인"><a href="#작업확인" class="headerlink" title="작업확인"></a>작업확인</h2><pre><code>root@redash-003:~/redash# docker ps -a
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
+710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   44 seconds ago      Up 42 seconds       0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   45 seconds ago      Up 43 seconds       0.0.0.0:5000-&gt;5000/tcp        redash_server_1
+b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   45 seconds ago      Up 43 seconds       5000/tcp                      redash_worker_1
+a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   13 minutes ago      Up 13 minutes       5432/tcp                      redash_postgres_1
+9cbb150b3d43        redis:3.0-alpine        &quot;docker-entrypoint.s…&quot;   13 minutes ago      Up 13 minutes       6379/tcp                      redash_redis_1
+</code></pre><h1 id="Docker-Image로-생성"><a href="#Docker-Image로-생성" class="headerlink" title="Docker Image로 생성"></a>Docker Image로 생성</h1><p>링크 : <a href="http://www.kwangsiklee.com/2017/10/redash-docker-%EC%84%A4%EC%B9%98/" target="_blank" rel="noopener">http://www.kwangsiklee.com/2017/10/redash-docker-설치/</a> </p>
+<p>를 보면, docker 설치 후 이미지 추출하여 추후 사고?에 대비하는 것 같은데…</p>
+<pre><code>root@redash-003:~/backup# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+redash_server       latest              29d3dd8312e9        24 hours ago        1.07GB
+redash_worker       latest              29d3dd8312e9        24 hours ago        1.07GB
+&lt;none&gt;              &lt;none&gt;              f0743943bac3        26 hours ago        1.07GB
+redash/redash       latest              bec561ff0cc0        3 months ago        1.07GB
+redis               3.0-alpine          856249f48b0c        14 months ago       12.6MB
+redash/base         latest              9d04584f371a        14 months ago       566MB
+postgres            9.5.6-alpine        cc38b642ca58        15 months ago       36.9MB
+redash/nginx        latest              76abf32984e9        2 years ago         134MB
+root@redash-003:~/backup# docker ps -a
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
+710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         0.0.0.0:5000-&gt;5000/tcp        redash_server_1
+b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         5000/tcp                      redash_worker_1
+a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         5432/tcp                      redash_postgres_1
+9cbb150b3d43        redis:3.0-alpine        &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         6379/tcp                      redash_redis_1
+
+
+root@redash-003:~/backup# docker save redash/redash &gt; redash.tar
+root@redash-003:~/backup# ls -al
+total 1078672
+drwxr-xr-x 2 root root       4096 Aug 23 06:35 .
+drwx------ 9 root root       4096 Aug 23 06:35 ..
+-rw-r--r-- 1 root root 1104546816 Aug 23 06:48 redash.tar
+
+
+root@redash-003:~/backup# docker load &lt; redash.tar
+Loaded image: redash/redash:latest
+
+
+root@redash-003:~/backup# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+redash_server       latest              29d3dd8312e9        25 hours ago        1.07GB
+redash_worker       latest              29d3dd8312e9        25 hours ago        1.07GB
+&lt;none&gt;              &lt;none&gt;              f0743943bac3        26 hours ago        1.07GB
+redash/redash       latest              bec561ff0cc0        3 months ago        1.07GB
+redis               3.0-alpine          856249f48b0c        14 months ago       12.6MB
+redash/base         latest              9d04584f371a        14 months ago       566MB
+postgres            9.5.6-alpine        cc38b642ca58        15 months ago       36.9MB
+redash/nginx        latest              76abf32984e9        2 years ago         134MB
+root@redash-003:~/backup# docker ps -a
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
+710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         0.0.0.0:5000-&gt;5000/tcp        redash_server_1
+b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         5000/tcp                      redash_worker_1
+a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         5432/tcp                      redash_postgres_1
+9cbb150b3d43        redis:3.0-alpine        &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         6379/tcp                      redash_redis_1
+</code></pre><p>걍 백업의 개념인가;;</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/Redash/" rel="tag"># Redash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/install-redash-v4-on-ubuntu-host/" rel="next" title="Redash(v4) Ubuntu(host)에 설치하기">
+                <i class="fa fa-chevron-left"></i> Redash(v4) Ubuntu(host)에 설치하기
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/enable-oracle-dbms-on-redash/" rel="prev" title="Redash에 Oracle 가능하도록 설정">
+                Redash에 Oracle 가능하도록 설정 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#전체순서"><span class="nav-number">1.</span> <span class="nav-text">전체순서</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-CE-설치"><span class="nav-number">1.1.</span> <span class="nav-text">Docker-CE 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Composer-설치"><span class="nav-number">1.2.</span> <span class="nav-text">Docker Composer 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-npm-설치"><span class="nav-number">1.3.</span> <span class="nav-text">Node.js, npm 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redash-소스-다운로드"><span class="nav-number">1.4.</span> <span class="nav-text">redash 소스 다운로드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-실행"><span class="nav-number">1.5.</span> <span class="nav-text">docker-compose 실행</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#작업확인"><span class="nav-number">1.6.</span> <span class="nav-text">작업확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Image로-생성"><span class="nav-number">2.</span> <span class="nav-text">Docker Image로 생성</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/remake-redash-docker-images/";
+    this.page.identifier = "remake-redash-docker-images/";
+    this.page.title = 'Redash Docker로 이미지 생성';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
