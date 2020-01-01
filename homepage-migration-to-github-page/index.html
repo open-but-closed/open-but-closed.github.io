@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="루트 도메인과 서브 도메인 통합을 고민하다 기존 GCS 파일 호스팅을 버리고 Github Page에서 홈페이지를 서비스하기로 했다.">
+<meta name="keywords" content="Domain, GCS, Github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="홈페이지 호스팅을 Github Page로 옮기기">
+<meta property="og:url" content="http://open-but-closed.com/homepage-migration-to-github-page/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="루트 도메인과 서브 도메인 통합을 고민하다 기존 GCS 파일 호스팅을 버리고 Github Page에서 홈페이지를 서비스하기로 했다.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%201.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%202.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%203.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%204.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%205.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%206.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%207.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%208.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%209.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%2010.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%2011.png">
+<meta property="og:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled%2012.png">
+<meta property="og:updated_time" content="2020-01-01T15:55:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="홈페이지 호스팅을 Github Page로 옮기기">
+<meta name="twitter:description" content="루트 도메인과 서브 도메인 통합을 고민하다 기존 GCS 파일 호스팅을 버리고 Github Page에서 홈페이지를 서비스하기로 했다.">
+<meta name="twitter:image" content="http://open-but-closed.com/images/homepage-migration-to-github-page/Untitled.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/homepage-migration-to-github-page/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>홈페이지 호스팅을 Github Page로 옮기기 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/homepage-migration-to-github-page/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">홈페이지 호스팅을 Github Page로 옮기기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-01-01 23:00:00" itemprop="dateCreated datePublished" datetime="2020-01-01T23:00:00+09:00">2020-01-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-01-02 00:55:00" itemprop="dateModified" datetime="2020-01-02T00:55:00+09:00">2020-01-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT-웹서비스/" itemprop="url" rel="index"><span itemprop="name">IT-웹서비스</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/homepage-migration-to-github-page/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="homepage-migration-to-github-page/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">루트 도메인과 서브 도메인 통합을 고민하다 기존 GCS 파일 호스팅을 버리고 Github Page에서 홈페이지를 서비스하기로 했다.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="도메인-통합-작업"><a href="#도메인-통합-작업" class="headerlink" title="도메인 통합 작업"></a>도메인 통합 작업</h1><p>현재 이 홈페이지는 <code>open-but-closed.com</code>으로만 접속이 되고 있고, <code>www.open-but-closed.com</code>으로는 접속이 되지 않는다. 홈페이지는 <code>Hexo</code> 기반 정적 웹페이지를 기반으로 하고 있어, 나의 경우 Google Cloud Storage에 호스팅아닌 호스팅(그냥 파일을 보여주는…)을 하고 있다. </p>
+<p>도메인 연결은 Google쪽에 도메인에 대한 소유권을 인증하면 된다. 그리고 <strong>GCS에 해당 도메인과 동일한 이름으로 전체 공개된 bucket를 생성하기만 하면 된다</strong>. 도메인으로 유입되는 호출을 GCS로 보내면, GCS 서버에서 유입되는 도메인을 보고 해당 버킷의 웹페이지들을 서비스 하게 된다. </p>
+<p>나름 치명적인 단점이 하나 있는데, 나의 경우 <code>open-but-closed.com</code> 도메인을 지정하여 버킷을 생성하였으므로, <code>www.open-but-closed.com</code>과는 다르게 서비스 된다. 그래서 <code>www.open-but-closed.com</code>을 접속하면 다음과 같은 화면이 뜬다.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled.png" alt="/images/homepage-migration-to-github-page/Untitled.png"></p>
+<h1 id="루트-도메인과-서브-도메인"><a href="#루트-도메인과-서브-도메인" class="headerlink" title="루트 도메인과 서브 도메인"></a>루트 도메인과 서브 도메인</h1><p>보통 도메인은 다르다. 한때 <code>www</code>도메인 = 없는 도메인이라는 생각이 있었다. 예를들어 <code>www.open-but-closed.com</code> = <code>open-but-closed.com</code>이라는 생각. 하지만 앞에 아무 도메인이 없는 <code>open-but-closed.com</code>을 APEX도메인, 루트도메인등으로 불리운다. 그리고 <code>www</code>도메인과 루트 도메인은 명확히 다른 도메인이다.</p>
+<p>GCS의 경우엔 이 둘을 구분하고 있다. 즉, 이걸 해결하기 위해선 GCS에 또 하나의 버킷을 만드는 방법이 있다. <code>www.open-but-closed.com</code>버킷을 만들고 <code>open-but-closed.com</code>과 동일한 내용을 서비스하면 된다… <del>왜 그런 짓까지 해야하는거야?</del></p>
+<p>만약 nginx같은 웹서버를 설정할 수 있다면, 다음과 같은 <code>.htaccess</code>등의 설정 파일을 통해 rewrite로 도메인을 포워딩시켜줄 수 있어 보인다. </p>
+<pre><code>RewriteEngine On
+RewriteCond %{HTTP_HOST} www.open-but-closed.com
+RewriteRule (.*) http://open-but-closed.com/$1 [R=301,L]
+</code></pre><p>다만, GCS의 파일 서비스는, 말그대로 해당 파일에 대해 보여주는 것으로, <code>.htaccess</code>등의 파일로 설정이 불가능했다;;;</p>
+<p>한가지 더 생각한 방법은 <code>www</code>도메인으로 다른 서버(예를들어 GCP의 VM같은)으로 보내고, 해당 VM에서 다시 루트도메인으로 포워딩을 하는… <del>하… 못할짓</del></p>
+<p>그래서 어짜피 호스팅이 좋은 Github으로 이사를 가는것을 고려하게 되었다. (git도 배울겸…)</p>
+<p>추가 : 한가지 고민이 있었다. <code>www</code>를 루트도메인으로 리다이렉션 할 것인가? 아니면 루트도메인을 <code>www</code>로 리다이렉션할 것인가?… 대부분의 사이트를 보면 메인 페이지는 <code>www</code>등의 도메인에서 루트도메인으로 리다이렉션되는 추세인 것 같다. 그래서 나도…</p>
+<h1 id="번외-요즘-크롬에서-서브도메인이-안보인다"><a href="#번외-요즘-크롬에서-서브도메인이-안보인다" class="headerlink" title="번외 : 요즘 크롬에서 서브도메인이 안보인다?"></a>번외 : 요즘 크롬에서 서브도메인이 안보인다?</h1><p>예를들어 크롬에서 애플(<code>www.apple.com</code>)에 접속해보면, 서브도메인(<code>www</code>)이 보이지 않는다.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%201.png" alt="/images/homepage-migration-to-github-page/Untitled%201.png"></p>
+<p>굳이 주소창을 클릭하거나 특정 액션을 취해야 <code>https://</code>등의 프로토콜을 포함한 전체 주소가 나타난다.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%202.png" alt="/images/homepage-migration-to-github-page/Untitled%202.png"></p>
+<p>모바일 크롬 역시 그러한데, 이 변화는 크롬 버전 69부터 변경된 사항으로, 구글이 굳이 보여줄 필요 없다 생각해서 지웠다고 한다. 물론 많은 이들의 원성을 샀다고.</p>
+<p>관련한 해결 방안은 크롬 옵션에서 변경이 가능함. </p>
+<ul>
+<li>크롬 주소창에서 <code>chrome://flags</code>로 설정 화면으로 진입</li>
+<li><code>#omnibox-ui-hide-steady-state-url-trivial-subdomains</code> 항목을 <code>Disabled</code> 시켜주면 된다.</li>
+<li>참조 : <a href="https://www.bleepingcomputer.com/news/google/google-chrome-hides-www-and-https-in-the-address-bar-again/" target="_blank" rel="noopener">https://www.bleepingcomputer.com/news/google/google-chrome-hides-www-and-https-in-the-address-bar-again/</a></li>
+</ul>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%203.png" alt="/images/homepage-migration-to-github-page/Untitled%203.png"></p>
+<p>이제 별 다른 액션 없이 서브 도메인이 모두 나온다. 편-안</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%204.png" alt="/images/homepage-migration-to-github-page/Untitled%204.png"></p>
+<h1 id="Github-셋업"><a href="#Github-셋업" class="headerlink" title="Github 셋업"></a>Github 셋업</h1><p>github에선 계정을 생성하고, <code>&lt;계정&gt;.github.io</code>라는 특정한 이름의 레파지토리를 생성하면 된다. 그리고 Github Pages를 설정하면 이 레파지토리는 웹페이지로 공개된다. 여기서 사용자 도메인을 설정할 수 있다.</p>
+<p>설정으로 가서</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%205.png" alt="/images/homepage-migration-to-github-page/Untitled%205.png"></p>
+<p><strong>Custom domain</strong>에 해당 도메인을 채우면 된다.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%206.png" alt="/images/homepage-migration-to-github-page/Untitled%206.png"></p>
+<p>의외로 간단했다… 대부분의 웹호스팅은 도메인의 소유권을 인증하게 시키는데, 그 단계가 없어서 의문… 혹시 악용할 여지는 없나 하는 생각도. </p>
+<h1 id="도메인-셋업"><a href="#도메인-셋업" class="headerlink" title="도메인 셋업"></a>도메인 셋업</h1><p>이제는 <code>open-but-closed.com</code>도메인으로 들어오는 호출을 Github으로 리다이렉션 시키면 된다. 루트도메인의 경우 <code>ANAME</code>이라는 부분을 셋업해야 하는데, 관련 내용은 <a href="https://help.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">이곳</a>에 잘 나와있다. <code>ANAME</code>의 경우 IP로 리다이렉션 되고, Github에 해당하는 IP는 위 페이지에 나와있다. </p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%207.png" alt="/images/homepage-migration-to-github-page/Untitled%207.png"></p>
+<p>개인적으로 <a href="http://dnsever.com" target="_blank" rel="noopener">dnsever.com</a> 이라는 곳에서 도메인들을 관리하고 있다. (추천)</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%208.png" alt="/images/homepage-migration-to-github-page/Untitled%208.png"></p>
+<p>기존에 있던 CNAME으로 연결하는 부분은 나중에 대용량 파일을 연결할 수도 있으니껜 <code>gcs.open-but-closed.com</code>으로 바꿔서 연결해놓자… (물론… 버킷 이름도 바꿔야 할듯?)</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%209.png" alt="/images/homepage-migration-to-github-page/Untitled%209.png"></p>
+<p><code>A</code>셋업에서 위의 IP를 적어준다… 4개 적는게 아마 가능할듯.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%2010.png" alt="/images/homepage-migration-to-github-page/Untitled%2010.png"></p>
+<p>아… 서브도메인 <code>www</code>의 경우 <code>open-but-closed.github.io</code>로 보낸다. 깃헙 페이지에서 Custom domain을 사용할 경우, <code>&lt;계정&gt;.github.io</code>도메인도 Custom domain으로 리다이렉션 된다.</p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%2011.png" alt="/images/homepage-migration-to-github-page/Untitled%2011.png"></p>
+<h1 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h1><p>A레코드 변경은 TTL에 따라 다른데, 10분~4시간 정도. 물론 대중 없을 수 있음. 여튼 시간이 걸린다. </p>
+<p>깃헙 페이지에서 설명한 <code>dig</code>명령어로 상태를 확인할 수도 있다.</p>
+<pre><code>$ dig www.open-but-closed.com +nostats +nocomments +nocmd
+
+
+; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; www.open-but-closed.com +nostats +nocomments +nocmd
+;; global options: +cmd
+;www.open-but-closed.com.    IN    A
+www.open-but-closed.com. 327    IN    CNAME    open-but-closed.github.io.
+open-but-closed.github.io. 3327    IN    A    185.199.111.153
+open-but-closed.github.io. 3327    IN    A    185.199.108.153
+open-but-closed.github.io. 3327    IN    A    185.199.109.153
+open-but-closed.github.io. 3327    IN    A    185.199.110.153
+
+
+$ dig open-but-closed.com +nostats +nocomments +nocmd
+
+
+; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; open-but-closed.com +nostats +nocomments +nocmd
+;; global options: +cmd
+;open-but-closed.com.        IN    A
+open-but-closed.com.    318    IN    A    185.199.111.153
+open-but-closed.com.    318    IN    A    185.199.108.153
+open-but-closed.com.    318    IN    A    185.199.109.153
+open-but-closed.com.    318    IN    A    185.199.110.153
+</code></pre><h1 id="또-하나의-장점"><a href="#또-하나의-장점" class="headerlink" title="또 하나의 장점"></a>또 하나의 장점</h1><p>Github Page로 홈페이지를 사용하니 또 하나의 장점이 있다. 바로 깃헙의 인증서를 통해 <code>https:</code>를 사용할 수 있다는 것! ㅎㅎ. 당연하지만 요즘 대세는 <code>https:</code>라서… ㅎㅎ </p>
+<p><img src="/images/homepage-migration-to-github-page/Untitled%2012.png" alt="/images/homepage-migration-to-github-page/Untitled%2012.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Domain-GCS-Github/" rel="tag"># Domain, GCS, Github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/googlecloudplatform-billing-migration/" rel="next" title="GCP Billing Migration 경험">
+                <i class="fa fa-chevron-left"></i> GCP Billing Migration 경험
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#도메인-통합-작업"><span class="nav-number">1.</span> <span class="nav-text">도메인 통합 작업</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#루트-도메인과-서브-도메인"><span class="nav-number">2.</span> <span class="nav-text">루트 도메인과 서브 도메인</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#번외-요즘-크롬에서-서브도메인이-안보인다"><span class="nav-number">3.</span> <span class="nav-text">번외 : 요즘 크롬에서 서브도메인이 안보인다?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Github-셋업"><span class="nav-number">4.</span> <span class="nav-text">Github 셋업</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#도메인-셋업"><span class="nav-number">5.</span> <span class="nav-text">도메인 셋업</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#확인"><span class="nav-number">6.</span> <span class="nav-text">확인</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#또-하나의-장점"><span class="nav-number">7.</span> <span class="nav-text">또 하나의 장점</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/homepage-migration-to-github-page/";
+    this.page.identifier = "homepage-migration-to-github-page/";
+    this.page.title = '홈페이지 호스팅을 Github Page로 옮기기';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
