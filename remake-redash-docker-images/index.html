@@ -13,11 +13,11 @@
 
 
 <html class="theme-next gemini" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -62,7 +62,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
   
 
 
@@ -70,9 +70,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
@@ -90,7 +90,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
 
-  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="msapplication-config" content="/browserconfig.xml"/>
 
 
 
@@ -125,24 +125,25 @@
 
 
   <meta name="description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
-<meta name="keywords" content="Docker,Redash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redash Docker로 이미지 생성">
 <meta property="og:url" content="http://open-but-closed.com/remake-redash-docker-images/index.html">
 <meta property="og:site_name" content="개점휴업">
 <meta property="og:description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-04T16:55:00.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-31T14:21:00.000Z">
+<meta property="article:modified_time" content="2019-10-04T16:55:00.000Z">
+<meta property="article:author" content="KangJin Choi">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Redash">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redash Docker로 이미지 생성">
-<meta name="twitter:description" content="결국 Redash는 docker버전으로 관리하기로 했다. 또 내부망 서버에는 인터넷이 제한적인 환경이라 docker로 관리하는 부분이 더 맞을듯. 외부에서 모든 셋업을 마치고 docker image를 만들어서 내부의 docker에 설치해보려고 하다.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://open-but-closed.com/remake-redash-docker-images/">
+  <link rel="canonical" href="http://open-but-closed.com/remake-redash-docker-images/"/>
 
 
 
@@ -199,9 +200,9 @@
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 <script>
@@ -223,7 +224,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta custom-logo">
     
@@ -242,7 +243,7 @@
     
     
       <a>
-        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업"/>
       </a>
     
   </div>
@@ -276,7 +277,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -293,7 +294,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
         
@@ -310,7 +311,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -327,7 +328,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -344,7 +345,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
 
   </li>
 
@@ -362,7 +363,8 @@
 
   
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -393,21 +395,21 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/remake-redash-docker-images/">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/remake-redash-docker-images/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KangJin Choi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개점휴업">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업"/>
     </span>
 
     
@@ -464,7 +466,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -475,14 +477,14 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
 
                 
                 
@@ -499,7 +501,8 @@
                 </span>
                 <a href="/remake-redash-docker-images/#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="remake-redash-docker-images/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="remake-redash-docker-images/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -529,65 +532,73 @@
       
 
       
-        <h1 id="전체순서"><a href="#전체순서" class="headerlink" title="전체순서"></a>전체순서</h1><ul>
-<li><a href="https://redash.io/help/open-source/dev-guide/docker" target="_blank" rel="noopener">https://redash.io/help/open-source/dev-guide/docker</a><ol>
+        <h1>전체순서</h1>
+<ul>
+<li><a href="https://redash.io/help/open-source/dev-guide/docker" target="_blank" rel="noopener">https://redash.io/help/open-source/dev-guide/docker</a>
+<ol>
 <li>Docker, Docker compose 설치</li>
 <li>Node.js 설치</li>
 </ol>
 </li>
 </ul>
-<h2 id="Docker-CE-설치"><a href="#Docker-CE-설치" class="headerlink" title="Docker-CE 설치"></a>Docker-CE 설치</h2><ul>
-<li><p><a href="http://nobase-dev.tistory.com/34" target="_blank" rel="noopener">http://nobase-dev.tistory.com/34</a></p>
-<pre><code>## 패키지 업데이트
-$ sudo apt-get update
-...
-## HTTPS를 통해 repository를 사용할 수 있도록 패키지 설치
-$ sudo apt-get install \
-apt-transport-https \
-ca-certificates \
-curl \
-software-properties-common
-...
-## Docker 공식 GPG 키 추가
-## Key fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88 확인
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-$ sudo apt-key fingerprint 0EBFCD88
-pub   4096R/0EBFCD88 2017-02-22
-Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
-uid                  Docker Release (CE deb) &lt;docker@docker.com&gt;
-sub   4096R/F273FCD8 2017-02-22
-...
-## stable repository 사용시 아래 커맨드 추가
-## arch 값을 amd64, armhf, ppc64el, s390x 등으로 맞춰서 사용
-$ sudo add-apt-repository \
-&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable&quot;
-...
-## 패키지 업데이트
-$ sudo apt-get update
-...
-## 옵션 1. Docker CE 최신 버전 설치
-$ sudo apt-get install docker-ce
-...
-## 옵션 2. Docker CE 특정 버전 설치
-$ apt-cache madison docker-ce
-docker-ce | 17.12.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
-$ sudo apt-get install docker-ce=&lt;VERSION&gt;
-...
-## hello-world 이미지를 실행하여 Docker CE가 올바르게 설치되었는지 확인
-$ sudo docker run hello-world
-</code></pre></li>
+<h2 id="Docker-CE-설치"><a class="header-anchor" href="#Docker-CE-설치">¶</a>Docker-CE 설치</h2>
+<ul>
+<li>
+<p><a href="http://nobase-dev.tistory.com/34" target="_blank" rel="noopener">http://nobase-dev.tistory.com/34</a></p>
+<pre><code>  ## 패키지 업데이트
+  $ sudo apt-get update
+  ...
+  ## HTTPS를 통해 repository를 사용할 수 있도록 패키지 설치
+  $ sudo apt-get install \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  software-properties-common
+  ...
+  ## Docker 공식 GPG 키 추가
+  ## Key fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88 확인
+  $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  $ sudo apt-key fingerprint 0EBFCD88
+  pub   4096R/0EBFCD88 2017-02-22
+  Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+  uid                  Docker Release (CE deb) &lt;docker@docker.com&gt;
+  sub   4096R/F273FCD8 2017-02-22
+  ...
+  ## stable repository 사용시 아래 커맨드 추가
+  ## arch 값을 amd64, armhf, ppc64el, s390x 등으로 맞춰서 사용
+  $ sudo add-apt-repository \
+  &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+     $(lsb_release -cs) \
+     stable&quot;
+  ...
+  ## 패키지 업데이트
+  $ sudo apt-get update
+  ...
+  ## 옵션 1. Docker CE 최신 버전 설치
+  $ sudo apt-get install docker-ce
+  ...
+  ## 옵션 2. Docker CE 특정 버전 설치
+  $ apt-cache madison docker-ce
+  docker-ce | 17.12.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+  $ sudo apt-get install docker-ce=&lt;VERSION&gt;
+  ...
+  ## hello-world 이미지를 실행하여 Docker CE가 올바르게 설치되었는지 확인
+  $ sudo docker run hello-world
+</code></pre>
+</li>
 </ul>
-<h2 id="Docker-Composer-설치"><a href="#Docker-Composer-설치" class="headerlink" title="Docker Composer 설치"></a>Docker Composer 설치</h2><pre><code>root@redash-003:~# docker-compose -v
-The program &apos;docker-compose&apos; is currently not installed. You can install it by typing:
+<h2 id="Docker-Composer-설치"><a class="header-anchor" href="#Docker-Composer-설치">¶</a>Docker Composer 설치</h2>
+<pre><code>root@redash-003:~# docker-compose -v
+The program 'docker-compose' is currently not installed. You can install it by typing:
 apt install docker-compose
 root@redash-003:~# apt install docker-compose
 ...
 ...
 root@redash-003:~# docker-compose -v
 docker-compose version 1.8.0, build unknown
-</code></pre><h2 id="Node-js-npm-설치"><a href="#Node-js-npm-설치" class="headerlink" title="Node.js, npm 설치"></a>Node.js, npm 설치</h2><pre><code>root@redash-003:~# sudo apt-get install nodejs
+</code></pre>
+<h2 id="Node-js-npm-설치"><a class="header-anchor" href="#Node-js-npm-설치">¶</a>Node.js, npm 설치</h2>
+<pre><code>root@redash-003:~# sudo apt-get install nodejs
 ...
 ...
 root@redash-003:~# sudo apt-get install npm
@@ -595,12 +606,14 @@ root@redash-003:~# sudo apt-get install npm
 ...
 root@redash-003:~# nodejs -v
 v4.2.6
-</code></pre><h2 id="redash-소스-다운로드"><a href="#redash-소스-다운로드" class="headerlink" title="redash 소스 다운로드"></a>redash 소스 다운로드</h2><pre><code>root@redash-003:~# git clone https://github.com:getredash/redash.git
-Cloning into &apos;redash&apos;...
+</code></pre>
+<h2 id="redash-소스-다운로드"><a class="header-anchor" href="#redash-소스-다운로드">¶</a>redash 소스 다운로드</h2>
+<pre><code>root@redash-003:~# git clone https://github.com:getredash/redash.git
+Cloning into 'redash'...
 remote: Not Found
-fatal: repository &apos;https://github.com:getredash/redash.git/&apos; not found
+fatal: repository 'https://github.com:getredash/redash.git/' not found
 root@redash-003:~# git clone https://github.com/getredash/redash.git
-Cloning into &apos;redash&apos;...
+Cloning into 'redash'...
 remote: Counting objects: 34272, done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 34272 (delta 0), reused 0 (delta 0), pack-reused 34270
@@ -608,33 +621,39 @@ Receiving objects: 100% (34272/34272), 11.01 MiB | 5.79 MiB/s, done.
 Resolving deltas: 100% (24142/24142), done.
 Checking connectivity... done.
 root@redash-003:~# cd redash
-</code></pre><h2 id="docker-compose-실행"><a href="#docker-compose-실행" class="headerlink" title="docker-compose 실행"></a>docker-compose 실행</h2><p>Dev환경 파일<code>docker-compose.yml</code>을 이용할 경우 : 왠지 잘 설치는 되고 돌아가는듯 보이지만 잘 안됨ㅠㅠ </p>
+</code></pre>
+<h2 id="docker-compose-실행"><a class="header-anchor" href="#docker-compose-실행">¶</a>docker-compose 실행</h2>
+<p>Dev환경 파일<code>docker-compose.yml</code>을 이용할 경우 : 왠지 잘 설치는 되고 돌아가는듯 보이지만 잘 안됨ㅠㅠ</p>
 <p>그래서 Prod환경 파일<code>docker-compose.production.yml</code>을 이용 : 잘 됨</p>
 <ul>
-<li><p>Postgres 볼륨 위치</p>
-<pre><code>postgres:
-    image: postgres:9.5.6-alpine
-    volumes:
-      - &quot;/opt/postgres-data:/var/lib/postgresql/data&quot;
-    restart: always
-</code></pre></li>
-<li><p><code>REDASH_COOKIE_SECRET</code> 변경</p>
-<pre><code>server:
-    image: redash/redash:latest
-    command: server
-    depends_on:
-      - postgres
-      - redis
-    ports:
-      - &quot;5000:5000&quot;
-    environment:
-      PYTHONUNBUFFERED: 0
-      REDASH_LOG_LEVEL: &quot;INFO&quot;
-      REDASH_REDIS_URL: &quot;redis://redis:6379/0&quot;
-      REDASH_DATABASE_URL: &quot;postgresql://postgres@postgres/postgres&quot;
-      REDASH_COOKIE_SECRET: &lt;&lt;modified&gt;&gt;
-      REDASH_WEB_WORKERS: 4
-</code></pre></li>
+<li>
+<p>Postgres 볼륨 위치</p>
+<pre><code>  postgres:
+      image: postgres:9.5.6-alpine
+      volumes:
+        - &quot;/opt/postgres-data:/var/lib/postgresql/data&quot;
+      restart: always
+</code></pre>
+</li>
+<li>
+<p><code>REDASH_COOKIE_SECRET</code> 변경</p>
+<pre><code>  server:
+      image: redash/redash:latest
+      command: server
+      depends_on:
+        - postgres
+        - redis
+      ports:
+        - &quot;5000:5000&quot;
+      environment:
+        PYTHONUNBUFFERED: 0
+        REDASH_LOG_LEVEL: &quot;INFO&quot;
+        REDASH_REDIS_URL: &quot;redis://redis:6379/0&quot;
+        REDASH_DATABASE_URL: &quot;postgresql://postgres@postgres/postgres&quot;
+        REDASH_COOKIE_SECRET: &lt;&lt;modified&gt;&gt;
+        REDASH_WEB_WORKERS: 4
+</code></pre>
+</li>
 </ul>
 <p>최종 수행</p>
 <pre><code>root@redash-003:~/redash# docker-compose -f docker-compose.production.yml run --rm server create_db
@@ -664,14 +683,18 @@ Status: Downloaded newer image for redash/redash:latest
 [2018-08-22 06:41:28,863][PID:1][INFO][alembic.runtime.migration] Context impl PostgresqlImpl.
 [2018-08-22 06:41:28,865][PID:1][INFO][alembic.runtime.migration] Will assume transactional DDL.
 [2018-08-22 06:41:28,900][PID:1][INFO][alembic.runtime.migration] Running stamp_revision  -&gt; 969126bd800f
-</code></pre><h2 id="작업확인"><a href="#작업확인" class="headerlink" title="작업확인"></a>작업확인</h2><pre><code>root@redash-003:~/redash# docker ps -a
+</code></pre>
+<h2 id="작업확인"><a class="header-anchor" href="#작업확인">¶</a>작업확인</h2>
+<pre><code>root@redash-003:~/redash# docker ps -a
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
-710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   44 seconds ago      Up 42 seconds       0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+710d03e179a6        redash/nginx:latest     &quot;nginx -g 'daemon of…&quot;   44 seconds ago      Up 42 seconds       0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
 7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   45 seconds ago      Up 43 seconds       0.0.0.0:5000-&gt;5000/tcp        redash_server_1
 b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   45 seconds ago      Up 43 seconds       5000/tcp                      redash_worker_1
 a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   13 minutes ago      Up 13 minutes       5432/tcp                      redash_postgres_1
 9cbb150b3d43        redis:3.0-alpine        &quot;docker-entrypoint.s…&quot;   13 minutes ago      Up 13 minutes       6379/tcp                      redash_redis_1
-</code></pre><h1 id="Docker-Image로-생성"><a href="#Docker-Image로-생성" class="headerlink" title="Docker Image로 생성"></a>Docker Image로 생성</h1><p>링크 : <a href="http://www.kwangsiklee.com/2017/10/redash-docker-%EC%84%A4%EC%B9%98/" target="_blank" rel="noopener">http://www.kwangsiklee.com/2017/10/redash-docker-설치/</a> </p>
+</code></pre>
+<h1>Docker Image로 생성</h1>
+<p>링크 : <a href="http://www.kwangsiklee.com/2017/10/redash-docker-%EC%84%A4%EC%B9%98/" target="_blank" rel="noopener">http://www.kwangsiklee.com/2017/10/redash-docker-설치/</a></p>
 <p>를 보면, docker 설치 후 이미지 추출하여 추후 사고?에 대비하는 것 같은데…</p>
 <pre><code>root@redash-003:~/backup# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -685,7 +708,7 @@ postgres            9.5.6-alpine        cc38b642ca58        15 months ago       
 redash/nginx        latest              76abf32984e9        2 years ago         134MB
 root@redash-003:~/backup# docker ps -a
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
-710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+710d03e179a6        redash/nginx:latest     &quot;nginx -g 'daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
 7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         0.0.0.0:5000-&gt;5000/tcp        redash_server_1
 b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         5000/tcp                      redash_worker_1
 a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         5432/tcp                      redash_postgres_1
@@ -716,12 +739,13 @@ postgres            9.5.6-alpine        cc38b642ca58        15 months ago       
 redash/nginx        latest              76abf32984e9        2 years ago         134MB
 root@redash-003:~/backup# docker ps -a
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                         NAMES
-710d03e179a6        redash/nginx:latest     &quot;nginx -g &apos;daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
+710d03e179a6        redash/nginx:latest     &quot;nginx -g 'daemon of…&quot;   24 hours ago        Up 24 hours         0.0.0.0:80-&gt;80/tcp, 443/tcp   redash_nginx_1
 7477d7fb3453        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         0.0.0.0:5000-&gt;5000/tcp        redash_server_1
 b88528c588f2        redash/redash:latest    &quot;/app/bin/docker-ent…&quot;   24 hours ago        Up 24 hours         5000/tcp                      redash_worker_1
 a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         5432/tcp                      redash_postgres_1
 9cbb150b3d43        redis:3.0-alpine        &quot;docker-entrypoint.s…&quot;   24 hours ago        Up 24 hours         6379/tcp                      redash_redis_1
-</code></pre><p>걍 백업의 개념인가;;</p>
+</code></pre>
+<p>걍 백업의 개념인가;;</p>
 
       
     </div>
@@ -836,7 +860,7 @@ a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;  
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">KangJin Choi</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -847,7 +871,7 @@ a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;  
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
@@ -1013,7 +1037,7 @@ a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;  
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#전체순서"><span class="nav-number">1.</span> <span class="nav-text">전체순서</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-CE-설치"><span class="nav-number">1.1.</span> <span class="nav-text">Docker-CE 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Composer-설치"><span class="nav-number">1.2.</span> <span class="nav-text">Docker Composer 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-npm-설치"><span class="nav-number">1.3.</span> <span class="nav-text">Node.js, npm 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redash-소스-다운로드"><span class="nav-number">1.4.</span> <span class="nav-text">redash 소스 다운로드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-실행"><span class="nav-number">1.5.</span> <span class="nav-text">docker-compose 실행</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#작업확인"><span class="nav-number">1.6.</span> <span class="nav-text">작업확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Image로-생성"><span class="nav-number">2.</span> <span class="nav-text">Docker Image로 생성</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">전체순서</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-CE-설치"><span class="nav-number">1.1.</span> <span class="nav-text">¶Docker-CE 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Composer-설치"><span class="nav-number">1.2.</span> <span class="nav-text">¶Docker Composer 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-npm-설치"><span class="nav-number">1.3.</span> <span class="nav-text">¶Node.js, npm 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redash-소스-다운로드"><span class="nav-number">1.4.</span> <span class="nav-text">¶redash 소스 다운로드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-실행"><span class="nav-number">1.5.</span> <span class="nav-text">¶docker-compose 실행</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#작업확인"><span class="nav-number">1.6.</span> <span class="nav-text">¶작업확인</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Docker Image로 생성</span></a></li></ol></div>
             
 
           </div>
@@ -1050,7 +1074,7 @@ a01fd9887ef8        postgres:9.5.6-alpine   &quot;docker-entrypoint.s…&quot;  
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
 
 
 

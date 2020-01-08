@@ -13,11 +13,11 @@
 
 
 <html class="theme-next gemini" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -62,7 +62,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
   
 
 
@@ -70,9 +70,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
@@ -90,7 +90,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
 
-  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="msapplication-config" content="/browserconfig.xml"/>
 
 
 
@@ -125,20 +125,21 @@
 
 
   <meta name="description" content="Oracle DBMS의 경우 접속 드라이버를 다른 프로그램에서 배포하지 못하게 하는 것으로 알고 있다. 대부분 프로그램을 다운받고, 오라클 드라이버는 오라클 공홈에서 다운받아야 한다. Redash도 그래서인지 Oracle기능은 disable된 상태로 배포가 되는데, 이를 사용할 수 있도록 변경하는 방법을 연구">
-<meta name="keywords" content="Oracle,Redash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redash에 Oracle 가능하도록 설정">
 <meta property="og:url" content="http://open-but-closed.com/enable-oracle-dbms-on-redash/index.html">
 <meta property="og:site_name" content="개점휴업">
 <meta property="og:description" content="Oracle DBMS의 경우 접속 드라이버를 다른 프로그램에서 배포하지 못하게 하는 것으로 알고 있다. 대부분 프로그램을 다운받고, 오라클 드라이버는 오라클 공홈에서 다운받아야 한다. Redash도 그래서인지 Oracle기능은 disable된 상태로 배포가 되는데, 이를 사용할 수 있도록 변경하는 방법을 연구">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-09-12at11-0f3f4803-8f47-4859-a359-99412b2b1981.25.27.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-09-12at11-c0a1749a-4d9f-4c22-99e6-fd2b5b7f1850.36.28.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-09-12at12-198c3c4b-d55b-473c-9b15-54eb6fe25fc9.06.07.jpg">
-<meta property="og:updated_time" content="2019-10-04T16:14:00.000Z">
+<meta property="article:published_time" content="2018-09-12T12:18:00.000Z">
+<meta property="article:modified_time" content="2019-10-04T16:14:00.000Z">
+<meta property="article:author" content="KangJin Choi">
+<meta property="article:tag" content="Oracle">
+<meta property="article:tag" content="Redash">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redash에 Oracle 가능하도록 설정">
-<meta name="twitter:description" content="Oracle DBMS의 경우 접속 드라이버를 다른 프로그램에서 배포하지 못하게 하는 것으로 알고 있다. 대부분 프로그램을 다운받고, 오라클 드라이버는 오라클 공홈에서 다운받아야 한다. Redash도 그래서인지 Oracle기능은 disable된 상태로 배포가 되는데, 이를 사용할 수 있도록 변경하는 방법을 연구">
 <meta name="twitter:image" content="http://open-but-closed.com/images/Capture2018-09-12at11-0f3f4803-8f47-4859-a359-99412b2b1981.25.27.jpg">
 
 
@@ -146,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="http://open-but-closed.com/enable-oracle-dbms-on-redash/">
+  <link rel="canonical" href="http://open-but-closed.com/enable-oracle-dbms-on-redash/"/>
 
 
 
@@ -203,9 +204,9 @@
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 <script>
@@ -227,7 +228,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta custom-logo">
     
@@ -246,7 +247,7 @@
     
     
       <a>
-        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업"/>
       </a>
     
   </div>
@@ -280,7 +281,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -297,7 +298,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
         
@@ -314,7 +315,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -331,7 +332,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -348,7 +349,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
 
   </li>
 
@@ -366,7 +367,8 @@
 
   
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -397,21 +399,21 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/enable-oracle-dbms-on-redash/">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/enable-oracle-dbms-on-redash/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KangJin Choi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개점휴업">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업"/>
     </span>
 
     
@@ -468,7 +470,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -479,14 +481,14 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/" itemprop="url" rel="index"><span itemprop="name">DW/BI</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DW-BI/Redash/" itemprop="url" rel="index"><span itemprop="name">Redash</span></a></span>
 
                 
                 
@@ -503,7 +505,8 @@
                 </span>
                 <a href="/enable-oracle-dbms-on-redash/#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="enable-oracle-dbms-on-redash/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="enable-oracle-dbms-on-redash/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -533,19 +536,24 @@
       
 
       
-        <h1 id="Redash는-설치환경에-따라-셋팅-방법이-다름"><a href="#Redash는-설치환경에-따라-셋팅-방법이-다름" class="headerlink" title="Redash는 설치환경에 따라 셋팅 방법이 다름"></a>Redash는 설치환경에 따라 셋팅 방법이 다름</h1><ul>
+        <h1>Redash는 설치환경에 따라 셋팅 방법이 다름</h1>
+<ul>
 <li>환경을 셋팅하여 dockerfile로 생성</li>
 <li>provisioning script로 생성된 곳에 직접 셋팅</li>
 </ul>
 <p>여기서는 provisioning script로 생성된 환경에 셋업</p>
-<h2 id="전체방법"><a href="#전체방법" class="headerlink" title="전체방법"></a>전체방법</h2><ul>
+<h2 id="전체방법"><a class="header-anchor" href="#전체방법">¶</a>전체방법</h2>
+<ul>
 <li>redash는 python으로 만들어진 앱이라, 결국 cx_Oracle 패키지로 oracle에 연결하는 것임.</li>
 <li>oracle instant client로 cx_Oracle을 사용할 수 있도록 하면 됨</li>
 <li>그 외에 설정할 것은 그리 많지 않음… (과연)</li>
 </ul>
-<h1 id="Oracle-instant-client-설치"><a href="#Oracle-instant-client-설치" class="headerlink" title="Oracle instant client 설치"></a>Oracle instant client 설치</h1><h2 id="드라이버-다운로드"><a href="#드라이버-다운로드" class="headerlink" title="드라이버 다운로드"></a>드라이버 다운로드</h2><p>오라클 드라이버를 다운받으려면 로그인도 하고 귀찮으니 누가 git에 올려놓은 것을 활용</p>
+<h1>Oracle instant client 설치</h1>
+<h2 id="드라이버-다운로드"><a class="header-anchor" href="#드라이버-다운로드">¶</a>드라이버 다운로드</h2>
+<p>오라클 드라이버를 다운받으려면 로그인도 하고 귀찮으니 누가 git에 올려놓은 것을 활용</p>
 <pre><code>$ git clone https://github.com/leonnleite/instant-client-oracle.git
-</code></pre><p>cx_Oracle에 대한 installation은 다음 링크를 참조하면 된다:</p>
+</code></pre>
+<p>cx_Oracle에 대한 installation은 다음 링크를 참조하면 된다:</p>
 <p><a href="https://cx-oracle.readthedocs.io/en/latest/installation.html" target="_blank" rel="noopener">https://cx-oracle.readthedocs.io/en/latest/installation.html</a></p>
 <blockquote>
 <p>If your database is on a remote computer, then download the free Oracle Instant Client “Basic” or “Basic Light” package for your operating system architecture. Use the RPM or ZIP packages, based on your preferences.</p>
@@ -553,7 +561,9 @@
 <p>결국 basic만 있으면 됨</p>
 <pre><code>$ mkdir /opt/oracle
 $ unzip instantclient-basic-linux.x64-12.2.0.1.0.zip -d /opt/oracle
-</code></pre><h2 id="환경셋팅"><a href="#환경셋팅" class="headerlink" title="환경셋팅"></a>환경셋팅</h2><p>중간에 잘 안되어서 다음과 같은 셋팅도 어디서 보고 하긴 했음. 버전별로 파일이 다를 수 있으니 심볼릭 링크로 버전 파일을 맞춰줘야 함</p>
+</code></pre>
+<h2 id="환경셋팅"><a class="header-anchor" href="#환경셋팅">¶</a>환경셋팅</h2>
+<p>중간에 잘 안되어서 다음과 같은 셋팅도 어디서 보고 하긴 했음. 버전별로 파일이 다를 수 있으니 심볼릭 링크로 버전 파일을 맞춰줘야 함</p>
 <pre><code>$ cd /opt/oracle
 
 # 심볼릭 링크 생성
@@ -566,11 +576,15 @@ $ export ORACLE_HOME=/opt/oracle/instantclient
 $ export LD_LIBRARY_PATH=/opt/oracle/instantclient
 $ export TNS_ADMIN=$ORACLE_HOME/network/admin
 $ mkdir -p /opt/oracle/instantclient/network/admin
-</code></pre><p>뭔가 파일 연결이 잘 안되어서… 검색으로 다음 해결방안을 찾음</p>
+</code></pre>
+<p>뭔가 파일 연결이 잘 안되어서… 검색으로 다음 해결방안을 찾음</p>
 <pre><code>$ echo /opt/oracle/instantclient_12_2 &gt; /etc/ld.so.conf.d/oracle-instantclient.conf
 $ ldconfig
-</code></pre><h1 id="Python-Oracle-connector-cx-Oracle-설치"><a href="#Python-Oracle-connector-cx-Oracle-설치" class="headerlink" title="Python Oracle connector(cx_Oracle) 설치"></a>Python Oracle connector(cx_Oracle) 설치</h1><p>Redash는 Python프로그램이라, connector를 위해 cx_Oracle 패키지를 설치한다. 설명버전으로는 패키지 5.3으로 하라고 했는데 잦은 에러가 발생해서 그냥 최신(6.4.1)로 해보니 정상적으로 동작한다;;</p>
-<h2 id="pip로-cx-Oracle설치"><a href="#pip로-cx-Oracle설치" class="headerlink" title="pip로 cx_Oracle설치"></a>pip로 cx_Oracle설치</h2><pre><code># cx_Oracle 설치
+</code></pre>
+<h1>Python Oracle connector(cx_Oracle) 설치</h1>
+<p>Redash는 Python프로그램이라, connector를 위해 cx_Oracle 패키지를 설치한다. 설명버전으로는 패키지 5.3으로 하라고 했는데 잦은 에러가 발생해서 그냥 최신(6.4.1)로 해보니 정상적으로 동작한다;;</p>
+<h2 id="pip로-cx-Oracle설치"><a class="header-anchor" href="#pip로-cx-Oracle설치">¶</a>pip로 cx_Oracle설치</h2>
+<pre><code># cx_Oracle 설치
 # 과거에는 특정버전 (==5.3)으로 하라고 했는데, 오히려 과거버전 설치 시 에러나서 안됨
 # 오히려 최신버전 (==6.4.1)으로 하니, 실제 프로그램에서도 에러 안나고 잘됨
 $ pip install cx_Oracle
@@ -581,7 +595,9 @@ Successfully installed cx-Oracle-6.4.1
 
 # 관련 패키지가 있어야 하나바
 $ apt install libaio1 libaio-dev
-</code></pre><h2 id="접속-테스트"><a href="#접속-테스트" class="headerlink" title="접속 테스트"></a>접속 테스트</h2><pre><code>$ python
+</code></pre>
+<h2 id="접속-테스트"><a class="header-anchor" href="#접속-테스트">¶</a>접속 테스트</h2>
+<pre><code>$ python
 Python 2.7.12 (default, Dec  4 2017, 14:50:18)
 [GCC 5.4.0 20160609] on linux2
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
@@ -595,13 +611,16 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 &gt;&gt;&gt; dsn_tns = cx_Oracle.makedsn(DB_HOST, DB_PORT, DB_SID)
 &gt;&gt;&gt; conn = cx_Oracle.connect(DB_USER, DB_PWD, dsn_tns)
 &gt;&gt;&gt;
-</code></pre><p>쿼리 날리는것 까지는 생략</p>
+</code></pre>
+<p>쿼리 날리는것 까지는 생략</p>
 <p>cx_Oracle.makedns의 경우 : <a href="https://cx-oracle.readthedocs.io/en/latest/module.html#cx_Oracle.makedsn" target="_blank" rel="noopener">https://cx-oracle.readthedocs.io/en/latest/module.html#cx_Oracle.makedsn</a></p>
 <blockquote>
 <p>cx_Oracle.makedsn(host, port, sid=None, service_name=None, region=None, sharding_key=None, super_sharding_key=None)</p>
 </blockquote>
 <p>이러니, sid=로 하면 됨</p>
-<h1 id="redash-추가-수정-부분"><a href="#redash-추가-수정-부분" class="headerlink" title="redash 추가 수정 부분"></a>redash 추가 수정 부분</h1><h2 id="환경변수-env-에-Oracle-설정"><a href="#환경변수-env-에-Oracle-설정" class="headerlink" title="환경변수 (.env)에 Oracle 설정"></a>환경변수 (.env)에 Oracle 설정</h2><p>Oracle을 사용하려면 <code>REDASH_ADDITIONAL_QUERY_RUNNERS</code>을 추가로 셋업하도록 되어 있음</p>
+<h1>redash 추가 수정 부분</h1>
+<h2 id="환경변수-env-에-Oracle-설정"><a class="header-anchor" href="#환경변수-env-에-Oracle-설정">¶</a>환경변수 (.env)에 Oracle 설정</h2>
+<p>Oracle을 사용하려면 <code>REDASH_ADDITIONAL_QUERY_RUNNERS</code>을 추가로 셋업하도록 되어 있음</p>
 <pre><code>$ cd /opt/redash
 
 # 맨 마지막줄 ADDITIONAL_QUERY_RUNNERS임
@@ -611,7 +630,9 @@ export REDASH_REDIS_URL=redis://localhost:6379/0
 export REDASH_DATABASE_URL=&quot;postgresql:///redash&quot;
 export REDASH_COOKIE_SECRET=ngbGYiCcIIrmSm9gr52LBpA7jSi7PpDe
 export REDASH_ADDITIONAL_QUERY_RUNNERS=redash.query_runner.oracle
-</code></pre><h2 id="oracle-py소스-일부-수정"><a href="#oracle-py소스-일부-수정" class="headerlink" title="oracle.py소스 일부 수정"></a><code>oracle.py</code>소스 일부 수정</h2><p>원래 화면이 다음과 같음</p>
+</code></pre>
+<h2 id="oracle-py소스-일부-수정"><a class="header-anchor" href="#oracle-py소스-일부-수정">¶</a><code>oracle.py</code>소스 일부 수정</h2>
+<p>원래 화면이 다음과 같음</p>
 <p><img src="/images/Capture2018-09-12at11-0f3f4803-8f47-4859-a359-99412b2b1981.25.27.jpg" alt=""></p>
 <p>DSN Service Name에 Service name이 들어가야 하는데, SID가 들어가니 접속이 안되는 것임. 아…</p>
 <p>이거 ㅠㅠ. 그래서 그냥 소스를 수정</p>
@@ -657,26 +678,32 @@ export REDASH_ADDITIONAL_QUERY_RUNNERS=redash.query_runner.oracle
             service_name=self.configuration[&quot;servicename&quot;])
 
         self.connection_string = &quot;{}/{}@{}&quot;.format(self.configuration[&quot;user&quot;], self.configuration[&quot;password&quot;], dsn)
-</code></pre><p>여기보면 <code>service_name=...</code> 부분을 <code>sid=...</code>로 수정</p>
-<pre><code>dsn = cx_Oracle.makedsn(
-    self.configuration[&quot;host&quot;],
-    self.configuration[&quot;port&quot;],
-    sid=self.configuration[&quot;servicename&quot;])
+</code></pre>
+<p>여기보면 <code>service_name=...</code> 부분을 <code>sid=...</code>로 수정</p>
+<pre><code>        dsn = cx_Oracle.makedsn(
+            self.configuration[&quot;host&quot;],
+            self.configuration[&quot;port&quot;],
+            sid=self.configuration[&quot;servicename&quot;])
 
-self.connection_string = &quot;{}/{}@{}&quot;.format(self.configuration[&quot;user&quot;], self.configuration[&quot;password&quot;], dsn)
-</code></pre><h2 id="서비스-리스타트"><a href="#서비스-리스타트" class="headerlink" title="서비스 리스타트"></a>서비스 리스타트</h2><pre><code>$ supervisorctl restart all
+        self.connection_string = &quot;{}/{}@{}&quot;.format(self.configuration[&quot;user&quot;], self.configuration[&quot;password&quot;], dsn)
+</code></pre>
+<h2 id="서비스-리스타트"><a class="header-anchor" href="#서비스-리스타트">¶</a>서비스 리스타트</h2>
+<pre><code>$ supervisorctl restart all
 redash_server: stopped
 redash_celery: stopped
 redash_celery_scheduled: stopped
 redash_celery: started
 redash_server: started
 redash_celery_scheduled: started
-</code></pre><h1 id="작업-완료"><a href="#작업-완료" class="headerlink" title="작업 완료"></a>작업 완료</h1><p>접속해보면 Oracle이 떡하니 생겨있음</p>
+</code></pre>
+<h1>작업 완료</h1>
+<p>접속해보면 Oracle이 떡하니 생겨있음</p>
 <p><img src="/images/Capture2018-09-12at11-c0a1749a-4d9f-4c22-99e6-fd2b5b7f1850.36.28.jpg" alt=""></p>
-<p>설정하고 접속하면 됩니당. </p>
+<p>설정하고 접속하면 됩니당.</p>
 <p><img src="/images/Capture2018-09-12at12-198c3c4b-d55b-473c-9b15-54eb6fe25fc9.06.07.jpg" alt=""></p>
 <p>접속 완료될때의 기쁨 ㅠㅠ</p>
-<h1 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h1><ul>
+<h1>참조</h1>
+<ul>
 <li>Configure Oracle in Redash - Help! : <a href="https://discuss.redash.io/t/configure-oracle-in-redash-help/663" target="_blank" rel="noopener">https://discuss.redash.io/t/configure-oracle-in-redash-help/663</a></li>
 <li>Dockerfile로 deply : <a href="https://gist.github.com/nihonzaru/7d311dcb2fe4e21cc38459963d27ccaa" target="_blank" rel="noopener">https://gist.github.com/nihonzaru/7d311dcb2fe4e21cc38459963d27ccaa</a></li>
 <li>Redash で Oracle 接続の Docker を作ってみた : <a href="https://qiita.com/sutoh/items/d19c787069ff43aeebcf" target="_blank" rel="noopener">https://qiita.com/sutoh/items/d19c787069ff43aeebcf</a></li>
@@ -795,7 +822,7 @@ redash_celery_scheduled: started
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">KangJin Choi</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -806,7 +833,7 @@ redash_celery_scheduled: started
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
@@ -972,7 +999,7 @@ redash_celery_scheduled: started
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redash는-설치환경에-따라-셋팅-방법이-다름"><span class="nav-number">1.</span> <span class="nav-text">Redash는 설치환경에 따라 셋팅 방법이 다름</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#전체방법"><span class="nav-number">1.1.</span> <span class="nav-text">전체방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-instant-client-설치"><span class="nav-number">2.</span> <span class="nav-text">Oracle instant client 설치</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#드라이버-다운로드"><span class="nav-number">2.1.</span> <span class="nav-text">드라이버 다운로드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#환경셋팅"><span class="nav-number">2.2.</span> <span class="nav-text">환경셋팅</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-Oracle-connector-cx-Oracle-설치"><span class="nav-number">3.</span> <span class="nav-text">Python Oracle connector(cx_Oracle) 설치</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pip로-cx-Oracle설치"><span class="nav-number">3.1.</span> <span class="nav-text">pip로 cx_Oracle설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#접속-테스트"><span class="nav-number">3.2.</span> <span class="nav-text">접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redash-추가-수정-부분"><span class="nav-number">4.</span> <span class="nav-text">redash 추가 수정 부분</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#환경변수-env-에-Oracle-설정"><span class="nav-number">4.1.</span> <span class="nav-text">환경변수 (.env)에 Oracle 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle-py소스-일부-수정"><span class="nav-number">4.2.</span> <span class="nav-text">oracle.py소스 일부 수정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-리스타트"><span class="nav-number">4.3.</span> <span class="nav-text">서비스 리스타트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#작업-완료"><span class="nav-number">5.</span> <span class="nav-text">작업 완료</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참조"><span class="nav-number">6.</span> <span class="nav-text">참조</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Redash는 설치환경에 따라 셋팅 방법이 다름</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#전체방법"><span class="nav-number">1.1.</span> <span class="nav-text">¶전체방법</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Oracle instant client 설치</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#드라이버-다운로드"><span class="nav-number">2.1.</span> <span class="nav-text">¶드라이버 다운로드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#환경셋팅"><span class="nav-number">2.2.</span> <span class="nav-text">¶환경셋팅</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Python Oracle connector(cx_Oracle) 설치</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pip로-cx-Oracle설치"><span class="nav-number">3.1.</span> <span class="nav-text">¶pip로 cx_Oracle설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#접속-테스트"><span class="nav-number">3.2.</span> <span class="nav-text">¶접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">redash 추가 수정 부분</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#환경변수-env-에-Oracle-설정"><span class="nav-number">4.1.</span> <span class="nav-text">¶환경변수 (.env)에 Oracle 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle-py소스-일부-수정"><span class="nav-number">4.2.</span> <span class="nav-text">¶oracle.py소스 일부 수정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-리스타트"><span class="nav-number">4.3.</span> <span class="nav-text">¶서비스 리스타트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">작업 완료</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">참조</span></a></li></ol></div>
             
 
           </div>
@@ -1009,7 +1036,7 @@ redash_celery_scheduled: started
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
 
 
 

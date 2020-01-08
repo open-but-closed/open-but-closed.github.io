@@ -13,11 +13,11 @@
 
 
 <html class="theme-next gemini" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -62,7 +62,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
   
 
 
@@ -70,9 +70,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
@@ -90,7 +90,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
 
-  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="msapplication-config" content="/browserconfig.xml"/>
 
 
 
@@ -124,14 +124,13 @@
 
 
 
-  <meta name="description" content="Hexo는 정적 페이지로 생성된다. 따라서 웹페이지를 서비스 할 수 있는 곳(=웹서버)이라면 어디든 서비스 할 수 있다. 그 중 GCP의 GCS(Google Cloud Storage)에 홈페이지를 서비스하기로 결정했다.">
-<meta name="keywords" content="hexo,GCS,deploy,배포">
+  <meta name="description" content="Hexo는 정적 페이지로 생성된다. 따라서 웹페이지를 서비스 할 수 있는 곳(&#x3D;웹서버)이라면 어디든 서비스 할 수 있다. 그 중 GCP의 GCS(Google Cloud Storage)에 홈페이지를 서비스하기로 결정했다.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo를 Google Cloud Storage에서 서비스">
 <meta property="og:url" content="http://open-but-closed.com/deploy-hexo-to-google-cloud-storage/index.html">
 <meta property="og:site_name" content="개점휴업">
-<meta property="og:description" content="Hexo는 정적 페이지로 생성된다. 따라서 웹페이지를 서비스 할 수 있는 곳(=웹서버)이라면 어디든 서비스 할 수 있다. 그 중 GCP의 GCS(Google Cloud Storage)에 홈페이지를 서비스하기로 결정했다.">
-<meta property="og:locale" content="en">
+<meta property="og:description" content="Hexo는 정적 페이지로 생성된다. 따라서 웹페이지를 서비스 할 수 있는 곳(&#x3D;웹서버)이라면 어디든 서비스 할 수 있다. 그 중 GCP의 GCS(Google Cloud Storage)에 홈페이지를 서비스하기로 결정했다.">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-d1e5a431-36b6-414d-94e3-5ee056be765d.png">
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-cba778aa-7ceb-4063-97a6-8318ea6f51c4.png">
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-a848b456-2a07-4bcc-a81d-b816966dadfe.png">
@@ -146,10 +145,14 @@
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-fbcf3ed1-6fa3-4757-9ada-5591381205f4.png">
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-10f1dc94-8181-4944-9e02-b514a12a5840.png">
 <meta property="og:image" content="http://open-but-closed.com/images/Untitled-7d015e8f-f207-477d-8d32-edf3a572ddf9.png">
-<meta property="og:updated_time" content="2019-01-20T16:52:00.000Z">
+<meta property="article:published_time" content="2019-01-21T03:21:00.000Z">
+<meta property="article:modified_time" content="2019-01-20T16:52:00.000Z">
+<meta property="article:author" content="KangJin Choi">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="GCS">
+<meta property="article:tag" content="deploy">
+<meta property="article:tag" content="배포">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo를 Google Cloud Storage에서 서비스">
-<meta name="twitter:description" content="Hexo는 정적 페이지로 생성된다. 따라서 웹페이지를 서비스 할 수 있는 곳(=웹서버)이라면 어디든 서비스 할 수 있다. 그 중 GCP의 GCS(Google Cloud Storage)에 홈페이지를 서비스하기로 결정했다.">
 <meta name="twitter:image" content="http://open-but-closed.com/images/Untitled-d1e5a431-36b6-414d-94e3-5ee056be765d.png">
 
 
@@ -157,7 +160,7 @@
 
 
 
-  <link rel="canonical" href="http://open-but-closed.com/deploy-hexo-to-google-cloud-storage/">
+  <link rel="canonical" href="http://open-but-closed.com/deploy-hexo-to-google-cloud-storage/"/>
 
 
 
@@ -214,9 +217,9 @@
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 <script>
@@ -238,7 +241,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta custom-logo">
     
@@ -257,7 +260,7 @@
     
     
       <a>
-        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업"/>
       </a>
     
   </div>
@@ -291,7 +294,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -308,7 +311,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
         
@@ -325,7 +328,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -342,7 +345,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -359,7 +362,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
 
   </li>
 
@@ -377,7 +380,8 @@
 
   
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -408,21 +412,21 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/deploy-hexo-to-google-cloud-storage/">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/deploy-hexo-to-google-cloud-storage/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KangJin Choi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개점휴업">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업"/>
     </span>
 
     
@@ -467,7 +471,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -478,14 +482,14 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/IT/웹서비스/" itemprop="url" rel="index"><span itemprop="name">웹서비스</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4/" itemprop="url" rel="index"><span itemprop="name">웹서비스</span></a></span>
 
                 
                 
@@ -502,7 +506,8 @@
                 </span>
                 <a href="/deploy-hexo-to-google-cloud-storage/#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="deploy-hexo-to-google-cloud-storage/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="deploy-hexo-to-google-cloud-storage/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -532,53 +537,68 @@
       
 
       
-        <h1 id="외부-서비스-이용의-고려사항"><a href="#외부-서비스-이용의-고려사항" class="headerlink" title="외부 서비스 이용의 고려사항"></a>외부 서비스 이용의 고려사항</h1><h2 id="서비스-대상-위치-서버"><a href="#서비스-대상-위치-서버" class="headerlink" title="서비스 대상 위치(서버)"></a>서비스 대상 위치(서버)</h2><p><strong>Hexo</strong>나 <strong>Jekyll</strong>등의 도구로 생성된 정적 홈페이지를 올리기 위한 서비스들은 주로 다음이 거론되는 것 같다.</p>
+        <h1>외부 서비스 이용의 고려사항</h1>
+<h2 id="서비스-대상-위치-서버"><a class="header-anchor" href="#서비스-대상-위치-서버">¶</a>서비스 대상 위치(서버)</h2>
+<p><strong>Hexo</strong>나 <strong>Jekyll</strong>등의 도구로 생성된 정적 홈페이지를 올리기 위한 서비스들은 주로 다음이 거론되는 것 같다.</p>
 <ul>
 <li><a href="https://github.com/" target="_blank" rel="noopener"><strong>Github</strong></a> : 무료. 소스를 저장할 수 있는 레파지토리를 홈페이지 식으로 운영이 가능하다. 용량 제한이 있지만 사실상 제한이 없이 사용하는듯 보인다. 도메인 또한 연결 가능. 대부분 기술 블로그들은 이 방식을 많이 사용하는 것 같다. (<a href="https://about.gitlab.com/" target="_blank" rel="noopener"><strong>Gitlab</strong></a>도 비슷한 옵션인 것 같다)</li>
 <li>웹 호스팅 / 서버 호스팅 : 유료. 간단한 방식으로는 한국의 <a href="https://www.cafe24.com" target="_blank" rel="noopener"><strong>Cafe24</strong></a>같은 서비스에서 웹호스팅을 받으면 된다. 최저가는 월 500원에 400MB 용량. 서버 호스팅으로 가려면, <strong>AWS</strong>, <strong>Amazon Lightsail</strong>, <strong>Digital Ocean</strong>, <strong>GCP Compute Engine</strong>등을 이용. VM을 생성하고 <strong>Nginx</strong>같은 웹서버를 하나 설치하여 이용하는 방식. 하지만 해당 서버는 말그대로 뭐든지 가능한 서버라… 가격이 아깝다.</li>
 <li><strong>AWS S3 Storage</strong> / <strong>Google Cloud Storage</strong> : 유료. Cloud서비스의 저장소 서비스를 public으로 바꿔서 서비스하는 방식. 서버 인스턴스를 띄우는 VM방식보다 저렴할 수 있다. 특히 대용량일수록 유리하다. 예를들어 고화질의 이미지등이 많을 경우.</li>
 <li>그 외 : <a href="https://firebase.google.com/" target="_blank" rel="noopener"><strong>Firebase</strong></a>(무료plan), <a href="https://cloud.google.com/appengine/docs/standard/python/getting-started/hosting-a-static-website" target="_blank" rel="noopener"><strong>Google App Engine</strong></a>(유료)등도 고려하는 것 같다.</li>
 </ul>
-<h2 id="도메인-사용-여부"><a href="#도메인-사용-여부" class="headerlink" title="도메인 사용 여부"></a>도메인 사용 여부</h2><p>위의 여러 서비스들은 대부분 무료로 서브 도메인을 제공한다. <strong>Github</strong>은 <code>userid</code><strong>.github.io</strong> 형태, <strong>Gitlab</strong>은 <strong>pages.gitlab.io/</strong><code>userid</code>형태,  Firebase는 <code>userid</code><strong>.firebaseapp.com</strong> 형태, <strong>Google App Engine</strong>은 <code>projectid</code><strong>.appspot.com</strong> 형태로 각각 서비스 된다. 무료로 제공되는 서브 도메인이지만, 무료의 단점은 거의 없다. 즉, 어떤 웹페이지 주소가 <code>userid</code><strong>.github.io</strong>일때, 해당 페이지의 서비스 형태를 예상할 수가 있다.</p>
-<p>그래도 유료 도메인을 사용하기로 했다. <strong>.com</strong>도메인의 경우 보통 $10/년 수준인데, <del>지금은 그만큼의 용돈이 생겨서</del>. 무엇보다 큰 장점이라고 보는 것이, 향후 서비스를 옮길 때 호스팅 위치와 상관 없이 동일한 서비스를 할 수 있다는 것이다<del>(나 처럼 변덕이 들끓는 사람에게 안성맞춤)</del>. </p>
-<h1 id="GCP의-Google-Cloud-Storage에-Hexo-Deploy하기"><a href="#GCP의-Google-Cloud-Storage에-Hexo-Deploy하기" class="headerlink" title="GCP의 Google Cloud Storage에 Hexo Deploy하기"></a>GCP의 Google Cloud Storage에 Hexo Deploy하기</h1><h2 id="도메인-이름으로-Bucket-생성"><a href="#도메인-이름으로-Bucket-생성" class="headerlink" title="도메인 이름으로 Bucket 생성"></a>도메인 이름으로 Bucket 생성</h2><p>GCP의 Storage에서 <strong>CREATE BUCKET</strong>로 새로운 버킷을 생성한다. </p>
+<h2 id="도메인-사용-여부"><a class="header-anchor" href="#도메인-사용-여부">¶</a>도메인 사용 여부</h2>
+<p>위의 여러 서비스들은 대부분 무료로 서브 도메인을 제공한다. <strong>Github</strong>은 <code>userid</code><strong>.github.io</strong> 형태, <strong>Gitlab</strong>은 <strong><a href="http://pages.gitlab.io/" target="_blank" rel="noopener">pages.gitlab.io/</a></strong><code>userid</code>형태,  Firebase는 <code>userid</code><strong>.firebaseapp.com</strong> 형태, <strong>Google App Engine</strong>은 <code>projectid</code><strong>.appspot.com</strong> 형태로 각각 서비스 된다. 무료로 제공되는 서브 도메인이지만, 무료의 단점은 거의 없다. 즉, 어떤 웹페이지 주소가 <code>userid</code><strong>.github.io</strong>일때, 해당 페이지의 서비스 형태를 예상할 수가 있다.</p>
+<p>그래도 유료 도메인을 사용하기로 했다. <strong>.com</strong>도메인의 경우 보통 $10/년 수준인데, <s>지금은 그만큼의 용돈이 생겨서</s>. 무엇보다 큰 장점이라고 보는 것이, 향후 서비스를 옮길 때 호스팅 위치와 상관 없이 동일한 서비스를 할 수 있다는 것이다~~(나 처럼 변덕이 들끓는 사람에게 안성맞춤)~~.</p>
+<h1>GCP의 Google Cloud Storage에 Hexo Deploy하기</h1>
+<h2 id="도메인-이름으로-Bucket-생성"><a class="header-anchor" href="#도메인-이름으로-Bucket-생성">¶</a>도메인 이름으로 Bucket 생성</h2>
+<p>GCP의 Storage에서 <strong>CREATE BUCKET</strong>로 새로운 버킷을 생성한다.</p>
 <p><img src="/images/Untitled-d1e5a431-36b6-414d-94e3-5ee056be765d.png" alt=""></p>
 <ul>
-<li><strong>Name</strong> : 버킷 이름. 해당 버킷을 웹사이트로 사용하기 위해선 버킷 이름을 도메인의 이름과 동일하게 생성해야 한다. 예를들어 <code>www.open-but-closed.com</code>으로 생성하면 <strong><a href="http://www.open-but-closed.com" target="_blank" rel="noopener">www.open-but-closed.com</a></strong>으로 서비스 할 수 있고, <code>blog.open-but-closed.com</code>으로 생성하면 <strong>blog.open-but-closed.com</strong>으로 서비스 할 수 있다. 이때, 서비스 할 도메인에 대한 소유권을 증명한 이후에 해당 버킷을 만들 수 있다.(소유권 인정이 안된 채로 생성하려고 하면 아래와 같이 경고가 나오고 생성이 안된다)</li>
+<li><strong>Name</strong> : 버킷 이름. 해당 버킷을 웹사이트로 사용하기 위해선 버킷 이름을 도메인의 이름과 동일하게 생성해야 한다. 예를들어 <code>www.open-but-closed.com</code>으로 생성하면 <strong><a href="http://www.open-but-closed.com" target="_blank" rel="noopener">www.open-but-closed.com</a></strong>으로 서비스 할 수 있고, <code>blog.open-but-closed.com</code>으로 생성하면 <strong><a href="http://blog.open-but-closed.com" target="_blank" rel="noopener">blog.open-but-closed.com</a></strong>으로 서비스 할 수 있다. 이때, 서비스 할 도메인에 대한 소유권을 증명한 이후에 해당 버킷을 만들 수 있다.(소유권 인정이 안된 채로 생성하려고 하면 아래와 같이 경고가 나오고 생성이 안된다)</li>
 <li><strong>Default storage class</strong>: 여러 지역에서 복제본을 갖게 원하면 <strong>Multi-regional</strong>을 선택. 나의 경우 여러 지역이 필요가 없지만, GCP는 현재 한국 지역이 없으며, 가까운 Tokyo 지역은 가격이 비싸(0.023/GB) 그냥 Asia(0.026/GB)로 했었다. 다만, CDN 복제 시간때문에 변경사항의 refresh가 늦어 다시 <strong>Regional</strong>로 변경하게 되었다.</li>
 </ul>
 <p>만들면 <code>open-but-closed</code>라는 버킷이 생성되었다. 끝-_-;</p>
 <p><img src="/images/Untitled-cba778aa-7ceb-4063-97a6-8318ea6f51c4.png" alt=""></p>
-<h2 id="Bucket-권한-설정"><a href="#Bucket-권한-설정" class="headerlink" title="Bucket 권한 설정"></a>Bucket 권한 설정</h2><p><strong>GCS</strong>의 버킷의 권한은 기본적으로 private이다. 접근이 가능한 사용자들을 별도로 지정할 수 있다. 홈페이지의 경우 아무나 조회가 가능해야 하므로 버킷 접속 대상자를 <code>allUsers</code>로 지정해서 public으로 만들어야 한다.</p>
+<h2 id="Bucket-권한-설정"><a class="header-anchor" href="#Bucket-권한-설정">¶</a>Bucket 권한 설정</h2>
+<p><strong>GCS</strong>의 버킷의 권한은 기본적으로 private이다. 접근이 가능한 사용자들을 별도로 지정할 수 있다. 홈페이지의 경우 아무나 조회가 가능해야 하므로 버킷 접속 대상자를 <code>allUsers</code>로 지정해서 public으로 만들어야 한다.</p>
 <p><strong>EDIT BUCKET</strong> &gt; <strong>Permissions</strong>에서 <strong>Add member</strong>를 누르고 <code>allUsers</code>를 치다보면 <code>allUsers</code>를 선택 가능하다. 부여 권한은 <strong>Storage Object Viewer</strong>면 될 듯</p>
 <p><img src="/images/Untitled-a848b456-2a07-4bcc-a81d-b816966dadfe.png" alt=""></p>
 <p>권한 대상자에 <strong>allUsers</strong>가 추가되었으며, 이 버킷은 public이 되었다는 알림 문구가 뜬다.</p>
 <p><img src="/images/Untitled-3582f0f8-fa91-41be-9828-e1f2271a7969.png" alt=""></p>
-<h2 id="Bucket-기본-조회-파일-설정"><a href="#Bucket-기본-조회-파일-설정" class="headerlink" title="Bucket 기본 조회 파일 설정"></a>Bucket 기본 조회 파일 설정</h2><p>페이지별로 볼 수 있는 기본 파일을 변경하기 위해 버킷의 왼쪽 삼땡을 누르고 <strong>Edit website configuration</strong>을 클릭.</p>
+<h2 id="Bucket-기본-조회-파일-설정"><a class="header-anchor" href="#Bucket-기본-조회-파일-설정">¶</a>Bucket 기본 조회 파일 설정</h2>
+<p>페이지별로 볼 수 있는 기본 파일을 변경하기 위해 버킷의 왼쪽 삼땡을 누르고 <strong>Edit website configuration</strong>을 클릭.</p>
 <p><img src="/images/Untitled-94646004-94d3-4d06-85f6-733b88b5b843.png" alt=""></p>
 <p>페이지별 기본 파일을 <code>index.html</code>로 적으면 끝.</p>
 <p><img src="/images/Untitled-35f1346c-20c3-49e6-89a2-da46fe96fcfc.png" alt=""></p>
-<h2 id="접속-테스트"><a href="#접속-테스트" class="headerlink" title="접속 테스트"></a>접속 테스트</h2><p>테스트용 <code>index.html</code> 파일을 만들어 내용을 대강 입력해본다.</p>
+<h2 id="접속-테스트"><a class="header-anchor" href="#접속-테스트">¶</a>접속 테스트</h2>
+<p>테스트용 <code>index.html</code> 파일을 만들어 내용을 대강 입력해본다.</p>
 <pre><code>&lt;h1&gt;Hello Bucket!&lt;/h1&gt;
-</code></pre><p><img src="/images/Untitled-fa2612ce-a6b0-4a93-92b5-bf5cbcef112e.png" alt=""></p>
+</code></pre>
+<p><img src="/images/Untitled-fa2612ce-a6b0-4a93-92b5-bf5cbcef112e.png" alt=""></p>
 <p><strong>Upload files</strong>버튼을 눌러 대강 업로드.</p>
 <p><img src="/images/Untitled-fbd43f47-ef51-42cb-802d-f0ad1c2ded14.png" alt=""></p>
-<p>도메인으로 접속해보면 해당 버킷의 페이지가 <strong>뙇</strong> <del>신난다</del></p>
+<p>도메인으로 접속해보면 해당 버킷의 페이지가 <strong>뙇</strong> <s>신난다</s></p>
 <p><img src="/images/Untitled-6eaa9363-faa7-4fcc-8569-10a011357988.png" alt=""></p>
-<h1 id="GCP에서-서비스-계정-키-생성"><a href="#GCP에서-서비스-계정-키-생성" class="headerlink" title="GCP에서 서비스 계정 키 생성"></a>GCP에서 서비스 계정 키 생성</h1><p>Local환경 → GCS환경으로 업로드를 자동화(배포라고 하는)하기 위해서는 인증이 필요하다. 보통 GCP에서 서비스 계정 키(<strong>service account key</strong>) 파일을 만들어서 사용하는 듯 하다. 자세한 내용은 <a href="https://cloud.google.com/docs/authentication/production#obtaining_and_providing_service_account_credentials_manually" target="_blank" rel="noopener">여기</a>를 참조해서 만들면 된다. </p>
-<h2 id="서비스-계정-키-생성"><a href="#서비스-계정-키-생성" class="headerlink" title="서비스 계정 키 생성"></a>서비스 계정 키 생성</h2><p><strong>APIs &amp; Services</strong> &gt; <strong>Credentials</strong> &gt; <strong>Credentials</strong> 에서 <strong>Create credentials</strong> &gt; <strong>Service account key</strong> 를 선택하면 된다.</p>
+<h1>GCP에서 서비스 계정 키 생성</h1>
+<p>Local환경 → GCS환경으로 업로드를 자동화(배포라고 하는)하기 위해서는 인증이 필요하다. 보통 GCP에서 서비스 계정 키(<strong>service account key</strong>) 파일을 만들어서 사용하는 듯 하다. 자세한 내용은 <a href="https://cloud.google.com/docs/authentication/production#obtaining_and_providing_service_account_credentials_manually" target="_blank" rel="noopener">여기</a>를 참조해서 만들면 된다.</p>
+<h2 id="서비스-계정-키-생성"><a class="header-anchor" href="#서비스-계정-키-생성">¶</a>서비스 계정 키 생성</h2>
+<p><strong>APIs &amp; Services</strong> &gt; <strong>Credentials</strong> &gt; <strong>Credentials</strong> 에서 <strong>Create credentials</strong> &gt; <strong>Service account key</strong> 를 선택하면 된다.</p>
 <p><img src="/images/Untitled-bf2a521d-1812-4b1f-a652-3bf9c6e233a4.png" alt=""></p>
 <p>이름은 대강 짓고 Role을 <strong>Storage Admin</strong>으로 만들면 될 것 같다.</p>
 <p><img src="/images/Untitled-38e3965c-cbad-4df2-b1cc-2a5582de0190.png" alt=""></p>
 <p>생성되는 <code>.json</code>파일을 적당한 위치(<strong>Hexo</strong>의 최상위 디렉토리)에 복사해 놓으면 된다.</p>
 <p><img src="/images/Untitled-fbcf3ed1-6fa3-4757-9ada-5591381205f4.png" alt=""></p>
-<h2 id="환경변수-설정"><a href="#환경변수-설정" class="headerlink" title="환경변수 설정"></a>환경변수 설정</h2><p>계정 키 생성에 대한 페이지에 보면 <code>GOOGLE_APPLICATION_CREDIENTIALS</code>환경변수를 설정해 줘야 한다고 나온다.</p>
+<h2 id="환경변수-설정"><a class="header-anchor" href="#환경변수-설정">¶</a>환경변수 설정</h2>
+<p>계정 키 생성에 대한 페이지에 보면 <code>GOOGLE_APPLICATION_CREDIENTIALS</code>환경변수를 설정해 줘야 한다고 나온다.</p>
 <pre><code>$ export GOOGLE_APPLICATION_CREDENTIALS=&quot;/we/Sandbox/hexo/open-but-closed-d57c85c6f504.json&quot;
-</code></pre><h1 id="Hexo에서-Deploy"><a href="#Hexo에서-Deploy" class="headerlink" title="Hexo에서 Deploy"></a>Hexo에서 Deploy</h1><p>Public 버킷이 만들어진 이후에, 어떻게든 파일을 올리면 서비스가 된다. 웹에서 올려도 되고 <strong>GCP</strong>에서 제공하는 툴을 이용해서 복사해도 된다. 하지만 개발자들은 주로 배포(deploy)라는걸 하는 것 같다. <strong>Hexo</strong>에서도 deploy 기능을 제공한다. <a href="https://hexo.io/docs/deployment" target="_blank" rel="noopener">Hexo 문서</a>에 보면 다양한 배포 옵션(<strong>Git</strong>, <strong>Heroku</strong>, <strong>SFTP</strong> 등)에 대한 예시가 나오나, GCS에 대한 예시는 없다.</p>
-<h2 id="GCS-Deploy-플러그인-설치"><a href="#GCS-Deploy-플러그인-설치" class="headerlink" title="GCS Deploy 플러그인 설치"></a>GCS Deploy 플러그인 설치</h2><p>하지만 <a href="https://github.com/bigcat/hexo-deployer-gcs" target="_blank" rel="noopener">플러그인을 이미 만드신 분</a>이 존재하셨다. 그냥 갖다 써보자. (해당 패키지는 <strong>Node</strong> 패키지라 <code>npm</code>을 이용해서 설치를 해야한다.<del>노알못이라 이런 부분이 애매하게 어렵다.</del>)</p>
+</code></pre>
+<h1>Hexo에서 Deploy</h1>
+<p>Public 버킷이 만들어진 이후에, 어떻게든 파일을 올리면 서비스가 된다. 웹에서 올려도 되고 <strong>GCP</strong>에서 제공하는 툴을 이용해서 복사해도 된다. 하지만 개발자들은 주로 배포(deploy)라는걸 하는 것 같다. <strong>Hexo</strong>에서도 deploy 기능을 제공한다. <a href="https://hexo.io/docs/deployment" target="_blank" rel="noopener">Hexo 문서</a>에 보면 다양한 배포 옵션(<strong>Git</strong>, <strong>Heroku</strong>, <strong>SFTP</strong> 등)에 대한 예시가 나오나, GCS에 대한 예시는 없다.</p>
+<h2 id="GCS-Deploy-플러그인-설치"><a class="header-anchor" href="#GCS-Deploy-플러그인-설치">¶</a>GCS Deploy 플러그인 설치</h2>
+<p>하지만 <a href="https://github.com/bigcat/hexo-deployer-gcs" target="_blank" rel="noopener">플러그인을 이미 만드신 분</a>이 존재하셨다. 그냥 갖다 써보자. (해당 패키지는 <strong>Node</strong> 패키지라 <code>npm</code>을 이용해서 설치를 해야한다.<s>노알못이라 이런 부분이 애매하게 어렵다.</s>)</p>
 <pre><code># git clone으로 복사
 $ git clone https://github.com/bigcat/hexo-deployer-gcs.git
-Cloning into &apos;hexo-deployer-gcs&apos;...
+Cloning into 'hexo-deployer-gcs'...
 ...
 
 # npm으로 설치
@@ -588,7 +608,8 @@ npm WARN babel-eslint@10.0.1 requires a peer of eslint@&gt;= 4.12.1 but none is 
 ...
 added 1 package from 1 contributor and audited 7633 packages in 6.003s
 found 0 vulnerabilities
-</code></pre><p><strong>Hexo</strong>의 설정도 변경하자. 플러그인 페이지에서 나온 대로 Hexo의 설정 파일을 변경한다. 이때 <code>keyFilename</code>에는 위의 <strong>GCP service account key</strong>를 지정한다.</p>
+</code></pre>
+<p><strong>Hexo</strong>의 설정도 변경하자. 플러그인 페이지에서 나온 대로 Hexo의 설정 파일을 변경한다. 이때 <code>keyFilename</code>에는 위의 <strong>GCP service account key</strong>를 지정한다.</p>
 <p><code>_config.yml</code> 수정</p>
 <pre><code># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -597,7 +618,9 @@ deploy:
   bucket: open-but-closed.com
   projectId: open-but-closed
   keyFilename: open-but-closed-d57c85c6f504.json
-</code></pre><h2 id="Deploy-수행-및-접속"><a href="#Deploy-수행-및-접속" class="headerlink" title="Deploy 수행 및 접속"></a>Deploy 수행 및 접속</h2><p><code>hexo d</code>로 배포해 본다.</p>
+</code></pre>
+<h2 id="Deploy-수행-및-접속"><a class="header-anchor" href="#Deploy-수행-및-접속">¶</a>Deploy 수행 및 접속</h2>
+<p><code>hexo d</code>로 배포해 본다.</p>
 <pre><code>$ hexo d
 Loading gcs deployer plugin
 INFO  Deploying: gcs
@@ -607,13 +630,15 @@ public/images/cc-by-nc.svg uploaded to open-but-closed.com/images/cc-by-nc.svg.
 public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa.svg.
 ...
 ...
-</code></pre><p>뭔가 작업이 진행되면서 두두두. <del>이런것을 보면 내가 뭔가 대단한 것을 이룬 느낌</del></p>
+</code></pre>
+<p>뭔가 작업이 진행되면서 두두두. <s>이런것을 보면 내가 뭔가 대단한 것을 이룬 느낌</s></p>
 <p>버킷을 살펴보면 파일들이 올라와있다.</p>
 <p><img src="/images/Untitled-10f1dc94-8181-4944-9e02-b514a12a5840.png" alt=""></p>
 <p>도메인으로도 접속을 해보자.</p>
 <p><img src="/images/Untitled-7d015e8f-f207-477d-8d32-edf3a572ddf9.png" alt=""></p>
 <p>이제 자주 글쓸일만 남았다.</p>
-<h1 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h1><ul>
+<h1>참조</h1>
+<ul>
 <li><a href="https://github.com/bigcat/hexo-deployer-gcs" target="_blank" rel="noopener">Hexo Deployer GCS plugin</a></li>
 <li>GCP 매뉴얼 - <a href="https://cloud.google.com/storage/docs/domain-name-verification" target="_blank" rel="noopener">도메인 이름이 지정된 버킷 인증</a></li>
 <li>GCP 매뉴얼 - <a href="https://cloud.google.com/docs/authentication/production#obtaining_and_providing_service_account_credentials_manually" target="_blank" rel="noopener">Setting Up Authentication for Server to Server Production Applications</a></li>
@@ -647,7 +672,7 @@ public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa
           
             <a href="/tags/deploy/" rel="tag"># deploy</a>
           
-            <a href="/tags/배포/" rel="tag"># 배포</a>
+            <a href="/tags/%EB%B0%B0%ED%8F%AC/" rel="tag"># 배포</a>
           
         </div>
       
@@ -736,7 +761,7 @@ public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">KangJin Choi</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -747,7 +772,7 @@ public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
@@ -913,7 +938,7 @@ public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#외부-서비스-이용의-고려사항"><span class="nav-number">1.</span> <span class="nav-text">외부 서비스 이용의 고려사항</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-대상-위치-서버"><span class="nav-number">1.1.</span> <span class="nav-text">서비스 대상 위치(서버)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#도메인-사용-여부"><span class="nav-number">1.2.</span> <span class="nav-text">도메인 사용 여부</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCP의-Google-Cloud-Storage에-Hexo-Deploy하기"><span class="nav-number">2.</span> <span class="nav-text">GCP의 Google Cloud Storage에 Hexo Deploy하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#도메인-이름으로-Bucket-생성"><span class="nav-number">2.1.</span> <span class="nav-text">도메인 이름으로 Bucket 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bucket-권한-설정"><span class="nav-number">2.2.</span> <span class="nav-text">Bucket 권한 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bucket-기본-조회-파일-설정"><span class="nav-number">2.3.</span> <span class="nav-text">Bucket 기본 조회 파일 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#접속-테스트"><span class="nav-number">2.4.</span> <span class="nav-text">접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCP에서-서비스-계정-키-생성"><span class="nav-number">3.</span> <span class="nav-text">GCP에서 서비스 계정 키 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-계정-키-생성"><span class="nav-number">3.1.</span> <span class="nav-text">서비스 계정 키 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#환경변수-설정"><span class="nav-number">3.2.</span> <span class="nav-text">환경변수 설정</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo에서-Deploy"><span class="nav-number">4.</span> <span class="nav-text">Hexo에서 Deploy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCS-Deploy-플러그인-설치"><span class="nav-number">4.1.</span> <span class="nav-text">GCS Deploy 플러그인 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy-수행-및-접속"><span class="nav-number">4.2.</span> <span class="nav-text">Deploy 수행 및 접속</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참조"><span class="nav-number">5.</span> <span class="nav-text">참조</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">외부 서비스 이용의 고려사항</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-대상-위치-서버"><span class="nav-number">1.1.</span> <span class="nav-text">¶서비스 대상 위치(서버)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#도메인-사용-여부"><span class="nav-number">1.2.</span> <span class="nav-text">¶도메인 사용 여부</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">GCP의 Google Cloud Storage에 Hexo Deploy하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#도메인-이름으로-Bucket-생성"><span class="nav-number">2.1.</span> <span class="nav-text">¶도메인 이름으로 Bucket 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bucket-권한-설정"><span class="nav-number">2.2.</span> <span class="nav-text">¶Bucket 권한 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bucket-기본-조회-파일-설정"><span class="nav-number">2.3.</span> <span class="nav-text">¶Bucket 기본 조회 파일 설정</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#접속-테스트"><span class="nav-number">2.4.</span> <span class="nav-text">¶접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">GCP에서 서비스 계정 키 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#서비스-계정-키-생성"><span class="nav-number">3.1.</span> <span class="nav-text">¶서비스 계정 키 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#환경변수-설정"><span class="nav-number">3.2.</span> <span class="nav-text">¶환경변수 설정</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">Hexo에서 Deploy</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCS-Deploy-플러그인-설치"><span class="nav-number">4.1.</span> <span class="nav-text">¶GCS Deploy 플러그인 설치</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy-수행-및-접속"><span class="nav-number">4.2.</span> <span class="nav-text">¶Deploy 수행 및 접속</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">참조</span></a></li></ol></div>
             
 
           </div>
@@ -950,7 +975,7 @@ public/images/cc-by-nc-sa.svg uploaded to open-but-closed.com/images/cc-by-nc-sa
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
 
 
 

@@ -13,11 +13,11 @@
 
 
 <html class="theme-next gemini" lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -62,7 +62,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
   
 
 
@@ -70,9 +70,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
@@ -90,7 +90,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
 
-  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="msapplication-config" content="/browserconfig.xml"/>
 
 
 
@@ -125,23 +125,25 @@
 
 
   <meta name="description" content="Oracle DBMS를 Docker를 통해 설치해보도록 한다.">
-<meta name="keywords" content="Oracle,Docker,GCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google Cloud Platform에 Oracle Database 설치하기 (with Docker)">
 <meta property="og:url" content="http://open-but-closed.com/install-oracle-database-with-docker-on-google-cloud-platform/index.html">
 <meta property="og:site_name" content="개점휴업">
 <meta property="og:description" content="Oracle DBMS를 Docker를 통해 설치해보도록 한다.">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-07-12at6-878f4091-c3b8-4636-b1ee-cfe08143fa2a.10.54PM.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-07-12at6-c59b6fa8-dbb5-4175-8089-84b4cc688f5c.11.39PM.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-07-12at6-10398338-7abf-4be3-9156-9d24f3f0e0a9.31.13PM.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-07-12at6-fab802f9-ed3f-41ea-bce8-7a5528001d6c.34.45PM.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-08-03at18-42d45501-0f42-4702-aaea-290bb84be515.52.31.jpg">
 <meta property="og:image" content="http://open-but-closed.com/images/Capture2018-08-03at19-96a70e1a-fe94-439a-a4b8-1d7030871d9b.06.07.jpg">
-<meta property="og:updated_time" content="2019-03-11T13:09:00.000Z">
+<meta property="article:published_time" content="2019-03-11T13:09:00.000Z">
+<meta property="article:modified_time" content="2019-03-11T13:09:00.000Z">
+<meta property="article:author" content="KangJin Choi">
+<meta property="article:tag" content="Oracle">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Google Cloud Platform에 Oracle Database 설치하기 (with Docker)">
-<meta name="twitter:description" content="Oracle DBMS를 Docker를 통해 설치해보도록 한다.">
 <meta name="twitter:image" content="http://open-but-closed.com/images/Capture2018-07-12at6-878f4091-c3b8-4636-b1ee-cfe08143fa2a.10.54PM.jpg">
 
 
@@ -149,7 +151,7 @@
 
 
 
-  <link rel="canonical" href="http://open-but-closed.com/install-oracle-database-with-docker-on-google-cloud-platform/">
+  <link rel="canonical" href="http://open-but-closed.com/install-oracle-database-with-docker-on-google-cloud-platform/"/>
 
 
 
@@ -206,9 +208,9 @@
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 <script>
@@ -230,7 +232,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta custom-logo">
     
@@ -249,7 +251,7 @@
     
     
       <a>
-        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업">
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업"/>
       </a>
     
   </div>
@@ -283,7 +285,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -300,7 +302,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
         
@@ -317,7 +319,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -334,7 +336,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -351,7 +353,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
 
   </li>
 
@@ -369,7 +371,8 @@
 
   
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -400,21 +403,21 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/install-oracle-database-with-docker-on-google-cloud-platform/">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/install-oracle-database-with-docker-on-google-cloud-platform/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KangJin Choi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개점휴업">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업"/>
     </span>
 
     
@@ -455,7 +458,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -466,14 +469,14 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
 
                 
                 
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Database/Oracle/" itemprop="url" rel="index"><span itemprop="name">Oracle</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/Oracle/" itemprop="url" rel="index"><span itemprop="name">Oracle</span></a></span>
 
                 
                 
@@ -490,7 +493,8 @@
                 </span>
                 <a href="/install-oracle-database-with-docker-on-google-cloud-platform/#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="install-oracle-database-with-docker-on-google-cloud-platform/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="install-oracle-database-with-docker-on-google-cloud-platform/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -520,11 +524,15 @@
       
 
       
-        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>Oracle DBMS를 Docker를 통해 설치해보려고 한다. 테스트 용도로 가끔 Oracle을 설치하곤 하는데, Docker로 설치하면 뭔가 관리가 쉽지 않을까?라는 기대에서 한번 설치하게 되었다. (설치할 당시엔 Docker를 거의 사용해보지 않은 상태기도 했고) </p>
-<h2 id="그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까"><a href="#그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까" class="headerlink" title="그런데 Docker를 사용해서 Oracle을 설치할 필요가 있을까?"></a>그런데 Docker를 사용해서 Oracle을 설치할 필요가 있을까?</h2><p>Docker를 사용하는 최대 장점은 격리화라는 생각이다. 호스트 OS와 개별 프로그램의 OS를 분리할 수 있다. 그래서 OS 패치등에서 좀더 자유롭고, 프로그램의 OS를 별도로 셋팅이 가능하다. MySQL이나 PostgreSQL등도 간편?한 Docker 이미지가 존재한다.</p>
-<p>하지만 Oracle DBMS는 좀 달라 보인다. 단순 테스트 용도라면 좋아 보인다만… 실제 운영에 사용할 DBMS라면 호스트 OS에 직접 설치하는 것이 장점이 많아 보인다. DBMS라는 것은 미들웨어중에서도 OS에 가장 가까운 미들웨어라 OS와 운명을 같이해 보인다. OS를 별도로 업그레이드 하거나, (데이터를 떼어 놓은 채로)DBMS 엔진만을 업그레이드 하는 경우도 없으니 말이다. </p>
+        <h1>개요</h1>
+<p>Oracle DBMS를 Docker를 통해 설치해보려고 한다. 테스트 용도로 가끔 Oracle을 설치하곤 하는데, Docker로 설치하면 뭔가 관리가 쉽지 않을까?라는 기대에서 한번 설치하게 되었다. (설치할 당시엔 Docker를 거의 사용해보지 않은 상태기도 했고)</p>
+<h2 id="그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까"><a class="header-anchor" href="#그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까">¶</a>그런데 Docker를 사용해서 Oracle을 설치할 필요가 있을까?</h2>
+<p>Docker를 사용하는 최대 장점은 격리화라는 생각이다. 호스트 OS와 개별 프로그램의 OS를 분리할 수 있다. 그래서 OS 패치등에서 좀더 자유롭고, 프로그램의 OS를 별도로 셋팅이 가능하다. MySQL이나 PostgreSQL등도 간편?한 Docker 이미지가 존재한다.</p>
+<p>하지만 Oracle DBMS는 좀 달라 보인다. 단순 테스트 용도라면 좋아 보인다만… 실제 운영에 사용할 DBMS라면 호스트 OS에 직접 설치하는 것이 장점이 많아 보인다. DBMS라는 것은 미들웨어중에서도 OS에 가장 가까운 미들웨어라 OS와 운명을 같이해 보인다. OS를 별도로 업그레이드 하거나, (데이터를 떼어 놓은 채로)DBMS 엔진만을 업그레이드 하는 경우도 없으니 말이다.</p>
 <p>어쨌건 가끔 SQL도 실행해 보고 할 목적으로 만들어 보자.</p>
-<h1 id="Google-Cloud-VM-생성"><a href="#Google-Cloud-VM-생성" class="headerlink" title="Google Cloud VM 생성"></a>Google Cloud VM 생성</h1><h2 id="VM-생성"><a href="#VM-생성" class="headerlink" title="VM 생성"></a>VM 생성</h2><p>Docker기반으로 설치하려고 마음을 먹었으니, OS 이미지를 아예 Container-Optimized OS로 사용해 보려고 한다. Chromium기반으로 만든 것 같다.</p>
+<h1>Google Cloud VM 생성</h1>
+<h2 id="VM-생성"><a class="header-anchor" href="#VM-생성">¶</a>VM 생성</h2>
+<p>Docker기반으로 설치하려고 마음을 먹었으니, OS 이미지를 아예 Container-Optimized OS로 사용해 보려고 한다. Chromium기반으로 만든 것 같다.</p>
 <ul>
 <li>지역/영역 - 우리의 친구 도쿄</li>
 <li>CPU/메모리 - 4 vCPUs &amp; 15 GB - 월마다 $147정도 나가니 Free Credit으로는 2달 정도 사용 가능할 것 같다.</li>
@@ -534,34 +542,40 @@
 <p><img src="/images/Capture2018-07-12at6-878f4091-c3b8-4636-b1ee-cfe08143fa2a.10.54PM.jpg" alt=""></p>
 <p>조금 있으면 잘 생성됨</p>
 <p><img src="/images/Capture2018-07-12at6-c59b6fa8-dbb5-4175-8089-84b4cc688f5c.11.39PM.jpg" alt=""></p>
-<h2 id="OS-셋업"><a href="#OS-셋업" class="headerlink" title="OS 셋업"></a>OS 셋업</h2><p>SSH를 눌러 접속하거나, metadata에 SSH 접속정보를 추가해서 접속한다. 들어가보면 이미 Docker가 설치되어 있다.</p>
+<h2 id="OS-셋업"><a class="header-anchor" href="#OS-셋업">¶</a>OS 셋업</h2>
+<p>SSH를 눌러 접속하거나, metadata에 SSH 접속정보를 추가해서 접속한다. 들어가보면 이미 Docker가 설치되어 있다.</p>
 <pre><code>$ docker --version
 Docker version 17.03.2-ce, build f5ec1e2
-</code></pre><p>(참고로, Docker 특화되어 있는 리눅스라 docker 관련 툴만 설치되어 있다. 즉, 호스트 OS에는 vi같은 기본 툴도 깔려 있지 않아 사용이 매우 불편했다. <del>나중에는 사용 안할 것임</del>)</p>
+</code></pre>
+<p>(참고로, Docker 특화되어 있는 리눅스라 docker 관련 툴만 설치되어 있다. 즉, 호스트 OS에는 vi같은 기본 툴도 깔려 있지 않아 사용이 매우 불편했다. <s>나중에는 사용 안할 것임</s>)</p>
 <p>이후 확인해보니 몇가지 셋업을 더 했었던 것 같다.</p>
 <ul>
 <li>사용자 생성 : user:<code>oracle</code>, group: <code>oracle</code></li>
 <li>디렉토리 생성 : Oracle관련 디렉토리를 <code>/home/oracle/oradata</code>로 설치하려 했던 것 같다. 참고로, 퍼미션?문제가 있어서 <code>oradata</code>는 퍼미션을 그냥 777로 주었음;</li>
 </ul>
-<h1 id="Oracle-DBMS-설치-w-Docker"><a href="#Oracle-DBMS-설치-w-Docker" class="headerlink" title="Oracle DBMS 설치 (w/ Docker)"></a>Oracle DBMS 설치 (w/ Docker)</h1><h2 id="Docker-Store에-이미지-확인"><a href="#Docker-Store에-이미지-확인" class="headerlink" title="Docker Store에 이미지 확인"></a>Docker Store에 이미지 확인</h2><p>Oracle사는 2017년 DockerCon에서 Oracle 12.1 Database Docker 이미지를 발표했다. Docker Store에 보면 Oracle DBMS 이미지가 존재한다. 회원 가입과 인증이 필요하다. Docker Hub는 Github처럼 공개된 이미지가 있는 것 같고, Docker Store는 판매 목적의 이미지가 있는 것으로 스스로 생각해보았다.</p>
+<h1>Oracle DBMS 설치 (w/ Docker)</h1>
+<h2 id="Docker-Store에-이미지-확인"><a class="header-anchor" href="#Docker-Store에-이미지-확인">¶</a>Docker Store에 이미지 확인</h2>
+<p>Oracle사는 2017년 DockerCon에서 Oracle 12.1 Database Docker 이미지를 발표했다. Docker Store에 보면 Oracle DBMS 이미지가 존재한다. 회원 가입과 인증이 필요하다. Docker Hub는 Github처럼 공개된 이미지가 있는 것 같고, Docker Store는 판매 목적의 이미지가 있는 것으로 스스로 생각해보았다.</p>
 <ul>
 <li><a href="https://store.docker.com/images/oracle-database-enterprise-edition" target="_blank" rel="noopener">https://store.docker.com/images/oracle-database-enterprise-edition</a></li>
 </ul>
 <p><img src="/images/Capture2018-07-12at6-10398338-7abf-4be3-9156-9d24f3f0e0a9.31.13PM.jpg" alt=""></p>
-<p><del>근데 공식 이미지임에도 평점이 높지 않네요; → 최근 좋아진듯 보임</del></p>
+<p><s>근데 공식 이미지임에도 평점이 높지 않네요; → 최근 좋아진듯 보임</s></p>
 <p><strong>Log in</strong>을 하고 <strong>Proceed to Checkout</strong>을 하면 각종 개인정보(이메일과 전화번호)를 요구한다. Docker Store에 개인정보를 판매한 후 pull image 명령어 링크를 확인. <code>docker pull store/oracle/database-enterprise:12.2.0.1</code>로 되어있는 부분을 복사.</p>
 <p><img src="/images/Capture2018-07-12at6-fab802f9-ed3f-41ea-bce8-7a5528001d6c.34.45PM.jpg" alt=""></p>
 <p>말대로 한번 수행해보면…</p>
 <pre><code>$ docker pull store/oracle/database-enterprise:12.2.0.1
 Error response from daemon: repository store/oracle/database-enterprise not found: does not exist or no pull access
-</code></pre><p>음… 에러가;;; 로그인을 해야 한다. <code>docker login</code> 이후 id 및 pw를 입력하면 된다.</p>
+</code></pre>
+<p>음… 에러가;;; 로그인을 해야 한다. <code>docker login</code> 이후 id 및 pw를 입력하면 된다.</p>
 <pre><code>$ docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker
 .com to create one.
 Username: kangbu 
 Password: 
 Login Succeeded
-</code></pre><p>이미지를 pull 한다.</p>
+</code></pre>
+<p>이미지를 pull 한다.</p>
 <pre><code>$ docker pull store/oracle/database-enterprise:12.2.0.1
 12.2.0.1: Pulling from store/oracle/database-enterprise
 4ce27fe12c04: Pull complete 
@@ -571,11 +585,14 @@ fc60a1a28025: Pull complete
 b465d9b6e399: Pull complete 
 Digest: sha256:40760ac70dba2c4c70d0c542e42e082e8b04d9040d91688d63f728af764a2f5d
 Status: Downloaded newer image for store/oracle/database-enterprise:12.2.0.1
-</code></pre><p>다운로드를 완료하고, 도커 이미지를 확인</p>
+</code></pre>
+<p>다운로드를 완료하고, 도커 이미지를 확인</p>
 <pre><code>$ docker images
 REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE
 store/oracle/database-enterprise   12.2.0.1            12a359cd0528        10 months ago       3.44 GB
-</code></pre><h2 id="Oracle-DBMS-Docker-컨테이너-생성"><a href="#Oracle-DBMS-Docker-컨테이너-생성" class="headerlink" title="Oracle DBMS Docker 컨테이너 생성"></a>Oracle DBMS Docker 컨테이너 생성</h2><p>설명에 보면 다음을 설정 할 수 있다.</p>
+</code></pre>
+<h2 id="Oracle-DBMS-Docker-컨테이너-생성"><a class="header-anchor" href="#Oracle-DBMS-Docker-컨테이너-생성">¶</a>Oracle DBMS Docker 컨테이너 생성</h2>
+<p>설명에 보면 다음을 설정 할 수 있다.</p>
 <ul>
 <li><code>DB_SID</code> Oracle의 SID임. 설정하지 않으면 <code>ORCLCDB</code></li>
 <li><code>DB_PDB</code> Oracle PDB의 이름임. 설정하지 않으면 <code>ORCLPDB1</code></li>
@@ -597,10 +614,12 @@ store/oracle/database-enterprise   12.2.0.1            12a359cd0528        10 mo
 
 ...
 ...
-</code></pre><p>근데 설치되다가 멈췄다?</p>
+</code></pre>
+<p>근데 설치되다가 멈췄다?</p>
 <pre><code>CONTAINER ID        IMAGE                                       COMMAND                  CREATED             STATUS                     PORTS               NAMES
-1299793d554a        store/oracle/database-enterprise:12.2.0.1   &quot;/bin/sh -c &apos;/bin/...&quot;   5 minutes ago       Exited (1) 4 minutes ago                       kbora
-</code></pre><p>로그 확인</p>
+1299793d554a        store/oracle/database-enterprise:12.2.0.1   &quot;/bin/sh -c '/bin/...&quot;   5 minutes ago       Exited (1) 4 minutes ago                       kbora
+</code></pre>
+<p>로그 확인</p>
 <pre><code>$ docker logs kbora
 
 Setup Oracle Database
@@ -617,12 +636,12 @@ untarDB.sh is done at 45 sec
 
 config DB ......
 log file is : /home/oracle/setup/log/configDB.log
-mkdir: cannot create directory &apos;/ORCL/u01&apos;: Permission denied
+mkdir: cannot create directory '/ORCL/u01': Permission denied
 /home/oracle/setup/configDBora.sh: line 56: cd: /u01/app/oracle/product/12.2.0/dbhome_1/dbs/: No such file or directory
 /home/oracle/setup/configDBora.sh: line 58: initORCLCDB.ora: Permission denied
 /home/oracle/setup/configDBora.sh: line 63: initORCLCDB.ora: Permission denied
 /home/oracle/setup/configDBora.sh: line 64: initORCLCDB.ora: Permission denied
-mkdir: cannot create directory &apos;/u01/app/oracle/diag&apos;: File exists
+mkdir: cannot create directory '/u01/app/oracle/diag': File exists
 Fri Jul 13 10:02:44 UTC 2018
 Start Docker DB configuration
 Call configDBora.sh to configure database
@@ -720,18 +739,21 @@ DONE!
 Remove password info
 Docker DB configuration is complete !
 ERROR : config DB failed, please check log /home/oracle/setup/log/configDB.log for details!
-tail: cannot open &apos;/u01/app/oracle/diag/rdbms/orclcdb/ORCLCDB/trace/alert_ORCLCDB.log&apos; for reading: No such file or directory
+tail: cannot open '/u01/app/oracle/diag/rdbms/orclcdb/ORCLCDB/trace/alert_ORCLCDB.log' for reading: No such file or directory
 tail: no files remaining
-</code></pre><p>음 <code>/ORCL/u01</code>을 생성 못해서 에러 난듯.</p>
+</code></pre>
+<p>음 <code>/ORCL/u01</code>을 생성 못해서 에러 난듯.</p>
 <p>다시시도. oradata 퍼미션을 안바꿨었네;; chmod 777 로 바꾸고 다시 시도 (기존 컨테이너는 삭제함)</p>
 <pre><code>$ docker run -d --name kbora -p 1521:1521 -p 5500:5500 -v /home/oracle/oradata:/ORCL --shm-size=&quot;10g&quot; store/oracle/database-enterprise:12.2.0.1
 ...
 ...
-</code></pre><p>정상 작동 함을 확인할 수 있음</p>
+</code></pre>
+<p>정상 작동 함을 확인할 수 있음</p>
 <pre><code>$ docker ps -a
 CONTAINER ID        IMAGE                                       COMMAND                  CREATED             STATUS                            PORTS                                            NAMES
-6ea333d7cdb4        store/oracle/database-enterprise:12.2.0.1   &quot;/bin/sh -c &apos;/bin/...&quot;   3 seconds ago       Up 3 seconds (health: starting)   0.0.0.0:1521-&gt;1521/tcp, 0.0.0.0:5500-&gt;5500/tcp   kbora
-</code></pre><p>로그 확인</p>
+6ea333d7cdb4        store/oracle/database-enterprise:12.2.0.1   &quot;/bin/sh -c '/bin/...&quot;   3 seconds ago       Up 3 seconds (health: starting)   0.0.0.0:1521-&gt;1521/tcp, 0.0.0.0:5500-&gt;5500/tcp   kbora
+</code></pre>
+<p>로그 확인</p>
 <pre><code>$ docker logs kbora
 Setup Oracle Database
 Oracle Database 12.2.0.1 Setup
@@ -766,25 +788,25 @@ File created.
 SQL&gt; ORACLE instance started.
 
 Total System Global Area 1342177280 bytes
-Fixed Size            8792536 bytes
-Variable Size          352323112 bytes
-Database Buffers      973078528 bytes
-Redo Buffers            7983104 bytes
+Fixed Size		    8792536 bytes
+Variable Size		  352323112 bytes
+Database Buffers	  973078528 bytes
+Redo Buffers		    7983104 bytes
 Database mounted.
 Database opened.
 SQL&gt;
 Database altered.
 
 SQL&gt;
-NAME                     TYPE     VALUE
+NAME				     TYPE	 VALUE
 ------------------------------------ ----------- ------------------------------
-spfile                     string     /u01/app/oracle/product/12.2.0
-                         /dbhome_1/dbs/spfileORCLCDB.or
-                         a
+spfile				     string	 /u01/app/oracle/product/12.2.0
+						 /dbhome_1/dbs/spfileORCLCDB.or
+						 a
 SQL&gt;
-NAME                     TYPE     VALUE
+NAME				     TYPE	 VALUE
 ------------------------------------ ----------- ------------------------------
-encrypt_new_tablespaces          string     CLOUD_ONLY
+encrypt_new_tablespaces 	     string	 CLOUD_ONLY
 SQL&gt;
 User altered.
 
@@ -888,15 +910,16 @@ Completed:     alter pluggable database ORCLPDB1 open
     alter pluggable database all save state
 Completed:     alter pluggable database all save state
 2018-07-13T15:14:54.744338+00:00
-ALTER SYSTEM SET encrypt_new_tablespaces=&apos;DDL&apos; SCOPE=BOTH;
+ALTER SYSTEM SET encrypt_new_tablespaces='DDL' SCOPE=BOTH;
 2018-07-13T15:15:08.494065+00:00
 Thread 1 advanced to log sequence 5 (LGWR switch)
   Current log# 2 seq# 5 mem# 0: /u04/app/oracle/redo/redo002.log
 2018-07-13T15:15:09.496693+00:00
-TABLE SYS.WRP$_REPORTS: ADDED INTERVAL PARTITION SYS_P287 (3116) VALUES LESS THAN (TO_DATE(&apos; 2018-07-14 01:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;))
-TABLE SYS.WRP$_REPORTS_DETAILS: ADDED INTERVAL PARTITION SYS_P288 (3116) VALUES LESS THAN (TO_DATE(&apos; 2018-07-14 01:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;))
-TABLE SYS.WRP$_REPORTS_TIME_BANDS: ADDED INTERVAL PARTITION SYS_P291 (3115) VALUES LESS THAN (TO_DATE(&apos; 2018-07-13 01:00:00&apos;, &apos;SYYYY-MM-DD HH24:MI:SS&apos;, &apos;NLS_CALENDAR=GREGORIAN&apos;))
-</code></pre><p><code>oradata</code>디렉토리를 확인해보면</p>
+TABLE SYS.WRP$_REPORTS: ADDED INTERVAL PARTITION SYS_P287 (3116) VALUES LESS THAN (TO_DATE(' 2018-07-14 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+TABLE SYS.WRP$_REPORTS_DETAILS: ADDED INTERVAL PARTITION SYS_P288 (3116) VALUES LESS THAN (TO_DATE(' 2018-07-14 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+TABLE SYS.WRP$_REPORTS_TIME_BANDS: ADDED INTERVAL PARTITION SYS_P291 (3115) VALUES LESS THAN (TO_DATE(' 2018-07-13 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+</code></pre>
+<p><code>oradata</code>디렉토리를 확인해보면</p>
 <pre><code>$ cd oradata
 $ ls -al
 total 24
@@ -906,7 +929,8 @@ drwxr-xr-x 3  54321  54321 4096 Aug  8  2017 u01
 drwxr-xr-x 3  54321  54321 4096 Aug  8  2017 u02
 drwxr-xr-x 3  54321  54321 4096 Aug  8  2017 u03
 drwxr-xr-x 3  54321  54321 4096 Aug  8  2017 u04
-</code></pre><p>각각 내용을 확인해 보면</p>
+</code></pre>
+<p>각각 내용을 확인해 보면</p>
 <ul>
 <li>u01 : dbs (init.ora)</li>
 <li>u02 : audit, oradata (dbs files)</li>
@@ -915,7 +939,8 @@ drwxr-xr-x 3  54321  54321 4096 Aug  8  2017 u04
 </ul>
 <p>처럼 저장된다.</p>
 <p>각각의 파티션을 나눠 사이즈를 지정하는 방식도 있는듯. <a href="https://blog.purestorage.com/docker-oracle-12c-and-persistent-storage/" target="_blank" rel="noopener">이곳</a> 링크에 잘 나와있는 듯 하다.</p>
-<h2 id="SQL-Plus-접속-테스트"><a href="#SQL-Plus-접속-테스트" class="headerlink" title="SQL Plus 접속 테스트"></a>SQL Plus 접속 테스트</h2><p>다음 명령어를 이용 <code>docker exec -it kbora bash -c &quot;source /home/oracle/.bashrc; sqlplus /nolog&quot;</code> </p>
+<h2 id="SQL-Plus-접속-테스트"><a class="header-anchor" href="#SQL-Plus-접속-테스트">¶</a>SQL Plus 접속 테스트</h2>
+<p>다음 명령어를 이용 <code>docker exec -it kbora bash -c &quot;source /home/oracle/.bashrc; sqlplus /nolog&quot;</code></p>
 <pre><code>$ docker exec -it kbora bash -c &quot;source /home/oracle/.bashrc; sqlplus /nolog&quot;
 
 SQL*Plus: Release 12.2.0.1.0 Production on Sat Jul 14 17:08:38 2018
@@ -923,7 +948,8 @@ SQL*Plus: Release 12.2.0.1.0 Production on Sat Jul 14 17:08:38 2018
 Copyright (c) 1982, 2016, Oracle.  All rights reserved.
 
 SQL&gt;
-</code></pre><p>일단 sys의 비밀번호부터 변경</p>
+</code></pre>
+<p>일단 sys의 비밀번호부터 변경</p>
 <pre><code>SQL&gt; conn /as sysdba
 Connected.
 SQL&gt; alter user sys identified by &lt;new-password&gt;;
@@ -931,12 +957,15 @@ User altered.
 SQL&gt; show sga
 
 Total System Global Area 1342177280 bytes
-Fixed Size            8792536 bytes
-Variable Size          570426920 bytes
-Database Buffers      754974720 bytes
-Redo Buffers            7983104 bytes
-</code></pre><h1 id="기타-설정"><a href="#기타-설정" class="headerlink" title="기타 설정"></a>기타 설정</h1><h2 id="Oracle-net-방화벽-열기"><a href="#Oracle-net-방화벽-열기" class="headerlink" title="Oracle net 방화벽 열기"></a>Oracle net 방화벽 열기</h2><p>같은 프로젝트에서 사용 방화벽은 문제 없는데, 외부에서 접속하려면 VPC 설정에서 포트를 열어줘야 한다.</p>
-<p><strong>VPC network</strong> &gt; <strong>Firewall rules</strong> </p>
+Fixed Size		    8792536 bytes
+Variable Size		  570426920 bytes
+Database Buffers	  754974720 bytes
+Redo Buffers		    7983104 bytes
+</code></pre>
+<h1>기타 설정</h1>
+<h2 id="Oracle-net-방화벽-열기"><a class="header-anchor" href="#Oracle-net-방화벽-열기">¶</a>Oracle net 방화벽 열기</h2>
+<p>같은 프로젝트에서 사용 방화벽은 문제 없는데, 외부에서 접속하려면 VPC 설정에서 포트를 열어줘야 한다.</p>
+<p><strong>VPC network</strong> &gt; <strong>Firewall rules</strong></p>
 <p><img src="/images/Capture2018-08-03at18-42d45501-0f42-4702-aaea-290bb84be515.52.31.jpg" alt=""></p>
 <p><code>CREATE FIREWALL RULE</code> 버튼 누르고 설정하면 됨</p>
 <ul>
@@ -944,7 +973,8 @@ Redo Buffers            7983104 bytes
 <li>Priority : 우선순위. 작을 수록 먼저 적용됨.</li>
 <li>Direction of Traffic : 방향. 들어오는 것이니 Ingress로</li>
 <li>Action on match : 해당하는 룰에 맞을 때 어떻게 할지. Allow로</li>
-<li>Targets<ul>
+<li>Targets
+<ul>
 <li>All instances in the network : 본 네트워크 전체에 대해</li>
 <li>Specified target tags : 특정 tag에 대해</li>
 <li>Specified service account : 특정 account 기준</li>
@@ -956,17 +986,24 @@ Redo Buffers            7983104 bytes
 </ul>
 <p><img src="/images/Capture2018-08-03at19-96a70e1a-fe94-439a-a4b8-1d7030871d9b.06.07.jpg" alt=""></p>
 <p>다 입력하고 Create 버튼을 눌러주면 됨</p>
-<h2 id="컨테이너-OS-셋업"><a href="#컨테이너-OS-셋업" class="headerlink" title="컨테이너 OS 셋업"></a>컨테이너 OS 셋업</h2><p>한참 쓰다보니 시간대가 안맞는다=_=; Docker를 잘 모를때라 호스트OS 설정을 계속 바꾸다 망했는데; 아마 컨테이너 구동 시 -e 환경변수로 넣어줘야 하는것 같은데, 컨테이너 OS에 직접 들어가서 수정하니 잘 작동 되어서(?) 그냥 쓰고 있다. (근데 왜 NLS_PARAMETER로 수정하지 않았었을까?)</p>
+<h2 id="컨테이너-OS-셋업"><a class="header-anchor" href="#컨테이너-OS-셋업">¶</a>컨테이너 OS 셋업</h2>
+<p>한참 쓰다보니 시간대가 안맞는다=_=; Docker를 잘 모를때라 호스트OS 설정을 계속 바꾸다 망했는데; 아마 컨테이너 구동 시 -e 환경변수로 넣어줘야 하는것 같은데, 컨테이너 OS에 직접 들어가서 수정하니 잘 작동 되어서(?) 그냥 쓰고 있다. (근데 왜 NLS_PARAMETER로 수정하지 않았었을까?)</p>
 <p>즉,</p>
 <ol>
-<li><code>docker exec -it bash</code> 로 진입</li>
-<li><p>/home/oracle의 .bashrc 에 지역 추가</p>
-<pre><code>export TZ=&apos;Asia/Seoul&apos;
-</code></pre></li>
-<li><p>변경했으면 DB 재시작</p>
+<li>
+<p><code>docker exec -it bash</code> 로 진입</p>
+</li>
+<li>
+<p>/home/oracle의 .bashrc 에 지역 추가</p>
+<pre><code> export TZ='Asia/Seoul'
+</code></pre>
+</li>
+<li>
+<p>변경했으면 DB 재시작</p>
 </li>
 </ol>
-<h2 id="참조"><a href="#참조" class="headerlink" title="참조"></a>참조</h2><ul>
+<h2 id="참조"><a class="header-anchor" href="#참조">¶</a>참조</h2>
+<ul>
 <li><a href="http://gokhanatil.com/2017/04/oracle-database-on-the-docker-store.html" target="_blank" rel="noopener">ORACLE DATABASE ON THE DOCKER STORE</a></li>
 <li><a href="http://www.oracle.com/technetwork/articles/cloudcomp/deploy-database-in-container-cloud-3876722.html" target="_blank" rel="noopener">Deploy Oracle Database as a Docker Container in Oracle Container Cloud Service</a></li>
 <li><a href="https://www.oracle.com/corporate/pressrelease/docker-oracle-041917.html" target="_blank" rel="noopener">Oracle Brings Oracle’s Flagship Databases and Developer Tools to the Docker Store</a> : DockerCon 2017에서 Oracle 12.1 을 하겠다는 발표</li>
@@ -1088,7 +1125,7 @@ Redo Buffers            7983104 bytes
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">KangJin Choi</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -1099,7 +1136,7 @@ Redo Buffers            7983104 bytes
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
@@ -1265,7 +1302,7 @@ Redo Buffers            7983104 bytes
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#개요"><span class="nav-number">1.</span> <span class="nav-text">개요</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까"><span class="nav-number">1.1.</span> <span class="nav-text">그런데 Docker를 사용해서 Oracle을 설치할 필요가 있을까?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-Cloud-VM-생성"><span class="nav-number">2.</span> <span class="nav-text">Google Cloud VM 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-생성"><span class="nav-number">2.1.</span> <span class="nav-text">VM 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-셋업"><span class="nav-number">2.2.</span> <span class="nav-text">OS 셋업</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-DBMS-설치-w-Docker"><span class="nav-number">3.</span> <span class="nav-text">Oracle DBMS 설치 (w/ Docker)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Store에-이미지-확인"><span class="nav-number">3.1.</span> <span class="nav-text">Docker Store에 이미지 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-DBMS-Docker-컨테이너-생성"><span class="nav-number">3.2.</span> <span class="nav-text">Oracle DBMS Docker 컨테이너 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Plus-접속-테스트"><span class="nav-number">3.3.</span> <span class="nav-text">SQL Plus 접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#기타-설정"><span class="nav-number">4.</span> <span class="nav-text">기타 설정</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-net-방화벽-열기"><span class="nav-number">4.1.</span> <span class="nav-text">Oracle net 방화벽 열기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#컨테이너-OS-셋업"><span class="nav-number">4.2.</span> <span class="nav-text">컨테이너 OS 셋업</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#참조"><span class="nav-number">4.3.</span> <span class="nav-text">참조</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">개요</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#그런데-Docker를-사용해서-Oracle을-설치할-필요가-있을까"><span class="nav-number">1.1.</span> <span class="nav-text">¶그런데 Docker를 사용해서 Oracle을 설치할 필요가 있을까?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Google Cloud VM 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VM-생성"><span class="nav-number">2.1.</span> <span class="nav-text">¶VM 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-셋업"><span class="nav-number">2.2.</span> <span class="nav-text">¶OS 셋업</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Oracle DBMS 설치 (w&#x2F; Docker)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Store에-이미지-확인"><span class="nav-number">3.1.</span> <span class="nav-text">¶Docker Store에 이미지 확인</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-DBMS-Docker-컨테이너-생성"><span class="nav-number">3.2.</span> <span class="nav-text">¶Oracle DBMS Docker 컨테이너 생성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-Plus-접속-테스트"><span class="nav-number">3.3.</span> <span class="nav-text">¶SQL Plus 접속 테스트</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">기타 설정</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-net-방화벽-열기"><span class="nav-number">4.1.</span> <span class="nav-text">¶Oracle net 방화벽 열기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#컨테이너-OS-셋업"><span class="nav-number">4.2.</span> <span class="nav-text">¶컨테이너 OS 셋업</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#참조"><span class="nav-number">4.3.</span> <span class="nav-text">¶참조</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1302,7 +1339,7 @@ Redo Buffers            7983104 bytes
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
 
 
 
