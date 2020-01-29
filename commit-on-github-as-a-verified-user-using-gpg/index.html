@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open Sans:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=6.7.0" color="#222">
+
+
+  <link rel="manifest" href="/site.webmanifest">
+
+
+  <meta name="msapplication-config" content="/browserconfig.xml"/>
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="GPG에 대해 알아보겠다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPG로 Github에 인증하기">
+<meta property="og:url" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/index.html">
+<meta property="og:site_name" content="개점휴업">
+<meta property="og:description" content="GPG에 대해 알아보겠다.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/Untitled.png">
+<meta property="og:image" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/Untitled%201.png">
+<meta property="og:image" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/Untitled%202.png">
+<meta property="og:image" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/Untitled%203.png">
+<meta property="article:published_time" content="2020-01-13T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-29T13:53:00.000Z">
+<meta property="article:author" content="KangJin Choi">
+<meta property="article:tag" content="GPG">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/Untitled.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>GPG로 Github에 인증하기 | 개점휴업</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148373431-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-148373431-1');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-148373431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개점휴업</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">언제 닫을지 모르는 개발 블로그</p>
+      
+    
+    
+      <a>
+        <img class="custom-logo-image" src="/kjchoi.png" alt="개점휴업"/>
+      </a>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KangJin Choi"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개점휴업"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GPG로 Github에 인증하기
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-01-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-14T00:00:00+09:00">2020-01-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-01-29 22:53:00" itemprop="dateModified" datetime="2020-01-29T22:53:00+09:00">2020-01-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/IT/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD/" itemprop="url" rel="index"><span itemprop="name">개발환경</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/commit-on-github-as-a-verified-user-using-gpg/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="commit-on-github-as-a-verified-user-using-gpg/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">GPG에 대해 알아보겠다.</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>GPG를 알아보게 된 이유는, 로컬에서 여러 Git 계정을 사용하고 있는데, <strong>다른 사용자(사용자명/이메일)로 commit된 것이 Github에 push될 때, 다른 contributor가 되는 현상이 발생했기 때문</strong>이다. 레파지토리는 owner사용자만 등록이 되었고, SSH key 역시 해당 사용자였기 때문에, 당연히 해당 사용자로 될 것이라 생각했다. <strong>물론 push 자체는 해당 레파지토리에 승인된 사용자만 가능하다.</strong> 그럼에도 committer는 다른 사용자가 가능한 것이다.</p>
+<p>예전에 <a href="https://blog.outsider.ne.kr/1209" target="_blank" rel="noopener">[GitHub에서 커밋에 서명하기 - Outsider’s Dev Story]</a>과 같은 글을 읽은 적이 있는데, 그때 당시엔 뭔소린가 했다. 이제서야 이해가 간다는…ㅠㅠ</p>
+<p>테스트 용도로 여러 github 계정을 분리하여 사용하고 있다. 각각 github 계정별로 SSH key를 생성하여 각각 등록을 한 상태이다. 그리고 <code>~/.ssh/config</code>파일에 다음처럼 해당 <code>host</code>를 나눈 상황이다.</p>
+<p><code>~/.ssh/config</code></p>
+<pre><code>Host open-but-closed_github
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/openbutclosed
+
+Host kjchoi_github
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/kjchoi
+</code></pre>
+<p>이 경우 Github의 SSH방식의 레파지토리 주소를 <code>open-but-closed_github:&lt;id&gt;/&lt;repository&gt;</code> 방식으로 접근할 수 있다. 즉 <code>open-but-closed_github:open-but-closed/ref.git</code> 라면 <code>~/.ssh/openbutclosed</code>라는 SSH key로 <code>/open-but-closed/ref.git</code> 레파지토리를 접근 가능. Github에는 다른 계정끼리 같은 SSH key를 등록할 수 없으니, 어떤 사용자인지 구분이 된다. 당연히 committer도 이를 따라갈 줄 알았는데, 그건 아니었다.</p>
+<h1>Git user &lt;&gt; Github user</h1>
+<p>당황스러워서 이것저것 찾아봤는데, 생각해보니 Git의 author(<code>user.name</code>, <code>user.email</code>)은 Github의 contributor와 <strong>당연히</strong> 다를 수 있다. Git과 Github을 분리해서 생각하면 간단하다. Git에서는 어떤 이메일로도 commit할 수 있고, Github이라는 원격 저장소에 올리는 것이다. 그리고 Github에는 이메일을 이용하여 별도로 회원 가입을 한다. <strong>Github의 이메일과 Git의 이메일 사이에 정확한 연결고리는 없는 것이 아닐까?</strong></p>
+<p>어쨌건, 이를 통일하고 싶었다. 기존 commit의 작성자가 잘못된 경우 <a href="https://jojoldu.tistory.com/120" target="_blank" rel="noopener">[이미 커밋된 내용에서 author(작성자) 수정하기 - 기억보단 기록을]</a>과 같은 임시방편을 사용할 수도 있는데… <code>git-rebase</code>라는 것이 결국 기존 로그를 기반으로 새로운 로그를 생성하는 것 같으니… 어쨌거나 결론은 <strong>최초에 셋업을 잘 하는게 제일 좋다</strong>라고 생각이 되긴 한다.</p>
+<h1>GPG서명</h1>
+<p>그 방안으로 찾은 것이 GPG서명을 Github에 연결하는 부분이다. GPG에 대한 개념은 <a href="https://johngrib.github.io/wiki/gpg/#%ED%82%A4-%EC%84%9C%EB%B2%84%EB%A1%9C-%EC%A0%84%EC%86%A1%ED%95%98%EA%B8%B0" target="_blank" rel="noopener">[GnuPG 사용법 - 기계인간 John Grib]</a> 글이 상세하게 설명이 되어있다. 하지만 결론적으로, GPG서명을 연결하는 것이 위 문제의 해결 방안은 아닌 것 같다. <strong>author정보를 잘못 생성하였을때 committer가 다르게 나올 수 있는 부분은 동일하다.</strong> GPG는 해당 이메일과 이름으로 등록된 사용자를, 해당 이메일과 이름으로 등록된 키와 동일하다는 것을 Verified해주는 기능인 것 같다. (물론 해당 키를 진짜 해당 사람이 관리한다는 전제하에…)</p>
+<p>어쨌건 GPG 적용한 부분을 봐보자…</p>
+<h1>GPG설치</h1>
+<ul>
+<li>
+<p>Mac에서는 <code>brew</code>로 찾아보면, gpg관련 여러 패키지가 있다. 단순 CLI 패키지면 될 듯 하다. 위에 나온대로 <code>gpg</code>패키지로 설치를 진행했다.</p>
+<pre><code>  $ brew search gpg
+  ==&gt; Formulae
+  gpg                                gpg1                               gpg2                               gpgme                              libgpg-error
+  
+  ==&gt; Casks
+  gpg-suite                          gpg-suite-nightly                  gpg-suite-no-mail                  gpg-suite-pinentry                 gpg-sync
+  kbMBP:~ we$
+</code></pre>
+</li>
+<li>
+<p><code>brew</code>로 설치를 진행한다.</p>
+<pre><code>  $ brew install gpg
+</code></pre>
+</li>
+<li>
+<p>이상하게 <code>$PATH</code>에 등록이 안된다. 설치 로그를 바탕으로 다음을 <code>.profile</code>등에 추가</p>
+<pre><code>  export PATH=/usr/local/Cellar/gnupg/2.2.19/bin:$PATH
+</code></pre>
+</li>
+<li>
+<p>한가지 추가 설정을 미리 보면 GPG_TTY 설정을 해줘야 전체 화면 프롬프트가 뜬다. (역시 <code>.profile</code>등에 추가)</p>
+<pre><code>  export GPG_TTY=$(tty)
+</code></pre>
+</li>
+<li>
+<p><code>gpg --list-keys</code>로 현재 key 조회</p>
+<pre><code>  kbMBP:~ we$ gpg --list-keys
+  /Users/we/.gnupg/pubring.kbx
+  ----------------------------
+  pub   dsa2048 2010-08-19 [SC] [expires: 2020-06-15]
+        85E38F69046B44C1EC9FB07B76D78F0500D026C4
+  uid           [ unknown] GPGTools Team &lt;team@gpgtools.org&gt;
+  sub   elg2048 2010-08-19 [E] [expires: 2020-06-15]
+  sub   rsa4096 2014-04-08 [S] [expires: 2024-01-02]
+</code></pre>
+</li>
+<li>
+<p><code>gpg --full-generate-key</code>로 키 생성하면 다음 옵션들을 입력한다.</p>
+<ul>
+<li>암호화 방식 (기본값은 RSA)
+<ul>
+<li>암호 키 사이즈</li>
+</ul>
+</li>
+<li>키 유효기간</li>
+<li>실제 이름</li>
+<li>이메일 주소</li>
+<li>코멘트</li>
+</ul>
+<p>중간에 passpharse를 묻는 부분이 있다. (전체화면으로 되어 캡쳐는 안되넹)</p>
+<pre><code>  kbMBP:~ we$ gpg --full-generate-key
+  gpg (GnuPG) 2.2.19; Copyright (C) 2019 Free Software Foundation, Inc.
+  This is free software: you are free to change and redistribute it.
+  There is NO WARRANTY, to the extent permitted by law.
+  
+  Please select what kind of key you want:
+     (1) RSA and RSA (default)
+     (2) DSA and Elgamal
+     (3) DSA (sign only)
+     (4) RSA (sign only)
+    (14) Existing key from card
+  Your selection?
+  RSA keys may be between 1024 and 4096 bits long.
+  What keysize do you want? (2048)
+  Requested keysize is 2048 bits
+  Please specify how long the key should be valid.
+           0 = key does not expire
+        &lt;n&gt;  = key expires in n days
+        &lt;n&gt;w = key expires in n weeks
+        &lt;n&gt;m = key expires in n months
+        &lt;n&gt;y = key expires in n years
+  Key is valid for? (0)
+  Key does not expire at all
+  Is this correct? (y/N) y
+  
+  GnuPG needs to construct a user ID to identify your key.
+  
+  Real name: open-but-closed
+  Email address: ceo@open-but-closed.com
+  Comment: gpg for openbutclosed
+  You selected this USER-ID:
+      &quot;open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;&quot;
+  
+  Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+  We need to generate a lot of random bytes. It is a good idea to perform
+  some other action (type on the keyboard, move the mouse, utilize the
+  disks) during the prime generation; this gives the random number
+  generator a better chance to gain enough entropy.
+  We need to generate a lot of random bytes. It is a good idea to perform
+  some other action (type on the keyboard, move the mouse, utilize the
+  disks) during the prime generation; this gives the random number
+  generator a better chance to gain enough entropy.
+  gpg: key EF26AB9ABA9AF417 marked as ultimately trusted
+  gpg: directory '/Users/we/.gnupg/openpgp-revocs.d' created
+  gpg: revocation certificate stored as '/Users/we/.gnupg/openpgp-revocs.d/03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417.rev'
+  public and secret key created and signed.
+  
+  pub   rsa2048 2019-12-30 [SC]
+        03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+  uid                      open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+  sub   rsa2048 2019-12-30 [E]
+</code></pre>
+</li>
+<li>
+<p>다시 조회</p>
+<pre><code>  kbMBP:~ we$ gpg --list-keys
+  gpg: checking the trustdb
+  gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+  gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+  /Users/we/.gnupg/pubring.kbx
+  ----------------------------
+  pub   dsa2048 2010-08-19 [SC] [expires: 2020-06-15]
+        85E38F69046B44C1EC9FB07B76D78F0500D026C4
+  uid           [ unknown] GPGTools Team &lt;team@gpgtools.org&gt;
+  sub   elg2048 2010-08-19 [E] [expires: 2020-06-15]
+  sub   rsa4096 2014-04-08 [S] [expires: 2024-01-02]
+  
+  pub   rsa2048 2019-12-30 [SC]
+        03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+  uid           [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+  sub   rsa2048 2019-12-30 [E]
+</code></pre>
+</li>
+<li>
+<p>가이드에 따라 해지 인증서도 생성해둠세</p>
+<pre><code>  kbMBP:~ we$ gpg --output revoke.asc --gen-revoke open-but-closed
+  
+  sec  rsa2048/EF26AB9ABA9AF417 2019-12-30 open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+  
+  Create a revocation certificate for this key? (y/N) y
+  Please select the reason for the revocation:
+    0 = No reason specified
+    1 = Key has been compromised
+    2 = Key is superseded
+    3 = Key is no longer used
+    Q = Cancel
+  (Probably you want to select 1 here)
+  Your decision? 0
+  Enter an optional description; end it with an empty line:
+  &gt;
+  Reason for revocation: No reason specified
+  (No description given)
+  Is this okay? (y/N) y
+  ASCII armored output forced.
+  Revocation certificate created.
+  
+  Please move it to a medium which you can hide away; if Mallory gets
+  access to this certificate he can use it to make your key unusable.
+  It is smart to print this certificate and store it away, just in case
+  your media become unreadable.  But have some caution:  The print system of
+  your machine might store the data and make it available to others!
+</code></pre>
+</li>
+<li>
+<p>확인해보면 <code>revoke.asc</code>파일이 생성되어 있음</p>
+<pre><code>  kbMBP:~ we$ ls -al revoke.asc
+  -rw-------  1 we  staff  548 Dec 30 15:18 revoke.asc
+</code></pre>
+</li>
+<li>
+<p>확인</p>
+<pre><code>kbMBP:~/Sandbox/open-ref we$ gpg --list-secret-keys --keyid-format LONG
+/Users/we/.gnupg/pubring.kbx
+----------------------------
+sec   rsa2048/EF26AB9ABA9AF417 2019-12-30 [SC]
+      03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+uid   [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+ssb   rsa2048/227E2434B9FC6EFB 2019-12-30 [E]
+
+kbMBP:~/Sandbox/open-ref we$ gpg --list-keys
+/Users/we/.gnupg/pubring.kbx
+----------------------------
+pub   dsa2048 2010-08-19 [SC] [expires: 2020-06-15]
+      85E38F69046B44C1EC9FB07B76D78F0500D026C4
+uid   [ unknown] GPGTools Team &lt;team@gpgtools.org&gt;
+sub   elg2048 2010-08-19 [E] [expires: 2020-06-15]
+sub   rsa4096 2014-04-08 [S] [expires: 2024-01-02]
+
+pub   rsa2048 2019-12-30 [SC]
+      03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+uid   [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+sub   rsa2048 2019-12-30 [E]
+
+
+kbMBP:~ we$ gpg -k
+/Users/we/.gnupg/pubring.kbx
+----------------------------
+pub   dsa2048 2010-08-19 [SC] [expires: 2020-06-15]
+      85E38F69046B44C1EC9FB07B76D78F0500D026C4
+uid   [ unknown] GPGTools Team &lt;team@gpgtools.org&gt;
+sub   elg2048 2010-08-19 [E] [expires: 2020-06-15]
+sub   rsa4096 2014-04-08 [S] [expires: 2024-01-02]
+
+pub   rsa2048 2019-12-30 [SC]
+      03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+uid   [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+sub   rsa2048 2019-12-30 [E]
+
+kbMBP:~ we$ gpg -K
+/Users/we/.gnupg/pubring.kbx
+----------------------------
+sec   rsa2048 2019-12-30 [SC]
+      03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+uid   [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+ssb   rsa2048 2019-12-30 [E]
+
+
+
+
+kbMBP:~ we$ gpg --armor --export open-but-closed
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQENBF4Jli4BCADTWvy2AdaUuzG/ggQbVw+8+VpgJeLVF4Wgrsm+pyGwTggvjAOj
+3TBtPBUesmcTXnFef0GzWqEeYOJM4dzKV4lQTg45n2sV0fR5jP17UJBjWfyZS23I
+IqEgLfjCGC5fNWe3JV2QSV7Jf2QLLT39Ir1MPPczOA2NMG9P82chcxfG5a2aXtX7
+QfWxMF9qDhYDIEIsEHZl1A8JkJwjqhxDx9dgZXll4uDY2xYlvEHopo/0LUtYl4nV
+[중간생략]
+jmiWn9/ILtCan7Z6n2vWVi2z7LckLRrqpSgL8glR6eH0Gc1KcXYO6H29RqPKouOu
+/ixiB281I6fTv6OTAYqAn6c0TBCp4lbZ8I0iyG4l/cwKcLPrq6+OSRh6ZgwSeMg5
+/2dZJ7J3QQZR2+ztzHfaNC6S1mVx4ALM6Lo2C9lXZQARAQABiQE2BBgBCAAgFiEE
+A7wMDFEiM1upFrvt7yarmrqa9BcFAl4Jli4CGwwACgkQ7yarmrqa9Be1dAgAkqWC
+Kae5GyT2goegJEplz8OmrmfOiGCXcIvi7MiYApJcymaZAs6dXo+0VbzVH/miRmm0
+pFMaiw/f7LP7/1xghjfYjW+K8bzsT8xa6OrkmyZ+MTx3qSUmqdHocJs++hZP/1Xs
+jcl+wZA5AXcypMl7o9muacM0dpxVa9O0nd8QlJF/vKQR3MoU18viAegW5f8DKHOz
+Pd1BSzBkbi0ITykTrWjSQijkfdzFIqbDFzG8vJZT3JwD7NUe4Y/VXx/tTIYSnyqb
+muENjseyBJ6MNj6I2wIxtWC/slbTD2JIL17ivrKEeU4NcbysoO9jnx3zTzd1zWF4
+DH0JzowyghlDi+rghw==
+=2nzJ
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+</li>
+</ul>
+<p>새로운 키는 다음 명령어로 생성할 수 있다.</p>
+<ul>
+<li><code>--gen-key</code></li>
+<li><code>--full-generate-key</code></li>
+</ul>
+<h1>Github에 GPG키 등록</h1>
+<p>Repository의 Setting으로 가서, SSH and GPG keys에서 등록</p>
+<p><img src="Untitled.png" alt="Untitled.png"></p>
+<p>잘 넣으면</p>
+<p><img src="Untitled%201.png" alt="Untitled%201.png"></p>
+<p>등록이 완료됨…</p>
+<p><img src="Untitled%202.png" alt="Untitled%202.png"></p>
+<h1>Git config</h1>
+<p>이제 <code>git config</code>로 다음 내용을 셋업하면 된다.</p>
+<ul>
+<li>
+<p><code>gpg.program</code> : gpg 사용 프로그램, <code>gpg</code>로</p>
+</li>
+<li>
+<p><code>commit.gpgsign</code> : <code>commit</code> 명령어 시 <code>-S</code>옵션을 붙여야 GPG서명이 함께 들어간다. 이를 기본값으로 하고 싶으면 <code>true</code>로 설정</p>
+</li>
+<li>
+<p><code>user.signingkey</code> : GPG의 <code>secret key</code>값을 입력. <code>gpg --list-secret-keys --keyid-format LONG</code> 명령어를 했을 때 <code>sec   rsa2048/</code>뒤로 나오는 문자셋이다.</p>
+<pre><code>  kbMBP:~/Sandbox/open-ref we$ gpg --list-secret-keys --keyid-format LONG
+  /Users/we/.gnupg/pubring.kbx
+  ----------------------------
+  sec   rsa2048/EF26AB9ABA9AF417 2019-12-30 [SC]
+        03BC0C0C5122335BA916BBEDEF26AB9ABA9AF417
+  uid                 [ultimate] open-but-closed (gpg for openbutclosed) &lt;ceo@open-but-closed.com&gt;
+  ssb   rsa2048/227E2434B9FC6EFB 2019-12-30 [E]
+</code></pre>
+</li>
+<li>
+<p>설정 확인</p>
+<pre><code>  $ git config -l
+  
+  ...
+  user.name=open-but-closed
+  user.email=ceo@open-but-closed.com
+  user.signingkey=EF26AB9ABA9AF417
+  ...
+  commit.gpgsign=true
+  gpg.program=gpg
+  ...
+</code></pre>
+</li>
+</ul>
+<p>이제 <code>commit</code>을 하면 Github 오른쪽에 <code>Verified</code>가 뜬다.</p>
+<p><img src="Untitled%203.png" alt="Untitled%203.png"></p>
+<h1>참조</h1>
+<ul>
+<li><a href="https://johngrib.github.io/wiki/gpg/#%ED%82%A4-%EC%84%9C%EB%B2%84%EB%A1%9C-%EC%A0%84%EC%86%A1%ED%95%98%EA%B8%B0" target="_blank" rel="noopener">GnuPG 사용법</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GPG/" rel="tag"># GPG</a>
+          
+            <a href="/tags/Github/" rel="tag"># Github</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/vertica-grant-permission-to-schema/" rel="next" title="Vertica의 2가지 권한 부여 방식">
+                <i class="fa fa-chevron-left"></i> Vertica의 2가지 권한 부여 방식
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">KangJin Choi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Git user &lt;&gt; Github user</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">GPG서명</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">GPG설치</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">Github에 GPG키 등록</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">Git config</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">참조</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KangJin Choi</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+  <script id="dsq-count-scr" src="https://open-but-closed-com.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "http://open-but-closed.com/commit-on-github-as-a-verified-user-using-gpg/";
+    this.page.identifier = "commit-on-github-as-a-verified-user-using-gpg/";
+    this.page.title = 'GPG로 Github에 인증하기';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://open-but-closed-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
